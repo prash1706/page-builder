@@ -1,0 +1,239 @@
+<script>
+digitalData = {
+  page: {
+    category: {
+      primaryCategory: 'SB03'
+    },
+    pageInfo: {
+      maxymiser: {
+        synchronous: true
+      },
+      effectiveDate: '2014-04-18',
+      expiryDate: '2017-12-18',
+      language: 'en-US',
+      publishDate: '2013-12-19',
+      publisher: 'IBM Corporation',
+      version: 'v18',
+      ibm: {
+        country: 'US',
+        ibmDynamicCm: true,
+        industry: 'ZZ',
+        owner: "Becky Kelly/Boulder/IBM",
+        subject: 'IBM000',
+        type: 'CT052'
+      },
+      liveperson: {
+        enabled: true,
+        routing: "__REPLACE-ME__"
+      }
+    }
+  }
+};
+</script>
+<link href="css/www.css" rel="stylesheet">
+<link rel="stylesheet" href="css/reference.css">
+<script src="lib/www.js"></script>
+<script src="lib/reference.js"></script>
+<style></style>
+<script>
+IBMCore.common.util.config.set({
+  masthead: {
+    type: "alternate"
+  },
+  footer: {
+    socialLinks: {
+      enabled: true
+    }
+  }
+});
+</script>
+<!-- Hotjar Tracking Code for ibm.com -->
+<script>
+(function(h, o, t, j, a, r) {
+  h.hj = h.hj || function() {
+    (h.hj.q = h.hj.q || []).push(arguments)
+  };
+  h._hjSettings = {
+    hjid: 42920,
+    hjsv: 5
+  };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, '//static.hotjar.com/c/hotjar-', '.js?sv=');
+</script>
+<div class="ibm-landing-page nst-tmpl-reference" id="ibm-top">
+  <div id="ibm-content-wrapper">
+    <!--LeadSpace1.headline 2.subhead 3.imgUrl 4.cat 5.catUrl-->
+    <header role="banner" aria-labelledby="ibm-pagetitle-h1">
+      <div id="ibm-leadspace-head" class="ibm-alternate ibm-alternate-background" style="background-image:url({{leadspace.imgUrl}})">
+        <div id="ibm-leadspace-body">
+          <div class="ibm-columns nst-header">
+            <div class="ibm-col-1-1 ">
+              <h1 id="ibm-pagetitle-h1" class="ibm-h1 nst-page-title">{{leadspace.headline}}</h1>
+              <div class="ibm-columns">
+                <div class="ibm-col-2-1 nst-full-width-g540 nst-full-width-g720 nst-6-4-g960">
+                  <p>{{leadspace.subhead}}</p>
+                  <p class="ibm-btn-row"> <a ng-href="leadspace.catUrl" class="ibm-btn-pri nst-btn nst-btn-orange" rel="external" target="_blank">{{leadspace.cat}}</a> </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--LeadSpace-->
+    <main role="main">
+      <div id="ibm-pcon">
+        <div id="ibm-content">
+          <div id="ibm-content-body">
+            <div id="ibm-content-main">
+              <!--Definition-->
+              <!--Introduciton-->
+              <section class="nst-module__introduction-col-2-cta nst-section-gap" ng-if="intro!==''">
+                <div class="ibm-columns">
+                  <div class="ibm-col-1-1 nst-text-center">
+                    <h2 class="ibm-h2 nst-section-header">
+                              {{intro.subhead}}
+                          </h2>
+                  </div>
+                  <div class="ibm-col-2-1">
+                    <p>
+                      {{intro.column1}}
+                    </p>
+                  </div>
+                  <div class="ibm-col-2-1">
+                    <ul>
+                      <li>Mauris augue dui, blandit non malesuada quis, ornare vitae justo. </li>
+                      <li>Etiam gravida nisl vel fringilla bibendum. Vestibulum at ultrices nisl.</li>
+                      <li>Aliquam finibus ex risus, vitae ultrices justo luctus non. </li>
+                      <li>Duis hendrerit lectus mattis, tristique nisi at, mollis risus. </li>
+                    </ul>
+                  </div>
+                  <div class="ibm-col-1-1 nst-cta  nst-border-col">
+                    <div class="ibm-columns">
+                      <div class="ibm-col-6-4 nst-full-width-g540">
+                        <h3 class="ibm-h3">{{intro.ctaLeadIn}}</h3>
+                      </div>
+                      <div class="ibm-col-6-2 nst-full-width-g540">
+                        <p class="ibm-btn-row">
+                          <a ng-href="intro.ctaUrl" rel="external" class="ibm-btn ibm-btn-pri nst-btn-orange nst-btn">{{intro.cta}}</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!--Introduction-->
+              <!-- Asset Promo-->
+              <section class="nst-module__asset-promo nst-section-gap" ng-if="asset!==''">
+                <div class="ibm-columns">
+                  <div class="ibm-col-2-1 nst-full-width-g720 nst-padding-right-30-g960-up">
+                    <h2 class="ibm-h2">{{asset.subhead}}</h2>
+                    <p class="nst-large-p">{{asset.body}}</p>
+                    <p class="ibm-btn-row">
+                      <a ng-href="asset.ctaUrl" rel="external" class="ibm-btn-pri nst-btn-orange nst-btn">{{asset.cta}}</a>
+                    </p>
+                  </div>
+                  <div class="ibm-col-2-1 nst-hidden-g720">
+                    <img ng-src="{{asset.imgUrl}}">
+                  </div>
+                </div>
+              </section>
+              <!--Asset Promo-->
+              <!--Step by step-->
+              <section class="nst-module__step-by-step nst-section-gap nst-border-top" ng-if="step!==''">
+                <div class="ibm-columns">
+                  <div class="ibm-col-1-1 nst-text-center">
+                    <h2 class="ibm-h2 nst-section-header ">{{step.subhead}}</h2>
+                  </div>
+                  <div class="ibm-col-6-2 nst-text-center nst-full-width-g540">
+                    <img src="{{step.step1.imgUrl}}" class="nst-circle-clip" alt="">
+                    <h4 class="ibm-h4">{{step.step1.title}}</h4>
+                    <p>{{step.step1.desc}}</p>
+                    <p>
+                      <a ng-href="{{step.step1.ctaUrl}}" rel="external">{{step.step1.cta}}</a>
+                    </p>
+                  </div>
+                  <div class="ibm-col-6-2 nst-text-center nst-full-width-g540">
+                    <img src="{{step.step2.imgUrl}}" class="nst-circle-clip" alt="">
+                    <h4 class="ibm-h4">{{step.step2.title}}</h4>
+                    <p>{{step.step2.desc}}</p>
+                    <p>
+                      <a ng-href="{{step.step2.ctaUrl}}" rel="external">{{step.step2.cta}}</a>
+                    </p>
+                  </div>
+                  <div class="ibm-col-6-2 nst-text-center nst-full-width-g540">
+                    <img src="{{step.step3.imgUrl}}" class="nst-circle-clip" alt="">
+                    <h4 class="ibm-h4">{{step.step3.title}}</h4>
+                    <p>{{step.step3.desc}}</p>
+                    <p>
+                      <a ng-href="{{step.step3.ctaUrl}}" rel="external">{{step.step3.cta}}</a>
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <!--Step by step-->
+              <!--Related resources-->
+              <section class="nst-section-gap learn-more">
+                <div class="ibm-columns">
+                  <div class="ibm-col-1-1 nst-border-top "> </div>
+                  <div class="ibm-col-1-1 nst-text-center">
+                    <h2 class="ibm-h2 nst-section-header">{{related.subhead}}</h2></div>
+                </div>
+                <div class="ibm-columns ibm-widget-processed" data-widget="setsameheight" data-items="div > div ">
+                  <div class="ibm-col-6-2 nst-stack-space-mobile nst-stack-space-g540 nst-full-width-g540">
+                    <div class="nst-card nst-padding-all-25 nst-transition" style="height: 169px;">
+                      <h4 class="ibm-h4">{{related.relat1.body}}</h4>
+                      <p class="nst-bottom"> <a rel="external" href="{{related.relat1.ctaUrl}}" class="nst-block-link">{{related.relat1.cta}}</a> </p>
+                    </div>
+                  </div>
+                  <div class="ibm-col-6-2 nst-stack-space-mobile nst-stack-space-g540 nst-full-width-g540">
+                    <div class="nst-card nst-padding-all-25 nst-transition" style="height: 169px;">
+                      <h4 class="ibm-h4">{{related.relat2.body}}</h4>
+                      <p class="nst-bottom"> <a rel="external" href="{{related.relat2.ctaUrl}}" class="nst-block-link">{{related.relat2.cta}}</a> </p>
+                    </div>
+                  </div>
+                  <div class="ibm-col-6-2 nst-stack-space-mobile nst-stack-space-g540 nst-full-width-g540">
+                    <div class="nst-card nst-padding-all-25 nst-transition" style="height: 169px;">
+                      <h4 class="ibm-h4">{{related.relat3.body}}</h4>
+                      <p class="nst-bottom"> <a rel="external" href="{{related.relat3.ctaUrl}}" class="nst-block-link">{{related.relat3.cta}}</a> </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!--Contact-->
+              <section class="nst-contact-band ibm-alternate-background" style="background-color: #412356 ;" ng-if="contact!==''">
+                <div class="ibm-columns  nst-full-height-g960">
+                  <div class="ibm-col-5-3 nst-flex-vertical flex-g960 nst-full-height-g960  nst-full-width-g720">
+                    <h4 class="ibm-h4 ibm-icon-nolink ibm-phone-link nst-icon-visible-g720 nst-contact-message-header">
+                      <span class="nst-mobile-line">Call us at: <span class="nst-phone">{{contact.phone}}</span></span> <span class="nst-mobile-line">(Priority code: <span class="nst-priority">{{contact.priority}}</span>)</span>
+                    </h4> </div>
+                  <div class="ibm-col-5-2 nst-flex-vertical flex-g960 nst-full-height-g960 nst-full-width-g720">
+                    <h4 class="ibm-h4 nst-contact-list-header">Visit us on:</h4>
+                    <ul class="nst-social-list ibm-link-list">
+                      <li>
+                        <a rel="external" target="_blank" title="IBM API Economy on Twitter" class="ibm-twitter-link" href="https://twitter.com/IBMintegration"></a>
+                      </li>
+                      <li>
+                        <a rel="external" target="_blank" title="IBM API Economy on YouTube" class="ibm-youtube-link" href="https://www.youtube.com/user/IBMintegrationMedia"></a>
+                      </li>
+                      <li>
+                        <a rel="external" target="_blank" title="IBM API Economy Blog" class="ibm-blog-link" href="https://www-304.ibm.com/connections/blogs/aim/?lang=en_us"></a>
+                      </li>
+                      <li>
+                        <a rel="external" target="_blank" title="IBM API Economy on Google+" class="ibm-googleplus-link" href="https://plus.google.com/106375465587386953111/about"></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
