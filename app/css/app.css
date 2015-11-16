@@ -14,3 +14,12 @@
 .color4{
   border-bottom: 2px solid #4b6165;
 }
+
+#wrapper{
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.selected{
+  box-shadow: 0 0 3px 3px #5cb85c;
+}

@@ -1,0 +1,34 @@
+<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/app.css" rel="stylesheet">
+<div id="wrapper">
+  <div id="ColumnContainer">
+    <nav class="navbar navbar-default col-md-10">
+      <div class="collapse navbar-collapse">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Page Builder</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-left">
+          <p class="navbar-text">Load Json:</p>
+          <input type="file" class="navbar-text" name="file" style="float: left; margin-left:-5px">
+        </div>
+        <div class="nav navbar-nav navbar-right">
+          <button type="button" class="btn btn-success navbar-btn">Save Json</button>
+          <a type="button" class="btn btn-danger navbar-btn" ui-sref="myPage">Create Page</a>
+        </div>
+      </div>
+    </nav>
+    <div class="col-md-10  pull-left" style="margin-right:20px">
+      <ul class="nav nav-pills nav-stacked pull-left" style="width:130px">
+        <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
+        <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
+        <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
+        <li ng-class="{active:currentPage==3}"><a ng-href="/setting/promotion1" ng-click="currentPage=3" ui-sref="setting.promotion1">Promotion1</a></li>
+        <li ng-class="{active:currentPage==4}"><a ng-href="/setting/promotion2" ng-click="currentPage=4" ui-sref="setting.promotion2">Promotion2</a></li>
+        <li ng-class="{active:currentPage==5}"><a ng-href="/setting/promotion3" ng-click="currentPage=5" ui-sref="setting.promotion3">Promotion3</a></li>
+        <li ng-class="{active:currentPage==6}"><a ng-href="/setting/discovery" ng-click="currentPage=6" ui-sref="setting.discovery">Discovery*</a></li>
+        <li ng-class="{active:currentPage==7}"><a ng-href="/setting/contact" ng-click="currentPage=7" ui-sref="setting.contact">Contact</a></li>
+      </ul>
+      <div ui-view class="col-md-10 pull-left"></div>
+    </div>
+  </div>
+</div>

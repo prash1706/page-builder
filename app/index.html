@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
-
 <head>
   <meta charset="UTF-8">
-  <title>IBM - API Economy - United States</title>
+  <title>SmarterPlanet - PageBuilder</title>
   <link rel="icon" href="//www.ibm.com/favicon.ico">
-  <link href="css/app.css" rel="stylesheet">
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- JSON meta data objects for customer experience W3C spec-->
-
 </head>
 
 <body id='ibm-com' class='ibm-type'>
-  <div ng-view></div>
-  <script src="lib/angular.min.js"></script>
-  <script src="lib/angular-route.min.js"></script>
+  <div ui-view></div>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/page.js"></script>
 </body>

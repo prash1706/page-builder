@@ -1,0 +1,199 @@
+<div class="col-md-12" style="margin-left:50px">
+  <legend class="color2">Definition</legend>
+  <form class="col-md-5">
+    <div class="form-group">
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Choose style</button>
+    </div>
+  </form>
+  <div ng-if="mySetting.type==1 && mySetting.substyle > 0 && mySetting.substyle < 5">
+    <legend><small>Introduction</small></legend>
+    <label>Subhead</label>
+    <input type="text" class="form-control" ng-model="intro.subhead">
+    <label>Column 1</label>
+    <textarea type="text" class="form-control" rows="5" ng-model="intro.column1"></textarea>
+    <label>CTA Lead-in</label>
+    <input type="text" class="form-control" ng-model="intro.ctaLeadIn">
+    <label>CTA Button</label>
+    <input type="text" class="form-control" ng-model="intro.cta">
+    <label>CTA URL</label>
+    <input type="text" class="form-control" ng-model="intro.ctaUrl">
+  </div>
+  <div ng-if="mySetting.type==2 && mySetting.substyle > 4 && mySetting.substyle < 7">
+    <legend><small>Asset Promo</small></legend>
+    <label>Subhead</label>
+    <input type="text" class="form-control" ng-model="asset.subhead">
+    <label>Body Copy</label>
+    <textarea type="text" class="form-control" rows="5" ng-model="asset.body"></textarea>
+    <label>CTA Button</label>
+    <input type="text" class="form-control" ng-model="asset.cta">
+    <label>CTA URL</label>
+    <input type="text" class="form-control" ng-model="asset.ctaUrl">
+    <label>Asset Image URL</label>
+    <input type="text" class="form-control" ng-model="asset.imgUrl">
+  </div>
+  <div ng-if="mySetting.type==3 &&  mySetting.substyle > 6 && mySetting.substyle < 15">
+    <legend><small>Step by Step</small></legend>
+    <label>Subhead</label>
+    <input type="text" class="form-control" ng-model="step.subhead">
+    <div class="col-md-4">
+      <legend><small style="font-size:80%">Step1</small></legend>
+      <label>Image Url</label>
+      <input type="text" class="form-control" ng-model="step.step1.imgUrl">
+      <label>Step Title</label>
+      <input type="text" class="form-control" ng-model="step.step1.title">
+      <label>Step Description</label>
+      <input type="text" class="form-control" ng-model="step.step1.desc">
+      <label>Step CTA Content</label>
+      <input type="text" class="form-control" ng-model="step.step1.cta">
+      <label>Step CTA Image URL</label>
+      <input type="text" class="form-control" ng-model="step.step1.ctaUrl">
+    </div>
+    <div class="col-md-4">
+      <legend><small style="font-size:80%">Step2</small></legend>
+      <label>Image Url</label>
+      <input type="text" class="form-control" ng-model="step.step2.imgUrl">
+      <label>Step Title</label>
+      <input type="text" class="form-control" ng-model="step.step2.title">
+      <label>Step Description</label>
+      <input type="text" class="form-control" ng-model="step.step2.desc">
+      <label>Step CTA Content</label>
+      <input type="text" class="form-control" ng-model="step.step2.cta">
+      <label>Step CTA Image URL</label>
+      <input type="text" class="form-control" ng-model="step.step2.ctaUrl">
+    </div>
+    <div class="col-md-4">
+      <legend><small style="font-size:80%">Step3</small></legend>
+      <label>Image Url</label>
+      <input type="text" class="form-control" ng-model="step.step3.imgUrl">
+      <label>Step Title</label>
+      <input type="text" class="form-control" ng-model="step.step3.title">
+      <label>Step Description</label>
+      <input type="text" class="form-control" ng-model="step.step3.desc">
+      <label>Step CTA Content</label>
+      <input type="text" class="form-control" ng-model="step.step3.cta">
+      <label>Step CTA Image URL</label>
+      <input type="text" class="form-control" ng-model="step.step3.ctaUrl">
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Module style</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Module style</label>
+            <select class="form-control" ng-model="tempSetting.type">
+              <option ng-hide="isRequired" value="0">None</option>
+              <option value="1">Introduction</option>
+              <option value="2">Asset Promo</option>
+              <option value="3">Step by Step</option>
+            </select>
+          </div>
+          <div ng-show="tempSetting.type==1||tempSetting.type==2||tempSetting.type==3" class="form-group">
+            <label>Choose a substyle below</label>
+            <div ng-show="tempSetting.type==1">
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==1}" ng-click="tempSetting.substyle=1">
+                    <img src="../images/Introduction1.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==2}" ng-click="tempSetting.substyle=2">
+                    <img src="../images/Introduction2.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==3}" ng-click="tempSetting.substyle=3">
+                    <img src="../images/Introduction3.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==4}" ng-click="tempSetting.substyle=4">
+                    <img src="../images/Introduction4.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div ng-show="tempSetting.type==2">
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==5}" ng-click="tempSetting.substyle=5">
+                    <img src="../images/Asset_promo1.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==6}" ng-click="tempSetting.substyle=6">
+                    <img src="../images/Asset_promo2.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div ng-show="tempSetting.type==3">
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==7}" ng-click="tempSetting.substyle=7">
+                    <img src="../images/step1.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==8}" ng-click="tempSetting.substyle=8">
+                    <img src="../images/step2.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==9}" ng-click="tempSetting.substyle=9">
+                    <img src="../images/step3.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==10}" ng-click="tempSetting.substyle=10">
+                    <img src="../images/step4.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==11}" ng-click="tempSetting.substyle=11">
+                    <img src="../images/step5.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==12}" ng-click="tempSetting.substyle=12">
+                    <img src="../images/step6.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==13}" ng-click="tempSetting.substyle=13">
+                    <img src="../images/step7.jpg" alt="">
+                  </a>
+                </div>
+                <div class="col-md-6">
+                  <a class="thumbnail" ng-class="{selected: tempSetting.substyle==14}" ng-click="tempSetting.substyle=14">
+                    <img src="../images/step8.jpg" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <label class="text-danger" ng-show="showWarning">Please Choose a substyle.&nbsp;&nbsp;</label>
+        <button type="button" class="btn btn-primary" ng-click="setStyle()">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

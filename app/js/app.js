@@ -1,27 +1,68 @@
 'use strict';
 
-angular.module('myApp', ['ngRoute', 'myPageApp'])
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-      .when('/myPage', {
+angular.module('myApp', ['ui.router', 'myPageApp'])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/setting/leadspace');
+
+    $stateProvider
+      .state('setting', {
+        url: '',
+        templateUrl: 'views/setting.html',
+        controller: 'SetMainCtrl'
+      })
+      .state('setting.leadspace', {
+        url: '/setting/leadspace',
+        templateUrl: 'views/leadspace.html',
+        controller: 'SetLeadSpaceCtrl'
+      })
+      .state('setting.definition1', {
+        url: '/setting/definition1',
+        templateUrl: 'views/definition.html',
+        controller: 'SetDefinition1Ctrl'
+      })
+      .state('setting.definition2', {
+        url: '/setting/definition2',
+        templateUrl: 'views/definition.html',
+        controller: 'SetDefinition2Ctrl'
+      })
+      .state('setting.promotion1', {
+        url: '/setting/promotion1',
+        templateUrl: 'views/promotion.html',
+        controller: 'SetPromotionCtrl'
+      })
+      .state('setting.promotion2', {
+        url: '/setting/promotion2',
+        templateUrl: 'views/promotion.html',
+        controller: 'SetPromotionCtrl'
+      })
+      .state('setting.promotion3', {
+        url: '/setting/promotion3',
+        templateUrl: 'views/promotion.html',
+        controller: 'SetPromotionCtrl'
+      })
+      .state('setting.discovery', {
+        url: '/setting/discovery',
+        templateUrl: 'views/discovery.html',
+        controller: 'SetDiscoveryCtrl'
+      })
+      .state('setting.contact', {
+        url: '/setting/contact',
+        templateUrl: 'views/contact.html',
+        controller: 'SetContactCtrl'
+      })
+      .state('myPage', {
+        url: '/myPage',
         templateUrl: 'views/myPage.html',
-        controller: 'showPageCtrl'
-      })
-      .when('/', {
-        templateUrl: 'views/pageBuilder.html',
-        controller:'createPageCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
+        controller: 'MyPageCtrl'
       });
   }])
   .run(function($rootScope) {
     $rootScope.leadspace = {
       'headline': 'API economy',
       'subhead': 'Power innovation and build new revenue streams by making APIs part of your business model. Connect with an IBM expert to find out how. ',
-      'imgUrl':'http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_leadspace.jpg',
+      'imgUrl': '../images/leadspace-bg.jpg',
       'cat': 'Register for a free consultation',
-      'catUrl': 'images/mlp-reference-apieconomy-2000x493px-1x.jpg'
+      'catUrl': '#'
     };
     $rootScope.intro = {
       'subhead': 'lorem ipsum',
@@ -62,21 +103,21 @@ angular.module('myApp', ['ngRoute', 'myPageApp'])
       }
     };
     $rootScope.related = {
-      'subhead':'Learn more about the API economy',
-      'relat1':{
-        'body':'Take a deeper dive into API basics',
-        'cta':'Learn the basics',
-        'ctaUrl':'https://developer.ibm.com/api/'
+      'subhead': 'Learn more about the API economy',
+      'relat1': {
+        'body': 'Take a deeper dive into API basics',
+        'cta': 'Learn the basics',
+        'ctaUrl': 'https://developer.ibm.com/api/'
       },
-      'relat2':{
-        'body':'Locate advanced resources and connect with developers through API Explorer',
-        'cta':'Join the community',
-        'ctaUrl':'https://developer.ibm.com/api/'
+      'relat2': {
+        'body': 'Locate advanced resources and connect with developers through API Explorer',
+        'cta': 'Join the community',
+        'ctaUrl': 'https://developer.ibm.com/api/'
       },
-      'relat3':{
-        'body':'EyeQ speeds time to market with IBM Bluemix',
-        'cta':'Read the full story',
-        'ctaUrl':'https://developer.ibm.com/api/'
+      'relat3': {
+        'body': 'EyeQ speeds time to market with IBM Bluemix',
+        'cta': 'Read the full story',
+        'ctaUrl': 'https://developer.ibm.com/api/'
       }
     }
     $rootScope.contact = {
