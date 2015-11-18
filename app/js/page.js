@@ -43,11 +43,11 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $timeout) {
   };
 
   $scope.mySetting = {
-    introColCount: 3,
-    type: 1,
-    substyle: 4
+    type: 3,
+    substyle: 7
   };
 
+  $scope.introColCount = "4";
   $scope.tempSetting.type = $scope.setting.definition1.type;
   $scope.tempSetting.substyle = $scope.setting.definition1.substyle;
   $scope.showWarning = false;
