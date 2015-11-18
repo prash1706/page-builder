@@ -75,6 +75,8 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $timeout) {
         autoHideWarning();
         return;
       }
+    } else{
+      return;
     }
     $scope.setting.definition1.type = $scope.tempSetting.type;
     $scope.setting.definition1.substyle = $scope.tempSetting.substyle;
