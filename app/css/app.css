@@ -23,3 +23,8 @@
 .selected{
   box-shadow: 0 0 3px 3px #5cb85c;
 }
+
+.stepDiv{
+  margin-left: 20px !important;
+  text-align: left !important;
+}

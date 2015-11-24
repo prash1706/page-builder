@@ -11,19 +11,19 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Subhead</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="intro.subhead">
+        <input type="text" class="form-control" ng-model="data.intro.subhead">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Column 1</label>
       <div class="col-sm-10">
-        <textarea type="text" class="form-control" rows="8" ng-model="intro.column1"></textarea>
+        <textarea type="text" class="form-control" rows="8" ng-model="data.intro.column1"></textarea>
       </div>
     </div>
     <div ng-show="mySetting.substyle==2 || mySetting.substyle==4">
       <div class="form-group">
         <label class="col-sm-2 control-label">Column 2</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <select class="form-control" ng-model="introColCount">
             <option value="3">3 columns</option>
             <option value="4">4 columns</option>
@@ -34,51 +34,51 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">#1</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" ng-model="data.intro.column2[0]">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">#2</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" ng-model="data.intro.column2[1]">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">#3</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" ng-model="data.intro.column2[2]">
         </div>
       </div>
       <div class="form-group" ng-show="introColCount > 3">
         <label class="col-sm-2 control-label">#4</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" ng-model="data.intro.column2[3]">
         </div>
       </div>
       <div class="form-group" ng-show="introColCount > 4">
         <label class="col-sm-2 control-label">#5</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" ng-model="data.intro.column2[4]">
         </div>
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
       <label class="col-sm-2 control-label">CTA Lead-in</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="intro.ctaLeadIn">
+        <input type="text" class="form-control" ng-model="data.intro.ctaLeadIn">
       </div>
     </div>
     <div ng-show="mySetting.substyle==3 || mySetting.substyle==4">
       <div class="form-group">
         <label class="col-sm-2 control-label">CTA Button</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="intro.cta">
+          <input type="text" class="form-control" ng-model="data.intro.cta">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">CTA URL</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="intro.ctaUrl">
+          <input type="text" class="form-control" ng-model="data.intro.ctaUrl">
         </div>
       </div>
     </div>
@@ -89,83 +89,210 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Subhead</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="asset.subhead">
+        <input type="text" class="form-control" ng-model="data.asset.subhead">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Body Copy</label>
       <div class="col-sm-10">
-        <textarea type="text" class="form-control" rows="8" ng-model="asset.body"></textarea>
+        <textarea type="text" class="form-control" rows="8" ng-model="data.asset.body"></textarea>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">CTA Button</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="asset.cta">
+        <input type="text" class="form-control" ng-model="data.asset.cta">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">CTA URL</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="asset.ctaUrl">
+        <input type="text" class="form-control" ng-model="data.asset.ctaUrl">
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==5">
       <label class="col-sm-2 control-label">Asset Image URL</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="asset.imgUrl">
+        <input type="text" class="form-control" ng-model="data.asset.imgUrl">
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==6">
       <label class="col-sm-2 control-label">Video thumbnail URL</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="asset.videoUrl">
+        <input type="text" class="form-control" ng-model="data.asset.videoUrl">
       </div>
     </div>
   </form>
-  <!--Step by step-->
-  <form class="form-horizontal" ng-if="mySetting.type==3 &&  mySetting.substyle > 6 && mySetting.substyle < 15">
+  <!--Step by step  substyle 7~14-->
+  <form class="form-horizontal" ng-if="mySetting.type==3 &&  mySetting.substyle >=7 && mySetting.substyle <= 14">
     <legend><small>Step by Step</small></legend>
-    <label>Subhead</label>
-    <input type="text" class="form-control" ng-model="step.subhead">
-    <div class="col-md-4">
-      <legend><small style="font-size:80%">Step1</small></legend>
-      <label>Image Url</label>
-      <input type="text" class="form-control" ng-model="step.step1.imgUrl">
-      <label>Step Title</label>
-      <input type="text" class="form-control" ng-model="step.step1.title">
-      <label>Step Description</label>
-      <input type="text" class="form-control" ng-model="step.step1.desc">
-      <label>Step CTA Content</label>
-      <input type="text" class="form-control" ng-model="step.step1.cta">
-      <label>Step CTA Image URL</label>
-      <input type="text" class="form-control" ng-model="step.step1.ctaUrl">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Subhead</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.subhead">
+      </div>
     </div>
-    <div class="col-md-4">
-      <legend><small style="font-size:80%">Step2</small></legend>
-      <label>Image Url</label>
-      <input type="text" class="form-control" ng-model="step.step2.imgUrl">
-      <label>Step Title</label>
-      <input type="text" class="form-control" ng-model="step.step2.title">
-      <label>Step Description</label>
-      <input type="text" class="form-control" ng-model="step.step2.desc">
-      <label>Step CTA Content</label>
-      <input type="text" class="form-control" ng-model="step.step2.cta">
-      <label>Step CTA Image URL</label>
-      <input type="text" class="form-control" ng-model="step.step2.ctaUrl">
+    <!-- Step 1 -->
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step1</small></legend>
     </div>
-    <div class="col-md-4">
-      <legend><small style="font-size:80%">Step3</small></legend>
-      <label>Image Url</label>
-      <input type="text" class="form-control" ng-model="step.step3.imgUrl">
-      <label>Step Title</label>
-      <input type="text" class="form-control" ng-model="step.step3.title">
-      <label>Step Description</label>
-      <input type="text" class="form-control" ng-model="step.step3.desc">
-      <label>Step CTA Content</label>
-      <input type="text" class="form-control" ng-model="step.step3.cta">
-      <label>Step CTA Image URL</label>
-      <input type="text" class="form-control" ng-model="step.step3.ctaUrl">
+    <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+      <label class="col-sm-2 control-label">Image Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step1.imgUrl">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step1.title">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step1.desc">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Lead-in</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step1.ctaLeadIn">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Content</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step1.cta">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Image URL</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step1.ctaUrl">
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step2</small></legend>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+      <label class="col-sm-2 control-label">Image Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step2.imgUrl">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step2.title">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step2.desc">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Lead-in</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step2.ctaLeadIn">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Content</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step2.cta">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Image URL</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step2.ctaUrl">
+      </div>
+    </div>
+    <!-- Step 3 -->
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step3</small></legend>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+      <label class="col-sm-2 control-label">Image Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step3.imgUrl">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step3.title">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step3.desc">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Lead-in</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step3.ctaLeadIn">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Content</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step3.cta">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Image URL</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.step.step3.ctaUrl">
+      </div>
+    </div>
+    <!-- Step 4 -->
+    <div ng-show="mySetting.substyle==8 || mySetting.substyle==10 || mySetting.substyle==12 || mySetting.substyle==14 || ">
+      <div class="form-group">
+        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step4</small></legend>
+      </div>
+      <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+        <label class="col-sm-2 control-label">Image Url</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.step.step4.imgUrl">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.step.step4.title">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.step.step4.desc">
+        </div>
+      </div>
+      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+        <label class="col-sm-2 control-label">CTA Lead-in</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.step.step4.ctaLeadIn">
+        </div>
+      </div>
+      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+        <label class="col-sm-2 control-label">CTA Content</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.step.step4.cta">
+        </div>
+      </div>
+      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+        <label class="col-sm-2 control-label">CTA Image URL</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.step.step4.ctaUrl">
+        </div>
+      </div>
     </div>
   </form>
 </div>
@@ -176,34 +303,35 @@
       <div class="modal-header">
         <div class="pull-right">
           <label class="text-danger" ng-show="showWarning">Please Choose a substyle.&nbsp;&nbsp;</label>
+          <button type="button" class="btn btn-warning" ng-show="!isStyleSelect" ng-click="isStyleSelect=true">Reselect Style</button>
           <button type="button" class="btn btn-primary" ng-click="setStyle()">OK</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-        <h4 class="modal-title" id="myModalLabel">Module style</h4>
+        <h4 class="modal-title">Module style</h4>
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
+          <div class="form-group" ng-show="isStyleSelect">
             <label>Choose a style</label>
             <div class="row">
               <div class="col-md-10">
-                <a class="thumbnail" ng-class="{selected: tempSetting.type==1}" ng-click="tempSetting.type=1">
+                <a class="thumbnail" ng-class="{selected: tempSetting.type==1}" ng-click="tempSetting.type=1;isStyleSelect=false">
                   <img src="../images/style-introduction.jpg" alt="">
                 </a>
               </div>
               <div class="col-md-10">
-                <a class="thumbnail" ng-class="{selected: tempSetting.type==2}" ng-click="tempSetting.type=2">
+                <a class="thumbnail" ng-class="{selected: tempSetting.type==2}" ng-click="tempSetting.type=2;isStyleSelect=false">
                   <img src="../images/style-asset.jpg" alt="">
                 </a>
               </div>
               <div class="col-md-10">
-                <a class="thumbnail" ng-class="{selected: tempSetting.type==3}" ng-click="tempSetting.type=3">
+                <a class="thumbnail" ng-class="{selected: tempSetting.type==3}" ng-click="tempSetting.type=3;isStyleSelect=false">
                   <img src="../images/style-stepbystep.jpg" alt="">
                 </a>
               </div>
             </div>
           </div>
-          <div ng-show="tempSetting.type==1||tempSetting.type==2||tempSetting.type==3" class="form-group">
+          <div ng-show="!isStyleSelect && (tempSetting.type==1||tempSetting.type==2||tempSetting.type==3)" class="form-group">
             <label>Choose a substyle below</label>
             <div ng-show="tempSetting.type==1">
               <div class="row">

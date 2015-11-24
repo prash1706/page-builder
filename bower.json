@@ -11,6 +11,7 @@
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.5",
     "angular-resource": "~1.4.7",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "ng-file-upload": "~10.0.2"
   }
 }
