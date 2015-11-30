@@ -152,12 +152,14 @@ myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout
     return $rootScope.data.setting.definition2;
   }, function() {
     $scope.mySetting = $rootScope.data.setting.definition2;
+    $scope.tempSetting = $rootScope.data.setting.definition2;
     console.log($rootScope.data.setting.definition2);
   });
 
   $scope.showWarning = false;
   $scope.isRequired = true;
   $scope.introColCount = "4";
+  $scope.isStyleSelect = true;
 
   function autoHideWarning() {
     $scope.showWarning = true;
@@ -165,6 +167,7 @@ myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout
       $scope.showWarning = false;
     }, 3000);
   };
+
   $scope.setStyle = function() {
     if ($scope.tempSetting.type == 1) {
       if ($scope.tempSetting.substyle < 1 || $scope.tempSetting.substyle > 4) {
@@ -192,8 +195,71 @@ myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout
   }
 });
 
-myPageApp.controller('SetPromotionCtrl', function($scope) {});
 
+myPageApp.controller('SetPromotion1Ctrl', function($scope, $rootScope) {
+  $scope.tempSetting = {
+    type: $rootScope.data.setting.promotion1.type,
+    substyle: $rootScope.data.setting.promotion1.substyle
+  };
+
+  $scope.mySetting = {
+    type: 1,
+    substyle: 1
+  };
+  // $scope.mySetting = {
+  //   type: $rootScope.data.setting.promotion1.type,
+  //   substyle: $rootScope.data.setting.promotion1.substyle
+  // };
+
+  // $scope.$watch(function() {
+  //   return $rootScope.data.setting.promotion1;
+  // }, function() {
+  //   $scope.mySetting = $rootScope.data.setting.promotion1;
+  //   $scope.tempSetting = $rootScope.data.setting.promotion1;
+  //   console.log($rootScope.data.setting.promotion1);
+  // });
+
+  $scope.showWarning = false;
+  $scope.isRequired = true;
+  $scope.introColCount = "4";
+  $scope.isStyleSelect = true;
+
+  function autoHideWarning() {
+    $scope.showWarning = true;
+    $timeout(function() {
+      $scope.showWarning = false;
+    }, 3000);
+  };
+
+  $scope.setStyle = function() {
+    if ($scope.tempSetting.type == 1) {
+      if ($scope.tempSetting.substyle < 1 || $scope.tempSetting.substyle > 4) {
+        autoHideWarning();
+        return;
+      }
+    } else if ($scope.tempSetting.type == 2) {
+      if ($scope.tempSetting.substyle < 5 || $scope.tempSetting.substyle > 6) {
+        autoHideWarning();
+        return;
+      }
+    } else if ($scope.tempSetting.type == 3) {
+      if ($scope.tempSetting.substyle < 7 || $scope.tempSetting.substyle > 14) {
+        autoHideWarning();
+        return;
+      }
+    } else {
+      return;
+    }
+    $rootScope.data.setting.promotion1.type = $scope.tempSetting.type;
+    $rootScope.data.setting.promotion1.substyle = $scope.tempSetting.substyle;
+    $scope.mySetting.type = $scope.tempSetting.type;
+    $scope.mySetting.substyle = $scope.tempSetting.substyle;
+    $('#myModal').modal('hide');
+  }
+});
+
+myPageApp.controller('SetPromotion2Ctrl', function($scope) {});
+myPageApp.controller('SetPromotion3Ctrl', function($scope) {});
 myPageApp.controller('SetDiscoveryCtrl', function($scope) {});
 
 myPageApp.controller('SetContactCtrl', function($scope) {});

@@ -28,17 +28,17 @@ angular.module('myApp', ['ui.router', 'myPageApp'])
       .state('setting.promotion1', {
         url: '/setting/promotion1',
         templateUrl: 'views/promotion.html',
-        controller: 'SetPromotionCtrl'
+        controller: 'SetPromotion1Ctrl'
       })
       .state('setting.promotion2', {
         url: '/setting/promotion2',
         templateUrl: 'views/promotion.html',
-        controller: 'SetPromotionCtrl'
+        controller: 'SetPromotion2Ctrl'
       })
       .state('setting.promotion3', {
         url: '/setting/promotion3',
         templateUrl: 'views/promotion.html',
-        controller: 'SetPromotionCtrl'
+        controller: 'SetPromotion3Ctrl'
       })
       .state('setting.discovery', {
         url: '/setting/discovery',
@@ -117,5 +117,17 @@ angular.module('myApp', ['ui.router', 'myPageApp'])
         type: 0,
         substyle: 0,
       },
+      promotion1:{
+        type:0,
+        substyle:0
+      },
+      promotion2:{
+        type:0,
+        substyle:0
+      },
+      promotion3:{
+        type:0,
+        substyle:0
+      }
     };
   });
