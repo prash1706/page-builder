@@ -26,14 +26,15 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     console.log($rootScope.data.setting);
     $('#createBtn').button('loading');
     var data = $rootScope.data;
-    $http.put('/tempsave', data).then(function(res) {
+    $http.post('/test', data).then(function(res) {
       console.log('Save file');
       $timeout(function() {
         $('#createBtn').button('reset');
-        window.open('#/myPage', '_blank');
+        window.open('../tmp/test.html', '_blank');
       }, 500);
     }, function(res) {
       alert('Save failed!');
+      $('#createBtn').button('reset');
     });
   };
 
@@ -75,27 +76,35 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       alert('Get json file failed!');
     });
   };
+
+  $scope.test = function() {
+    var data = $rootScope.data;
+    console.log(data);
+    $http.post('/test', data).success(function(res) {
+      console.log(res);
+    })
+  };
 }]);
 
 myPageApp.controller('SetLeadSpaceCtrl', function($scope) {});
 
 myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout) {
   $scope.tempSetting = {
-    type: $rootScope.data.setting.definition1.type,
-    substyle: $rootScope.data.setting.definition1.substyle
+    type: $rootScope.data.setting.defi1.type,
+    substyle: $rootScope.data.setting.defi1.substyle
   };
 
   $scope.mySetting = {
-    type: $rootScope.data.setting.definition1.type,
-    substyle: $rootScope.data.setting.definition1.substyle
+    type: $rootScope.data.setting.defi1.type,
+    substyle: $rootScope.data.setting.defi1.substyle
   };
 
   $scope.$watch(function() {
-    return $rootScope.data.setting.definition1;
+    return $rootScope.data.setting.defi1;
   }, function() {
-    $scope.mySetting = $rootScope.data.setting.definition1;
-    $scope.tempSetting = $rootScope.data.setting.definition1;
-    console.log($rootScope.data.setting.definition1);
+    $scope.mySetting = $rootScope.data.setting.defi1;
+    $scope.tempSetting = $rootScope.data.setting.defi1;
+    console.log($rootScope.data.setting.defi1);
   });
 
   $scope.showWarning = false;
@@ -129,8 +138,8 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout
     } else {
       return;
     }
-    $rootScope.data.setting.definition1.type = $scope.tempSetting.type;
-    $rootScope.data.setting.definition1.substyle = $scope.tempSetting.substyle;
+    $rootScope.data.setting.defi1.type = $scope.tempSetting.type;
+    $rootScope.data.setting.defi1.substyle = $scope.tempSetting.substyle;
     $scope.mySetting.type = $scope.tempSetting.type;
     $scope.mySetting.substyle = $scope.tempSetting.substyle;
     $('#myModal').modal('hide');

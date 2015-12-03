@@ -1,5 +1,3 @@
-<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/app.css" rel="stylesheet">
 <div id="wrapper">
   <div id="ColumnContainer">
     <nav class="navbar navbar-default col-md-10">
@@ -14,6 +12,7 @@
         </div>
         <div class="nav navbar-nav navbar-right">
           <a class="btn btn-primary navbar-btn" href="./tmp/setting.json" ng-show="myFile.name" download>Download</a>
+          <!-- <button class="btn btn-success navbar-btn" id="saveBtn" data-loading-text="Saving..." ng-click="test()">Test</button> -->
           <button class="btn btn-success navbar-btn" id="saveBtn" data-loading-text="Saving..." ng-click="save()">Save Json</button>
           <button class="btn btn-danger navbar-btn" id="createBtn" data-loading-text="Creating..." ng-click="createPage()">Create Page</button>
         </div>

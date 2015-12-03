@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var jade = require('jade');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 
@@ -21,7 +22,23 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
-// catch 404 and forward to error handler
+app.post('/test', function(req, res){
+  console.info('setting', req.body);
+  var file = './app/tmp/test.html';
+  var fn = jade.compileFile('./app/tmp/jade/index.jade', {pretty: true});
+  var html = fn(req.body);
+
+  fs.writeFile(file, html, function(err){
+    if(err) {
+      console.error(err);
+    }
+    else{
+      console.log('New html created!');
+    };
+    res.send(html);
+  })
+});
+
 app.put('/save', function(req, res) {
   console.log(req.body);
   var file = './app/tmp/setting.json';
