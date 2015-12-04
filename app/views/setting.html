@@ -6,14 +6,20 @@
           <a class="navbar-brand" href="/">Page Builder</a>
         </div>
         <div class="collapse navbar-collapse navbar-left">
-          <button type="submit" class="btn btn-primary navbar-btn pull-left" id="loadBtn" data-loading-text="Loading...">UpLoad Json</button>
-          <input type="file" class="btn btn-default navbar-btn pull-left" name="myFile" ngf-select ng-model="myFile" onchange="angular.element(this).scope().setFiles(this)" accept=".json" style="position:absolute;opacity:0;width:92px">
-          <span ng-show="myFile" class="navbar-text">{{myFile.name}}({{myFile.size/1024|number:2}}kb)</span>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <select class="form-control" ng-model="currentData"  ng-options="option.name for option in settingData">
+              <option value="">Select a template</option>
+              </select>
+              </span>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-warning form-group" ng-disabled="noChange" ng-click="load()">Load</button>
+              <button class="btn btn-success form-group" id="saveBtn" ng-disabled="noChange" data-loading-text="Saving..." ng-click="save()">Save</button>
+            </div>
+          </form>
         </div>
         <div class="nav navbar-nav navbar-right">
-          <a class="btn btn-primary navbar-btn" href="./tmp/setting.json" ng-show="myFile.name" download>Download</a>
-          <!-- <button class="btn btn-success navbar-btn" id="saveBtn" data-loading-text="Saving..." ng-click="test()">Test</button> -->
-          <button class="btn btn-success navbar-btn" id="saveBtn" data-loading-text="Saving..." ng-click="save()">Save Json</button>
           <button class="btn btn-danger navbar-btn" id="createBtn" data-loading-text="Creating..." ng-click="createPage()">Create Page</button>
         </div>
       </div>

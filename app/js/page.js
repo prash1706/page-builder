@@ -1,6 +1,6 @@
-var myPageApp = angular.module('myPageApp', ['ui.router', 'ngFileUpload']);
+var myPageApp = angular.module('myPageApp', ['ui.router', 'serviceApp']);
 
-myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$rootScope', 'Upload', function($scope, $http, $timeout, $state, $rootScope, Upload) {
+myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$rootScope', 'DataService', function($scope, $http, $timeout, $state, $rootScope, DataService) {
   function setState() {
     if ($state.current.name == "setting.leadspace") {
       $scope.currentPage = 0;
@@ -20,13 +20,42 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       $scope.currentPage = 7;
     };
   };
-  setState();
+  $scope.$watch(function() {
+    return $state.current.name
+  }, function() {
+    setState();
+  });
+
+  DataService.getData(function(res) {
+    $scope.settingData = res;
+    console.log($scope.settingData);
+  }, function(res) {
+    console.log('Failed to get data');
+  });
+
+  $scope.currentData = null;
+  $scope.noChange = false;
+
+  $scope.$watch(function() {
+    return $scope.currentData
+  }, function() {
+    if (!$scope.currentData) {
+      $scope.noChange = true;
+    } else {
+      $scope.noChange = false;
+    };
+  });
+
+  $scope.load = function() {
+    $rootScope.data = $scope.currentData.data;
+  };
+
 
   $scope.createPage = function() {
     console.log($rootScope.data.setting);
     $('#createBtn').button('loading');
     var data = $rootScope.data;
-    $http.post('/test', data).then(function(res) {
+    DataService.createPage(data, function(res) {
       console.log('Save file');
       $timeout(function() {
         $('#createBtn').button('reset');
@@ -39,61 +68,34 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   };
 
   $scope.save = function() {
-    var data = $rootScope.data;
     $('#saveBtn').button('loading');
-    $http.put('/save', data).then(function(res) {
-      console.log('Save file');
+    var data = {
+      name: $scope.currentData.name,
+      data: $rootScope.data
+    };
+    DataService.saveData(data, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name) {
+          $scope.settingData.data = data.data;
+          $scope.currentData.data = data.data;
+          break;
+        }
+      };
+      $timeout(function() {
+        $('#saveBtn').button('reset');
+      }, 1000);
     }, function(res) {
-      alert('Save failed!');
-    });
-    $('#saveBtn').button('reset');
-  };
-
-  $scope.setFiles = function(element) {
-    $scope.$apply(function($scope) {
-      $scope.myFile = element.files[0];
-      $('#loadBtn').button('loading');
-      Upload.upload({
-        url: '/upload',
-        method: 'POST',
-        data: {
-          file: $scope.myFile,
-        },
-      }).then(function(response) {
-        $scope.parseFile();
-      }, function(response) {
-        alert('Load failed!');
-      });
-      $('#loadBtn').button('reset');
-    });
-  };
-
-  $scope.parseFile = function() {
-    $http.get('./tmp/setting.json').then(function(res) {
-      $rootScope.data = res.data;
-    }, function(res) {
-      console.log(res);
-      alert('Get json file failed!');
-    });
-  };
-
-  $scope.test = function() {
-    var data = $rootScope.data;
-    console.log(data);
-    $http.post('/test', data).success(function(res) {
-      console.log(res);
+      alert('Failed to save data');
+      $('#saveBtn').button('reset');
     })
   };
 }]);
 
-myPageApp.controller('SetLeadSpaceCtrl', function($scope) {});
+myPageApp.controller('SetLeadSpaceCtrl', function($scope, $rootScope) {
+
+});
 
 myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout) {
-  $scope.tempSetting = {
-    type: $rootScope.data.setting.defi1.type,
-    substyle: $rootScope.data.setting.defi1.substyle
-  };
-
   $scope.mySetting = {
     type: $rootScope.data.setting.defi1.type,
     substyle: $rootScope.data.setting.defi1.substyle
@@ -103,175 +105,195 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout
     return $rootScope.data.setting.defi1;
   }, function() {
     $scope.mySetting = $rootScope.data.setting.defi1;
-    $scope.tempSetting = $rootScope.data.setting.defi1;
-    console.log($rootScope.data.setting.defi1);
   });
 
-  $scope.showWarning = false;
+  $scope.showWarning1 = false;
+  $scope.showWarning2 = false;
   $scope.isRequired = true;
   $scope.introColCount = "4";
-  $scope.isStyleSelect = true;
 
   function autoHideWarning() {
-    $scope.showWarning = true;
     $timeout(function() {
-      $scope.showWarning = false;
-    }, 3000);
+      $scope.showWarning1 = false;
+      $scope.showWarning2 = false;
+    }, 2000);
   };
 
   $scope.setStyle = function() {
     if ($scope.tempSetting.type == 1) {
       if ($scope.tempSetting.substyle < 1 || $scope.tempSetting.substyle > 4) {
+        $scope.showWarning2 = true;
         autoHideWarning();
         return;
       }
     } else if ($scope.tempSetting.type == 2) {
       if ($scope.tempSetting.substyle < 5 || $scope.tempSetting.substyle > 6) {
+        $scope.showWarning2 = true;
         autoHideWarning();
         return;
       }
     } else if ($scope.tempSetting.type == 3) {
       if ($scope.tempSetting.substyle < 7 || $scope.tempSetting.substyle > 14) {
+        $scope.showWarning2 = true;
         autoHideWarning();
         return;
       }
-    } else {
+    } else if ($scope.tempSetting.type == 0) {
+      $scope.showWarning1 = true;
+      autoHideWarning();
       return;
     }
     $rootScope.data.setting.defi1.type = $scope.tempSetting.type;
     $rootScope.data.setting.defi1.substyle = $scope.tempSetting.substyle;
     $scope.mySetting.type = $scope.tempSetting.type;
     $scope.mySetting.substyle = $scope.tempSetting.substyle;
-    $('#myModal').modal('hide');
-  }
+    $('#defi1Modal').modal('hide');
+  };
+
+  $scope.getStyle = function() {
+    $scope.tempSetting = {
+      type: $rootScope.data.setting.defi1.type,
+      substyle: $rootScope.data.setting.defi1.substyle
+    };
+  };
 });
 
 myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout) {
-  $scope.tempSetting = {
-    type: $rootScope.data.setting.definition2.type,
-    substyle: $rootScope.data.setting.definition2.substyle
-  };
-
   $scope.mySetting = {
-    type: $rootScope.data.setting.definition2.type,
-    substyle: $rootScope.data.setting.definition2.substyle
+    type: $rootScope.data.setting.defi2.type,
+    substyle: $rootScope.data.setting.defi2.substyle
   };
 
   $scope.$watch(function() {
-    return $rootScope.data.setting.definition2;
+    return $rootScope.data.setting.defi2;
   }, function() {
-    $scope.mySetting = $rootScope.data.setting.definition2;
-    $scope.tempSetting = $rootScope.data.setting.definition2;
-    console.log($rootScope.data.setting.definition2);
+    $scope.mySetting = $rootScope.data.setting.defi2;
   });
 
-  $scope.showWarning = false;
+  $scope.showWarning1 = false;
+  $scope.showWarning2 = false;
   $scope.isRequired = true;
   $scope.introColCount = "4";
-  $scope.isStyleSelect = true;
 
   function autoHideWarning() {
-    $scope.showWarning = true;
     $timeout(function() {
-      $scope.showWarning = false;
-    }, 3000);
+      $scope.showWarning1 = false;
+      $scope.showWarning2 = false;
+    }, 2000);
   };
 
   $scope.setStyle = function() {
     if ($scope.tempSetting.type == 1) {
       if ($scope.tempSetting.substyle < 1 || $scope.tempSetting.substyle > 4) {
+        $scope.showWarning2 = true;
         autoHideWarning();
         return;
       }
     } else if ($scope.tempSetting.type == 2) {
       if ($scope.tempSetting.substyle < 5 || $scope.tempSetting.substyle > 6) {
+        $scope.showWarning2 = true;
         autoHideWarning();
         return;
       }
     } else if ($scope.tempSetting.type == 3) {
       if ($scope.tempSetting.substyle < 7 || $scope.tempSetting.substyle > 14) {
+        $scope.showWarning2 = true;
         autoHideWarning();
         return;
       }
-    } else {
+    } else if ($scope.tempSetting.type == 0) {
+      $scope.showWarning1 = true;
+      autoHideWarning();
       return;
     }
-    $rootScope.data.setting.definition2.type = $scope.tempSetting.type;
-    $rootScope.data.setting.definition2.substyle = $scope.tempSetting.substyle;
-    $scope.mySetting.type = $scope.tempSetting.type;
-    $scope.mySetting.substyle = $scope.tempSetting.substyle;
-    $('#myModal').modal('hide');
-  }
+    $rootScope.data.setting.defi2.type = $scope.tempSetting.type;
+    $rootScope.data.setting.defi2.substyle = $scope.tempSetting.substyle;
+    $('#defi2Modal').modal('hide');
+  };
+
+  $scope.getStyle = function() {
+    $scope.tempSetting = {
+      type: $rootScope.data.setting.defi2.type,
+      substyle: $rootScope.data.setting.defi2.substyle
+    };
+  };
+
+  $scope.deleteStyle = function() {
+    $rootScope.data.setting.defi2.type = 0;
+    $rootScope.data.setting.defi2.substyle = 0;
+    $('#defi2Modal').modal('hide');
+  };
 });
 
 
 myPageApp.controller('SetPromotion1Ctrl', function($scope, $rootScope) {
-  $scope.tempSetting = {
-    type: $rootScope.data.setting.promotion1.type,
-    substyle: $rootScope.data.setting.promotion1.substyle
-  };
 
-  $scope.mySetting = {
-    type: 1,
-    substyle: 1
-  };
-  // $scope.mySetting = {
-  //   type: $rootScope.data.setting.promotion1.type,
-  //   substyle: $rootScope.data.setting.promotion1.substyle
-  // };
-
-  // $scope.$watch(function() {
-  //   return $rootScope.data.setting.promotion1;
-  // }, function() {
-  //   $scope.mySetting = $rootScope.data.setting.promotion1;
-  //   $scope.tempSetting = $rootScope.data.setting.promotion1;
-  //   console.log($rootScope.data.setting.promotion1);
-  // });
-
-  $scope.showWarning = false;
-  $scope.isRequired = true;
-  $scope.introColCount = "4";
-  $scope.isStyleSelect = true;
-
-  function autoHideWarning() {
-    $scope.showWarning = true;
-    $timeout(function() {
-      $scope.showWarning = false;
-    }, 3000);
-  };
-
-  $scope.setStyle = function() {
-    if ($scope.tempSetting.type == 1) {
-      if ($scope.tempSetting.substyle < 1 || $scope.tempSetting.substyle > 4) {
-        autoHideWarning();
-        return;
-      }
-    } else if ($scope.tempSetting.type == 2) {
-      if ($scope.tempSetting.substyle < 5 || $scope.tempSetting.substyle > 6) {
-        autoHideWarning();
-        return;
-      }
-    } else if ($scope.tempSetting.type == 3) {
-      if ($scope.tempSetting.substyle < 7 || $scope.tempSetting.substyle > 14) {
-        autoHideWarning();
-        return;
-      }
-    } else {
-      return;
-    }
-    $rootScope.data.setting.promotion1.type = $scope.tempSetting.type;
-    $rootScope.data.setting.promotion1.substyle = $scope.tempSetting.substyle;
-    $scope.mySetting.type = $scope.tempSetting.type;
-    $scope.mySetting.substyle = $scope.tempSetting.substyle;
-    $('#myModal').modal('hide');
-  }
 });
 
 myPageApp.controller('SetPromotion2Ctrl', function($scope) {});
 myPageApp.controller('SetPromotion3Ctrl', function($scope) {});
-myPageApp.controller('SetDiscoveryCtrl', function($scope) {});
+myPageApp.controller('SetDiscoveryCtrl', function($scope, $rootScope, $timeout) {
+  $scope.mySetting = {
+    type: $rootScope.data.setting.disc.type,
+    substyle: $rootScope.data.setting.disc.substyle
+  };
 
-myPageApp.controller('SetContactCtrl', function($scope) {});
+  $scope.$watch(function() {
+    return $rootScope.data.setting.disc;
+  }, function() {
+    $scope.mySetting = $rootScope.data.setting.disc;
+  });
+
+  $scope.showWarning1 = false;
+  $scope.showWarning2 = false;
+  $scope.isRequired = true;
+  $scope.introColCount = "4";
+
+  function autoHideWarning() {
+    $timeout(function() {
+      $scope.showWarning1 = false;
+      $scope.showWarning2 = false;
+    }, 2000);
+  };
+
+  $scope.setStyle = function() {
+    if ($scope.tempSetting.type == 1) {
+      if ($scope.tempSetting.substyle != 1) {
+        $scope.showWarning2 = true;
+        autoHideWarning();
+        return;
+      }
+    } else if ($scope.tempSetting.type == 2) {
+      if ($scope.tempSetting.substyle < 2 || $scope.tempSetting.substyle > 6) {
+        $scope.showWarning2 = true;
+        autoHideWarning();
+        return;
+      }
+    } else if ($scope.tempSetting.type == 0) {
+      $scope.showWarning1 = true;
+      autoHideWarning();
+      return;
+    }
+    $rootScope.data.setting.disc.type = $scope.tempSetting.type;
+    $rootScope.data.setting.disc.substyle = $scope.tempSetting.substyle;
+    $('#discModal').modal('hide');
+  };
+
+  $scope.getStyle = function() {
+    $scope.tempSetting = {
+      type: $rootScope.data.setting.disc.type,
+      substyle: $rootScope.data.setting.disc.substyle
+    };
+  };
+
+  $scope.deleteStyle = function() {
+    $rootScope.data.setting.disc.type = 0;
+    $rootScope.data.setting.disc.substyle = 0;
+    $('#discModal').modal('hide');
+  };
+});
+
+myPageApp.controller('SetContactCtrl', function($scope, $rootScope) {});
 
 myPageApp.controller('MyPageCtrl', function($scope, $http, $rootScope) {
   $http.get('./tmp/temp.json').then(function(res) {

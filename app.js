@@ -9,7 +9,8 @@ var fs = require('fs');
 var jade = require('jade');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
-
+var db = require('./models/db');
+var Data = require('./models/data');
 
 var app = express();
 // uncomment after placing your favicon in /public
@@ -22,18 +23,20 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.post('/test', function(req, res){
+app.post('/page', function(req, res) {
   console.info('setting', req.body);
   var file = './app/tmp/test.html';
-  var fn = jade.compileFile('./app/tmp/jade/index.jade', {pretty: true});
+  var fn = jade.compileFile('./app/tmp/jade/index.jade', {
+    pretty: true
+  });
   var html = fn(req.body);
 
-  fs.writeFile(file, html, function(err){
-    if(err) {
+  fs.writeFile(file, html, function(err) {
+    if (err) {
       console.error(err);
-    }
-    else{
+    } else {
       console.log('New html created!');
+      console.log(req.body.disc.resource);
     };
     res.send(html);
   })
@@ -41,46 +44,25 @@ app.post('/test', function(req, res){
 
 app.put('/save', function(req, res) {
   console.log(req.body);
-  var file = './app/tmp/setting.json';
-  fs.writeFile(file, JSON.stringify(req.body, null, 4), function(err){
-    if(err) {
-      console.error(err);
-    }
-    else{
-      console.log('New setting saved!');
+  Data.update({name:req.body.name}, req.body, function(error, data){
+    if (error) {
+      console.error(error);
+      res.status(401).send(error);
+    } else {
+      res.send(data);
     };
   })
-  res.status(200).send(">>>>>");
 });
 
-app.put('/tempsave', function(req, res) {
-  console.log(req.body);
-  var file = './app/tmp/temp.json';
-  fs.writeFile(file, JSON.stringify(req.body, null, 4), function(err){
-    if(err) {
-      console.error(err);
-    }
-    else{
-      console.log('New temp setting saved!');
+app.get('/get', function(req, res) {
+  Data.find(function(error, data) {
+    if (error) {
+      console.error(error);
+      res.status(401).send(error);
+    } else {
+      res.send(data);
     };
-  })
-  res.status(200).send(">>>>>");
-});
-
-app.post('/upload', multipartyMiddleware, function(req, res) {
-  // We are able to access req.files.file thanks to
-  // the multiparty middleware
-  var file = req.files.file;
-  console.log(file);
-  console.log(file.type);
-  var oldPath = file.path;
-  var newPath = './app/tmp/setting.json';
-  console.log('oldPath:'+ oldPath);
-  console.log('newPath:'+ newPath);
-  var source = fs.createReadStream(oldPath);
-  var dest = fs.createWriteStream(newPath);
-  source.pipe(dest);
-  res.status(200).send(">>>>>");
+  });
 });
 
 app.use(function(req, res, next) {
