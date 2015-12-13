@@ -23,30 +23,51 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
+// create a page
 app.post('/page', function(req, res) {
-  console.info('setting', req.body);
   var file = './app/tmp/test.html';
   var fn = jade.compileFile('./app/tmp/jade/index.jade', {
     pretty: true
   });
   var html = fn(req.body);
-
   fs.writeFile(file, html, function(err) {
-    if (err) {
-      console.error(err);
-    } else {
+    if (err) {} else {
       console.log('New html created!');
-      console.log(req.body.disc.resource);
     };
     res.send(html);
   })
 });
 
-app.put('/save', function(req, res) {
-  console.log(req.body);
-  Data.update({name:req.body.name}, req.body, function(error, data){
+// add a template
+app.post('/templates', function(req, res) {
+  Data.create(req.body, function(err, data) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
+
+// delete a template
+app.delete('/templates/:id', function(req, res) {
+  Data.remove({
+    _id: req.params.id
+  }, function(err, data) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(data);
+    }
+  })
+});
+
+// save a template
+app.post('/templates/:id', function(req, res) {
+  Data.update({
+    name: req.body.name
+  }, req.body, function(error, data) {
     if (error) {
-      console.error(error);
       res.status(401).send(error);
     } else {
       res.send(data);
@@ -54,10 +75,10 @@ app.put('/save', function(req, res) {
   })
 });
 
-app.get('/get', function(req, res) {
+// get all templates
+app.get('/templates', function(req, res) {
   Data.find(function(error, data) {
     if (error) {
-      console.error(error);
       res.status(401).send(error);
     } else {
       res.send(data);

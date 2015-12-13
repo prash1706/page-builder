@@ -27,17 +27,17 @@ angular.module('myApp', ['ui.router', 'myPageApp'])
       })
       .state('setting.promotion1', {
         url: '/setting/promotion1',
-        templateUrl: 'views/promotion.html',
+        templateUrl: 'views/promotion1.html',
         controller: 'SetPromotion1Ctrl'
       })
       .state('setting.promotion2', {
         url: '/setting/promotion2',
-        templateUrl: 'views/promotion.html',
+        templateUrl: 'views/promotion2.html',
         controller: 'SetPromotion2Ctrl'
       })
       .state('setting.promotion3', {
         url: '/setting/promotion3',
-        templateUrl: 'views/promotion.html',
+        templateUrl: 'views/promotion3.html',
         controller: 'SetPromotion3Ctrl'
       })
       .state('setting.discovery', {
@@ -49,11 +49,6 @@ angular.module('myApp', ['ui.router', 'myPageApp'])
         url: '/setting/contact',
         templateUrl: 'views/contact.html',
         controller: 'SetContactCtrl'
-      })
-      .state('myPage', {
-        url: '/myPage',
-        templateUrl: 'views/myPage.html',
-        controller: 'MyPageCtrl'
       });
   }])
   .run(function($rootScope) {
