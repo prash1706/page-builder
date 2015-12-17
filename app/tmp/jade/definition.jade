@@ -1,0 +1,19 @@
+- var data = defi1
+- var type = setting.defi1.type
+- var substyle = setting.defi1.substyle
+if type == 1
+  include ./definition/introduction.jade
+else if type == 2
+  include ./definition/asset.jade
+else
+  include ./definition/step.jade
+
+- var data = defi2
+- var type = setting.defi2.type
+- var substyle = setting.defi2.substyle
+if type == 1
+  include ./definition/introduction.jade
+else if type == 2
+  include ./definition/asset.jade
+else if type == 3
+  include ./definition/step.jade

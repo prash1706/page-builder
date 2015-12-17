@@ -1,0 +1,61 @@
+section(class=(substyle <= 10)? "nst-module__step-by-step nst-section-gap nst-border-top nst-mlp-v0-0": "nst-module__step-by-step-left nst-section-gap nst-border-top nst-mlp-v0-0")
+  .ibm-columns
+    .ibm-col-1-1.nst-text-center
+      h2.ibm-h2.nst-section-header= data.step.subhead
+    div(class=(substyle == 7 || substyle == 9 || substyle == 11 || substyle == 13)? "ibm-col-6-2 nst-text-center nst-full-width-g540":"ibm-col-4-1 nst-half-width-g720 nst-full-width-g540")
+        if substyle == 7 || substyle == 8 || substyle == 9 || substyle == 10
+          img(src="#{data.step.step1.imgUrl}")
+          h4.ibm-h4= data.step.step1.title
+        else
+          h4.ibm-h4
+            span 1.
+          = data.step.step1.title
+        p= data.step.step1.desc
+        if substyle == 7 || substyle == 8 || substyle == 11 || substyle == 12
+          p
+            a(href="data.step.step1.ctaUrl", rel="external")=data.step.step1.cta
+    div(class=(substyle == 7 || substyle == 9 || substyle == 11 || substyle == 13)? "ibm-col-6-2 nst-text-center nst-full-width-g540":"ibm-col-4-1 nst-half-width-g720 nst-full-width-g540")
+        if substyle == 7 || substyle == 8 || substyle == 9 || substyle == 10
+          img(src="#{data.step.step2.imgUrl}")
+          h4.ibm-h4= data.step.step2.title
+        else
+          h4.ibm-h4
+            span 2.
+          = data.step.step2.title
+        p= data.step.step2.desc
+        if substyle == 7 || substyle == 8 || substyle == 11 || substyle == 12
+          p
+            a(href="data.step.step2.ctaUrl", rel="external")=data.step.step2.cta
+    div(class=(substyle == 7 || substyle == 9 || substyle == 11 || substyle == 13)? "ibm-col-6-2 nst-text-center nst-full-width-g540":"ibm-col-4-1 nst-half-width-g720 nst-full-width-g540")
+        if substyle == 7 || substyle == 8 || substyle == 9 || substyle == 10
+          img(src="#{data.step.step3.imgUrl}")
+          h4.ibm-h4= data.step.step3.title
+        else
+          h4.ibm-h4
+            span 3.
+          = data.step.step3.title
+        p= data.step.step3.desc
+        if substyle == 7 || substyle == 8 || substyle == 11 || substyle == 12
+          p
+            a(href="data.step.step3.ctaUrl", rel="external")=data.step.step3.cta
+    if substyle == 8 || substyle == 10 || substyle == 12 || substyle == 14
+      .ibm-col-4-1.nst-half-width-g720.nst-full-width-g540
+        if substyle == 8 || substyle == 10
+          img(src="#{data.step.step4.imgUrl}")
+          h4.ibm-h4= data.step.step4.title
+        else
+          h4.ibm-h4
+            span 4.
+          = data.step.step4.title
+        p= data.step.step4.desc
+        if substyle == 7 || substyle == 8 || substyle == 11 || substyle == 12
+          p
+            a(href="data.step.step4.ctaUrl", rel="external")=data.step.step4.cta
+    if substyle == 9 || substyle == 10 || substyle == 13 || substyle == 14
+      .ibm-col-1-1.nst-cta.nst-border-col
+        .ibm-columns
+          .ibm-col-6-4.nst-full-width-g540
+            h3.ibm-h3= data.step.ctaLeadIn
+          .ibm-col-6-2.nst-full-width-g540
+            p.ibm-btn-row
+              a.ibm-btn.ibm-btn-pri.nst-btn-orange.nst-btn(href="#{data.step.ctaUrl}", rel="external")= data.step.cta

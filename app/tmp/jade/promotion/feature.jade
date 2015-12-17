@@ -1,0 +1,45 @@
+if substyle == 1
+  - var card1 = data.feat.solu1
+  - var card2 = data.feat.solu1
+  - var card3 = data.feat.solu2
+else
+  - var card1 = data.feat.solu1
+  - var card2 = data.feat.solu2
+  - var card3 = data.feat.solu3
+section.nst-module__featured-solutions.ibm-padding-top-r2.ibm-padding-bottom-r2
+  .ibm-columns
+    .ibm-col-6-4.ibm-center-block.ibm-center
+      ibm-h2.ibm-light.ibm-padding-bottom-2= data.feat.subhead
+  .ibm-columns(data-widget="setsameheight" data-items=".set-same-height")
+    if substyle == 1
+      .ibm-col-6-1
+    else
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__image
+            img.ibm-resize(src="#{card1.imgUrl}")
+          .ibm-card__content
+            h3.ibm-light.ibm-h3= card1.title
+            p.set-same-height.ibm-light.ibm-padding-top-1= card1.body
+            p.ibm-padding-top-1
+              a(href="#{card1.ctaUrl}")= card1.cta
+    .ibm-col-6-2
+      .ibm-card
+        .ibm-card__image
+          img.ibm-resize(src="#{card2.imgUrl}")
+        .ibm-card__content
+          h3.ibm-light.ibm-h3= card2.title
+          p.set-same-height.ibm-light.ibm-padding-top-1= card2.body
+          p.ibm-padding-top-1
+            a(href="#{card2.ctaUrl}")= card2.cta
+    .ibm-col-6-2
+      .ibm-card
+        .ibm-card__image
+          img.ibm-resize(src="#{card3.imgUrl}")
+        .ibm-card__content
+          h3.ibm-light.ibm-h3= card3.title
+          p.set-same-height.ibm-light.ibm-padding-top-1= card3.body
+          p.ibm-padding-top-1
+            a(href="#{card3.ctaUrl}")= card3.cta
+
+

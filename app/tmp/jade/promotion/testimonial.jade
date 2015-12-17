@@ -1,0 +1,12 @@
+section.nst-module__testimonial.ibm-padding-top-r2.ibm-padding-bottom-r2
+  if substyle == 10
+    .ibm-columns
+      .ibm-col-4-3.ibm-col-medium-1-1.ibm-center-block.ibm-center
+        img(src="#{data.test.photo}")
+  .ibm-columns
+    .ibm-col-4-3.ibm-col-medium-1-1.ibm-center-block.ibm-center
+      p.ibm-h2.ibm-light.ibm-padding-top-1= data.test.quote
+    .ibm-col-4-3.ibm-col-medium-1-1.ibm-center-block.ibm-center
+      p.ibm-light.ibm-padding-top-1=data.test.attribution
+      p.ibm-light
+        a.ibm-link(href="#{data.test.ctaUrl}")=data.test.cta

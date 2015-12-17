@@ -1,0 +1,27 @@
+section.nst-module__introduction-col-1-cta.nst-section-gap.nst-mlp-v0-0
+  .ibm-columns
+    .ibm-col-1-1.nst-text-center
+      h2.ibm-h2.nst-section-header= data.intro.subhead
+    if substyle == 1 || substyle == 3
+      .ibm-col-1-1
+        p= data.intro.column1
+    else
+      .ibm-col-2-1
+        p= data.intro.column1
+      .ibm-col-2-1
+        ul
+          each item in data.intro.column2
+            li= item
+    if substyle == 3
+      .ibm-col-1-1.nst-text-center
+        p.ibm-btn-row
+          a.ibm-btn.ibm-btn-pri.nst-btn-orange.nst-btne= data.intro.cta
+    else if substyle == 4
+      .ibm-col-1-1.nst-cta.nst-border-col
+        .ibm-columns
+          .ibm-col-6-4.nst-full-width-g540
+            h3.ibm-h3= data.intro.ctaLeadIn
+          .ibm-col-6-2.nst-full-width-g540
+            p.ibm-btn-row
+              a.ibm-btn.ibm-btn-pri.nst-btn-orange.nst-btn(rel="external", href="#{data.intro.ctaUrl}")= data.intro.cta
+

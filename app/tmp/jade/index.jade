@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    title SmarterPlanet - PageBuilder
+    include ./meta.jade
+  body#ibm-com.ibm-type.nst-tmpl-reference
+    #ibm-top.ibm-landing-page
+      #ibm-content-wrapper
+        include ./leadspace.jade
+        main(role='main',aria-label='API economy')
+          #ibm-pcon
+            #ibm-content
+              #ibm-content-body
+                #ibm-content-main
+                include ./definition.jade
+                include ./promotion.jade
+                include ./discovery.jade
+                include ./contact.jade
+      include ./footer.jade
+    script(src="../../js/northstar.js")
+    #ibm-contact-module
+      h2.ibm-bold Contact IBM
+      h3.ibm-bold Questions?
+      ul.ibm-live-assistance-list.ibm-padding-bottom-0
+        li
+          a.ibm-email-link(href="https://www-01.ibm.com/marketing/iwm/iwm/web/signup.do?source=swgmail&amp;S_TACT=109HE02W&amp;disableCookie=yes") Email IBM
+        li
+          p.ibm-icon-nolink.ibm-phone-link Or call us at: 877-426-3774
+            br
+            span.ibm-priority-code Priority code: middleware

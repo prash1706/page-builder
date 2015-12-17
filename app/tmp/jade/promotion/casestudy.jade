@@ -1,0 +1,31 @@
+section.nst-module__case-study-1-col.ibm-padding-top-r2.removed-ibm-padding-bottom-r3
+  .ibm-band.ibm-hidden-bg-small(style="background: url(#{data.case.imgUrl}) center / cover no-repeat;")
+    img.ibm-inset.ibm-resize.ibm-hidden-xlarge.ibm-hidden-large.ibm-hidden-medium(src="")
+    .ibm-columns.ibm-padding-top-r1.ibm-padding-bottom-0
+      .ibm-col-6-3.ibm-col-medium-6-5
+        .ibm-card.ibm-border-white-core
+          .ibm-card__content
+            h2.ibm-h2.ibm-light.ibm-padding-bottom-2=data.case.subhead
+            if substyle==8
+              h3.ibm-h4.ibm-light.ibm-padding-bottom-1=data.case.body
+            .ibm-columns(data-widget="setsameheight", data-items=".ibm-col-4-1")
+              if substyle==7
+                .ibm-col-5-1.ibm-col-medium-5-2.ibm-background-white-core.ibm-padding-bottom-0
+                  p.ibm-light=data.case.body
+              .ibm-col-5-1.ibm-col-medium-5-2.ibm-background-white-core.ibm-padding-bottom-0
+                .ibm-h1.ibm-bold
+                  .ibm-fontsize-x25.ibm-textcolor-yellow-30
+                    span#percentDisplay1(data-widget="animate-stat", data-target="#{data.case.statistic1}") 0
+                    sup.ibm-h1.ibm-light.ibm-large %
+                  h5.ibm-h5.ibm-bold.ibm-padding-bottom-0=data.case.caption1
+              if substyle==8
+                .ibm-col-5-1.ibm-col-medium-6-2.ibm-background-white-core.ibm-padding-top-0
+                  .ibm-h1.ibm-bold
+                    .ibm-fontsize-x25.ibm-textcolor-yellow-30
+                      span#percentDisplay2(data-widget="animate-stat", data-target="#{data.case.statistic2}") 0
+                      sup.ibm-h1.ibm-light.ibm-large %
+                    h5.ibm-h5.ibm-bold.ibm-padding-bottom-0=data.case.caption2
+              .ibm-columns.ibm-padding-top-1.ibm-padding-bottom-0
+                .ibm-col-5-2.ibm-background-white-core
+                  .ibm-padding-top-1.ibm-padding-top-0.ibm-padding-bottom-2
+                    a.ibm-btn-pri.ibm-btn-orange-50(href="#{data.case.ctaUrl}", title="view case study")=data.case.cta

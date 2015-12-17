@@ -1,0 +1,19 @@
+section.nst-module__asset-promo.nst-section-gap
+  .ibm-columns
+    .ibm-col-2-1.nst-full-width-g720.nst-padding-right-30-g960-up
+      h2.ibm-h2= data.asset.subhead
+      p.nst-large-p= data.asset.body
+      p.ibm-btn-row
+        if substyle == 5
+          a.ibm-btn-pri.nst-btn-orange.nst-btn(rel="external", href="data.asset.ctaUrl")= data.asset.cta
+        else if substyle ==6
+          a.ibm-btn-pri.nst-btn.nst-btn-orange.nst-vid-play(data-video="asset-promo-vid", href="#{data.asset.ctaUrl}") Watch the video
+    .ibm-col-2-1.nst-hidden-g720
+      if substyle == 5
+        img(src="#{data.asset.imgUrl}")
+      else if substyle == 6
+        #asset-promo-vid.ibm-video-player-con(data-widget="videoplayer", data-videoid="flXFf8M6dWI", data-videodisplay="overlayandtrigger", data-videotype="youtube")
+          div
+            a(href="#{data.asset.videoUrl}")
+              span.ibm-play-link
+            img(src="//i.ytimg.com/vi/flXFf8M6dWI/maxresdefault.jpg", width="100%", height="100%")

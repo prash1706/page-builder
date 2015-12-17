@@ -1,0 +1,16 @@
+header.nst-mlp-v0-0(role='banner', aria-labelledby='ibm-pagetitle-h1')
+  #ibm-leadspace-head.ibm-alternate.ibm-alternate-background.nst-tmpl-reference(style=(setting.lead==1)?"background-image:url(#{lead.imgUrl}); background-position: center top;":"", class=(setting.lead==2)?"ibm-video-background":"")
+    #ibm-leadspace-body
+      .ibm-columns.nst-header
+       .ibm-col-1-1
+          h1#ibm-pagetitle-h1.ibm-h1.nst-page-title= lead.headline
+          .ibm-columns
+            .ibm-col-2-1.nst-full-width-g540.nst-full-width-g720.nst-6-4-g960
+              p= lead.subhead
+              p.ibm-btn-row.nst-ls-cta
+                a.ibm-btn-pri.nst-btn.nst-btn-orange(rel='external', href=lead.catUrl, target='_blank')= lead.cat
+    if setting.lead==2
+      .ibm-video-background-container.nst-video-background-container.ibm-hidden-small
+        video(autoplay="autoplay", loop="loop", muted="muted")
+          source(src="#{lead.videoUrl}", type="video/mp4")
+
