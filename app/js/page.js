@@ -50,7 +50,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   }
 
   $scope.load = function() {
-    $rootScope.data = $scope.currentData.data;
+    var str = angular.toJson($scope.currentData.data);
+    $rootScope.data = angular.fromJson(str);
   };
 
   $scope.createPage = function() {
@@ -62,7 +63,25 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         window.open('../tmp/test.html', '_blank');
       }, 500);
     }, function(res) {
-      showResult(7,"");
+      showResult(7, "");
+      $timeout(function() {
+        $('#selectTem').focus();
+        $timeout(function() {
+          $('#selectTem').blur();
+          $timeout(function() {
+            $('#selectTem').focus();
+            $timeout(function() {
+              $('#selectTem').blur();
+              $timeout(function() {
+                $('#selectTem').focus();
+                $timeout(function() {
+                  $('#selectTem').blur();
+                }, 200);
+              }, 200);
+            }, 200);
+          }, 200);
+        }, 200);
+      }, 200);
       $('#createBtn').button('reset');
     });
   };
@@ -84,7 +103,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       if (isRight) {
         var data = {};
         data.name = $scope.tarName;
-        if ($scope.tarData){
+        if ($scope.tarData) {
           data.data = $scope.tarData.data;
         };
         DataService.add(data, function(res) {
@@ -96,19 +115,46 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
           $('#addModal').modal('hide');
         })
       }
-    }
+    };
   };
 
-  $scope.delete = function(){
-    DataService.delete($scope.currentData, function(res){
-      for(var i = 0; i < $scope.settingData.length; i++){
-        if ($scope.settingData[i].name == $scope.currentData.name){
+  $scope.swap = function(type) {
+    // type: 1  swap pro1 and prom2
+    // type: 2  swap pro2 and prom3
+    if (type == 1) {
+      var prom1 = $rootScope.data.prom1;
+      var prom2 = $rootScope.data.prom2;
+      var setting1 = $rootScope.data.setting.prom1;
+      var setting2 = $rootScope.data.setting.prom2;
+      $rootScope.data.prom1 = prom2;
+      $rootScope.data.setting.prom1 = setting2;
+      $rootScope.data.prom2 = prom1;
+      $rootScope.data.setting.prom2 = setting1;
+    } else {
+      var prom3 = $rootScope.data.prom3;
+      var prom2 = $rootScope.data.prom2;
+      var setting3 = $rootScope.data.setting.prom3;
+      var setting2 = $rootScope.data.setting.prom2;
+      $rootScope.data.prom3 = prom2;
+      $rootScope.data.setting.prom3 = setting2;
+      $rootScope.data.prom2 = prom3;
+      $rootScope.data.setting.prom2 = setting3;
+    }
+    showResult(8, $scope.tarName);
+    console.log($rootScope.data.prom2);
+  };
+
+
+  $scope.delete = function() {
+    DataService.delete($scope.currentData, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name) {
           $scope.settingData.splice(i, 1);
           showResult(3, $scope.currentData.name);
           break;
         };
       }
-    }, function(res){
+    }, function(res) {
       showResult(4, $scope.currentData.name);
     })
   };
@@ -139,7 +185,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 }]);
 
 myPageApp.controller('SetLeadSpaceCtrl', function($scope, $rootScope) {
-
+  $scope.substyle = ['', 'Substyle: Image background', 'Substyle: Video background'];
 });
 
 myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout) {
@@ -148,6 +194,8 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout
     substyle: $rootScope.data.setting.defi1.substyle
   };
 
+  $scope.style = ['', 'Style:Introduction', 'Style:Asset promo', 'Style:Step-by-step'];
+  $scope.substyle = ['', 'Substyle:Text only,one column', 'Substyle:Text only,two columns', 'Substyle:With CTA,one column', 'Substyle:With CTA,two columns', 'Substyle:With image', 'Substyle:With video', 'Substyle:Icons with individual CTAs(3 steps)', 'Substyle:Icons with individual CTAs(4 steps)', 'Substyle:Icons with single CTA(3 steps)', 'Substyle:Icons with single CTA(4 steps)', 'Substyle:Numbers with individual CTAs(3 steps)', 'Substyle:Numbers with individual CTAs(4 steps)', 'Substyle:Numbers with single CTAs(3 steps)', 'Substyle:Numbers with single CTAs(4 steps)'];
   $scope.$watch(function() {
     return $rootScope.data.setting.defi1;
   }, function() {
@@ -210,6 +258,9 @@ myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout
     type: $rootScope.data.setting.defi2.type,
     substyle: $rootScope.data.setting.defi2.substyle
   };
+
+  $scope.style = ['', 'Style:Introduction', 'Style:Asset promo', 'Style:Step-by-step'];
+  $scope.substyle = ['', 'Substyle:Text only,one column', 'Substyle:Text only,two columns', 'Substyle:With CTA,one column', 'Substyle:With CTA,two columns', 'Substyle:With image', 'Substyle:With video', 'Substyle:Icons with individual CTAs(3 steps)', 'Substyle:Icons with individual CTAs(4 steps)', 'Substyle:Icons with single CTA(3 steps)', 'Substyle:Icons with single CTA(4 steps)', 'Substyle:Numbers with individual CTAs(3 steps)', 'Substyle:Numbers with individual CTAs(4 steps)', 'Substyle:Numbers with single CTAs(3 steps)', 'Substyle:Numbers with single CTAs(4 steps)'];
 
   $scope.$watch(function() {
     return $rootScope.data.setting.defi2;
@@ -277,6 +328,9 @@ myPageApp.controller('SetPromotion1Ctrl', function($scope, $rootScope, $timeout)
     type: $rootScope.data.setting.prom1.type,
     substyle: $rootScope.data.setting.prom1.substyle
   };
+
+  $scope.style = ['', 'Style:Featured solution', 'Style:Solution overview', 'Style:Case study', 'Style: Testimonial'];
+  $scope.substyle = ['', 'Substyle:Two solutions', 'Substyle:Three solutions', 'Substyle:Icons, two rows', 'Substyle:Icons three rows', 'Substyle:Bullets, two rows', 'Substyle:Bullets, three rows', 'Substyle:One statistic', 'Substyle:Two statistics', 'Substyle:No photo', 'Substyle:With photo'];
 
   $scope.$watch(function() {
     return $rootScope.data.setting.prom1;
@@ -351,6 +405,10 @@ myPageApp.controller('SetPromotion2Ctrl', function($scope, $rootScope, $timeout)
     substyle: $rootScope.data.setting.prom2.substyle
   };
 
+  $scope.style = ['', 'Style:Featured solution', 'Style:Solution overview', 'Style:Case study', 'Style: Testimonial'];
+  $scope.substyle = ['', 'Substyle:Two solutions', 'Substyle:Three solutions', 'Substyle:Icons, two rows', 'Substyle:Icons three rows', 'Substyle:Bullets, two rows', 'Substyle:Bullets, three rows', 'Substyle:One statistic', 'Substyle:Two statistics', 'Substyle:No photo', 'Substyle:With photo'];
+
+
   $scope.$watch(function() {
     return $rootScope.data.setting.prom2;
   }, function() {
@@ -423,6 +481,9 @@ myPageApp.controller('SetPromotion3Ctrl', function($scope, $rootScope, $timeout)
     type: $rootScope.data.setting.prom3.type,
     substyle: $rootScope.data.setting.prom3.substyle
   };
+
+  $scope.style = ['', 'Style:Featured solution', 'Style:Solution overview', 'Style:Case study', 'Style: Testimonial'];
+  $scope.substyle = ['', 'Substyle:Two solutions', 'Substyle:Three solutions', 'Substyle:Icons, two rows', 'Substyle:Icons three rows', 'Substyle:Bullets, two rows', 'Substyle:Bullets, three rows', 'Substyle:One statistic', 'Substyle:Two statistics', 'Substyle:No photo', 'Substyle:With photo'];
 
   $scope.$watch(function() {
     return $rootScope.data.setting.prom3;
@@ -497,6 +558,9 @@ myPageApp.controller('SetDiscoveryCtrl', function($scope, $rootScope, $timeout) 
     substyle: $rootScope.data.setting.disc.substyle
   };
 
+  $scope.style = ['', 'Style:Call to action', 'Style:Related resources'];
+  $scope.substyle = ['', '', 'Substyle:two cards', 'Substyle:three cards', 'Substyle:four cards', 'Substyle:five cards', 'Substyle:six cards'];
+
   $scope.$watch(function() {
     return $rootScope.data.setting.disc;
   }, function() {
@@ -545,12 +609,12 @@ myPageApp.controller('SetDiscoveryCtrl', function($scope, $rootScope, $timeout) 
     };
   };
 
-  $scope.deleteStyle = function() {
-    $rootScope.data.setting.disc.type = 0;
-    $rootScope.data.setting.disc.substyle = 0;
-    $('#discModal').modal('hide');
-  };
 });
 
-myPageApp.controller('SetContactCtrl', function($scope, $rootScope) {});
+myPageApp.controller('SetContactCtrl', function($scope, $rootScope) {
+  $scope.substyle = ['', 'Substyle:No social media links', 'Substyle:With social media links'];
 
+  $scope.deleteStyle = function() {
+    $rootScope.data.setting.contact = 0;
+  };
+});

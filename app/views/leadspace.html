@@ -1,51 +1,38 @@
-<div class="col-md-12" style="margin-left:50px">
-  <legend class="color1">LeadSpace</legend>
-  <div class="col-md-6">
-    <a class="thumbnail" ng-class="{selected: data.setting.lead==1}" ng-click="data.setting.lead=1">
-      <img src="../images/leadspace-substyle-image.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-6">
-    <a class="thumbnail" ng-class="{selected: data.setting.lead==2}" ng-click="data.setting.lead=2">
-      <img src="../images/leadspace-substyle-video.jpg" alt="">
-    </a>
-  </div>
-  <form class="form-horizontal col-md-12">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Title</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.lead.headline">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Description</label>
-      <div class="col-sm-10">
-        <textarea type="text" class="form-control" ng-model="data.lead.subhead"></textarea>
-      </div>
-    </div>
-    <div class="form-group" ng-if="data.setting.lead==1">
-      <label class="col-sm-2 control-label">Image URL</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.lead.imgUrl">
-      </div>
-    </div>
-    <div class="form-group" ng-if="data.setting.lead==2">
-      <label class="col-sm-2 control-label">Video URL</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.lead.videoUrl">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Call To Action</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.lead.cat">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Call To Action URL</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.lead.catUrl">
-      </div>
-    </div>
-  </form>
+<legend class="color1" ng-show="data.setting.lead">LeadSpace / {{substyle[data.setting.lead]}}</legend>
+<legend class="color1" ng-show="!data.setting.lead">LeadSpace</legend>
+<div class="col-md-6">
+  <a class="thumbnail" ng-class="{selected: data.setting.lead==1}" ng-click="data.setting.lead=1">
+    <img src="../images/leadspace-substyle-image.jpg" alt="">
+  </a>
 </div>
+<div class="col-md-6">
+  <a class="thumbnail" ng-class="{selected: data.setting.lead==2}" ng-click="data.setting.lead=2">
+    <img src="../images/leadspace-substyle-video.jpg" alt="">
+  </a>
+</div>
+<form ng-show="data.setting.lead==1 || data.setting.lead==2">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" ng-model="data.lead.headline">
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea type="text" class="form-control" ng-model="data.lead.subhead" rows="3"></textarea>
+  </div>
+  <div class="form-group" ng-if="data.setting.lead==1">
+    <label>Image URL</label>
+    <input type="text" class="form-control" ng-model="data.lead.imgUrl">
+  </div>
+  <div class="form-group" ng-if="data.setting.lead==2">
+    <label>Video URL</label>
+    <input type="text" class="form-control" ng-model="data.lead.videoUrl">
+  </div>
+  <div class="form-group">
+    <label>Call To Action</label>
+    <input type="text" class="form-control" ng-model="data.lead.cat">
+  </div>
+  <div class="form-group">
+    <label>Call To Action URL</label>
+    <input type="text" class="form-control" ng-model="data.lead.catUrl">
+  </div>
+</form>

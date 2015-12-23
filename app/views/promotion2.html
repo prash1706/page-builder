@@ -1,410 +1,410 @@
-<div class="col-md-12" style="margin-left:50px">
-  <legend class="color3">Promotion</legend>
-  <form class="col-md-12" ng-show="!mySetting.substyle">
-    <div class="form-group">
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">Choose style</button>
-    </div>
-  </form>
-  <div class="col-md-8" ng-show="mySetting.substyle==1">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/featured1.jpg" alt="">
-    </a>
+<legend class="color3" ng-show="mySetting.substyle">Promotion2 / {{style[mySetting.type]}} / {{substyle[mySetting.substyle]}}</legend>
+<legend class="color3" ng-show="!mySetting.substyle">Promotion2</legend>
+<button type="button" class="close" ng-click="deleteStyle()"><span class="glyphicon glyphicon-remove"></span></button>
+<form class="col-md-8" ng-show="!mySetting.substyle">
+  <div class="form-group">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">Choose style</button>
   </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==2">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/featured2.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==3">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/solution1.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==4">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/solution2.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==5">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/solution3.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==6">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/solution4.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==7">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/case1.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==8">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/case2.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==9">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/testimonial1.jpg" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==10">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
-      <img src="../images/testimonial2.jpg" alt="">
-    </a>
-  </div>
-  <!--Featured -->
-  <form class="form-horizontal" ng-if="mySetting.type==1 && mySetting.substyle >= 1 && mySetting.substyle <= 2">
-    <legend><small>Featured Solutions</small></legend>
-    <div ng-show="mySetting.substyle==1 || mySetting.substyle==2">
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Subhead</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.subhead">
-        </div>
-      </div>
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution1</small></legend>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Image Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.imgUrl">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Title</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.title">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Body</label>
-        <div class="col-sm-10">
-          <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.feat.solu1.body"></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.cta">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.ctaUrl">
-        </div>
-      </div>
-      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
-        <label class="col-sm-2 control-label">CTA Lead-in</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.step.step1.ctaLeadIn">
-        </div>
-      </div>
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution2</small></legend>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Image Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.imgUrl">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Title</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.title">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Body</label>
-        <div class="col-sm-10">
-          <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.feat.solu2.body"></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.cta">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.ctaUrl">
-        </div>
-      </div>
-      <div ng-show="mySetting.substyle==2">
-        <div class="form-group">
-          <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution3</small></legend>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Image Url</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.imgUrl">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Title</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.title">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Body</label>
-          <div class="col-sm-10">
-            <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.feat.solu3.body"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">CTA</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.cta">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">CTA Url</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.ctaUrl">
-          </div>
-        </div>
-      </div>
-      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
-        <label class="col-sm-2 control-label">CTA Lead-in</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.step.step1.ctaLeadIn">
-        </div>
-      </div>
-      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
-        <label class="col-sm-2 control-label">CTA Content</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.step.step1.cta">
-        </div>
-      </div>
-      <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
-        <label class="col-sm-2 control-label">CTA Image URL</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.step.step1.ctaUrl">
-        </div>
-      </div>
-    </div>
-  </form>
-  <!--Solution overview -->
-  <form class="form-horizontal" ng-if="mySetting.type==2 && mySetting.substyle >= 3 && mySetting.substyle <= 6">
-    <legend><small>Solution overview</small></legend>
+</form>
+<div class="col-md-8" ng-show="mySetting.substyle==1">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/featured1.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==2">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/featured2.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==3">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/solution1.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==4">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/solution2.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==5">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/solution3.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==6">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/solution4.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==7">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/case1.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==8">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/case2.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==9">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/testimonial1.jpg" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==10">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">
+    <img src="../images/testimonial2.jpg" alt="">
+  </a>
+</div>
+<!--Featured -->
+<form class="form-horizontal col-md-12" ng-if="mySetting.type==1 && mySetting.substyle >= 1 && mySetting.substyle <= 2">
+  <legend><small>Featured Solutions</small></legend>
+  <div ng-show="mySetting.substyle==1 || mySetting.substyle==2">
     <div class="form-group">
       <label class="col-sm-2 control-label">Subhead</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.subhead">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA Lead-in</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.ctaLeadIn">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA Content</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.cta">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA URL</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.ctaUrl">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.subhead">
       </div>
     </div>
     <div class="form-group">
       <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution1</small></legend>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
+    <div class="form-group">
       <label class="col-sm-2 control-label">Image Url</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.imgUrl">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.imgUrl">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Feature</label>
+      <label class="col-sm-2 control-label">Title</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.feat">
-      </div>
-    </div>
-    <div class="form-group">
-      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution2</small></legend>
-    </div>
-    <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
-      <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu2.imgUrl">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Feature</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu2.feat">
-      </div>
-    </div>
-    <div class="form-group">
-      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution3</small></legend>
-    </div>
-    <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
-      <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu3.imgUrl">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Feature</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu3.feat">
-      </div>
-    </div>
-    <div class="form-group">
-      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution4</small></legend>
-    </div>
-    <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
-      <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu4.imgUrl">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Feature</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu4.feat">
-      </div>
-    </div>
-    <div ng-show="mySetting.substyle==4||mySetting.substyle==6">
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution5</small></legend>
-      </div>
-      <div class="form-group" ng-show="mySetting.substyle==4">
-        <label class="col-sm-2 control-label">Image Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.solu.solu5.imgUrl">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Feature</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.solu.solu5.feat">
-        </div>
-      </div>
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution6</small></legend>
-      </div>
-      <div class="form-group" ng-show="mySetting.substyle==4">
-        <label class="col-sm-2 control-label">Image Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.solu.solu6.imgUrl">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Feature</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.solu.solu6.feat">
-        </div>
-      </div>
-    </div>
-  </form>
-  <!--Case Study -->
-  <form class="form-horizontal" ng-show="mySetting.type==3 &&  mySetting.substyle >=7 && mySetting.substyle <= 8">
-    <legend><small>Case study</small></legend>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Subhead</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.case.subhead">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.title">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Body</label>
       <div class="col-sm-10">
-        <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.case.body"></textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Statistic1</label>
-      <div class="col-sm-10">
-        <input type="number" class="form-control" ng-model="data.prom2.case.statistic1">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Caption1</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.case.caption1">
-      </div>
-    </div>
-    <div class="form-group" ng-show="mySetting.substyle == 8">
-      <label class="col-sm-2 control-label">Statistic2</label>
-      <div class="col-sm-10">
-        <input type="number" class="form-control" ng-model="data.prom2.case.statistic2">
-      </div>
-    </div>
-    <div class="form-group" ng-show="mySetting.substyle == 8">
-      <label class="col-sm-2 control-label">Caption2</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.case.caption2">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA Content</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.case.cta">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA URL</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.case.ctaUrl">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Background Image</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.case.imgUrl">
-      </div>
-    </div>
-  </form>
-  <!--Testimonial -->
-  <form class="form-horizontal" ng-show="mySetting.type==4 &&  mySetting.substyle >=9 && mySetting.substyle <= 10">
-    <legend><small>Testimonial</small></legend>
-    <div class="form-group" ng-show="mySetting.substyle==10">
-      <label class="col-sm-2 control-label">Photo</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.test.photo">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Quote</label>
-      <div class="col-sm-10">
-        <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.test.quote"></textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Attribution</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.test.attribution">
+        <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.feat.solu1.body"></textarea>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">CTA</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.test.cta">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.cta">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">CTA Url</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.test.ctaUrl">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.ctaUrl">
       </div>
     </div>
-  </form>
-</div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Lead-in</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.step.step1.ctaLeadIn">
+      </div>
+    </div>
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution2</small></legend>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Image Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.imgUrl">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.title">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Body</label>
+      <div class="col-sm-10">
+        <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.feat.solu2.body"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.cta">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.ctaUrl">
+      </div>
+    </div>
+    <div ng-show="mySetting.substyle==2">
+      <div class="form-group">
+        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution3</small></legend>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Image Url</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.imgUrl">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.title">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Body</label>
+        <div class="col-sm-10">
+          <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.feat.solu3.body"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">CTA</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.cta">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">CTA Url</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.ctaUrl">
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Lead-in</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.step.step1.ctaLeadIn">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Content</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.step.step1.cta">
+      </div>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+      <label class="col-sm-2 control-label">CTA Image URL</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.step.step1.ctaUrl">
+      </div>
+    </div>
+  </div>
+</form>
+<!--Solution overview -->
+<form class="form-horizontal col-md-12" ng-if="mySetting.type==2 && mySetting.substyle >= 3 && mySetting.substyle <= 6">
+  <legend><small>Solution overview</small></legend>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Subhead</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.subhead">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Lead-in</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.ctaLeadIn">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Content</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.cta">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA URL</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.ctaUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution1</small></legend>
+  </div>
+  <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
+    <label class="col-sm-2 control-label">Image Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.imgUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Feature</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.feat">
+    </div>
+  </div>
+  <div class="form-group">
+    <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution2</small></legend>
+  </div>
+  <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
+    <label class="col-sm-2 control-label">Image Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu2.imgUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Feature</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu2.feat">
+    </div>
+  </div>
+  <div class="form-group">
+    <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution3</small></legend>
+  </div>
+  <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
+    <label class="col-sm-2 control-label">Image Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu3.imgUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Feature</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu3.feat">
+    </div>
+  </div>
+  <div class="form-group">
+    <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution4</small></legend>
+  </div>
+  <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
+    <label class="col-sm-2 control-label">Image Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu4.imgUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Feature</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.solu.solu4.feat">
+    </div>
+  </div>
+  <div ng-show="mySetting.substyle==4||mySetting.substyle==6">
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution5</small></legend>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==4">
+      <label class="col-sm-2 control-label">Image Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu5.imgUrl">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Feature</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu5.feat">
+      </div>
+    </div>
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution6</small></legend>
+    </div>
+    <div class="form-group" ng-show="mySetting.substyle==4">
+      <label class="col-sm-2 control-label">Image Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu6.imgUrl">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Feature</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu6.feat">
+      </div>
+    </div>
+  </div>
+</form>
+<!--Case Study -->
+<form class="form-horizontal col-md-12" ng-show="mySetting.type==3 &&  mySetting.substyle >=7 && mySetting.substyle <= 8">
+  <legend><small>Case study</small></legend>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Subhead</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.case.subhead">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Body</label>
+    <div class="col-sm-10">
+      <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.case.body"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Statistic1</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" ng-model="data.prom2.case.statistic1">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Caption1</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.case.caption1">
+    </div>
+  </div>
+  <div class="form-group" ng-show="mySetting.substyle == 8">
+    <label class="col-sm-2 control-label">Statistic2</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" ng-model="data.prom2.case.statistic2">
+    </div>
+  </div>
+  <div class="form-group" ng-show="mySetting.substyle == 8">
+    <label class="col-sm-2 control-label">Caption2</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.case.caption2">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Content</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.case.cta">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA URL</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.case.ctaUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Background Image</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.case.imgUrl">
+    </div>
+  </div>
+</form>
+<!--Testimonial -->
+<form class="form-horizontal col-md-12" ng-show="mySetting.type==4 &&  mySetting.substyle >=9 && mySetting.substyle <= 10">
+  <legend><small>Testimonial</small></legend>
+  <div class="form-group" ng-show="mySetting.substyle==10">
+    <label class="col-sm-2 control-label">Photo</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.test.photo">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Quote</label>
+    <div class="col-sm-10">
+      <textarea type="text" class="form-control" rows="3" ng-model="data.prom2.test.quote"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Attribution</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.test.attribution">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.test.cta">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.prom2.test.ctaUrl">
+    </div>
+  </div>
+</form>
 <!-- Pop up Box -->
 <div class="modal fade" id="prom2Modal" tabindex="-1" role="dialog" aria-labelledby="prom2ModalLabel">
   <div class="modal-dialog modal-lg">
@@ -413,8 +413,7 @@
         <div class="pull-right">
           <label class="text-danger" ng-show="showWarning1">Please Choose a style.&nbsp;&nbsp;</label>
           <label class="text-danger" ng-show="showWarning2">Please Choose a substyle.&nbsp;&nbsp;</label>
-          <button type="button" class="btn btn-danger" ng-click="deleteStyle()">None</button>
-          <button type="button" class="btn btn-warning" ng-show="tempSetting.type!=0" ng-click="tempSetting.type=0">Reselect Style</button>
+          <button type="button" class="btn btn-warning" ng-show="tempSetting.type!=0" ng-click="tempSetting.type=0">Back</button>
           <button type="button" class="btn btn-primary" ng-click="setStyle()">OK</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>

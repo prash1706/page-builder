@@ -1,25 +1,26 @@
 - var data = contact
 - var type = setting.contact
-section.nst-module__contact-band.ibm-alternate-background.nst-mlp-v0-0
-  .ibm-columns.nst-full-height-g960
-    .ibm-col-5-3.nst-flex-vertical.flex-g960.nst-full-height-g960.nst-full-width-g720
-      h4.ibm-h4.ibm-icon-nolink.ibm-phone-link.nst-icon-visible-g720.nst-contact-message-header
-        span.nst-mobile-line Call us at:
-          span.nst-phone
-            a.nst-phone-number(href="tel" + "#{data.phone}")= data.phone
-        span.nst-mobile-line
-          |(Priority code:
-          span.nst-priority= data.priority
-          |)
-    .ibm-col-5-2.nst-flex-vertical.flex-g960.nst-full-height-g960.nst-full-width-g720
-      h4.ibm-h4.nst-contact-list-header Visit us on:
-      ul.nst-social-list.ibm-link-list
-        li
-          a.ibm-blog-link(rel="external", target="_blank", title="IBM API Economy Blog", href="#{data.ibmUrl}")
-        li
-          a.ibm-twitter-link(rel="external", target="_blank", title="IBM API Economy on Twitter", href="#{data.twitterUrl}")
-        li
-          a.ibm-youtube-link(rel="external", target="_blank", title="IBM API Economy on YouTube", href="#{data.youtubeUrl}")
-        li
-          a.ibm-googleplus-link(rel="external", target="_blank", title="IBM API Economy on Google+", href="#{data.googleUrl}")
+if type != 0
+  section.nst-module__contact-band.ibm-alternate-background.nst-mlp-v0-0
+    .ibm-columns.nst-full-height-g960
+      .ibm-col-5-3.nst-flex-vertical.flex-g960.nst-full-height-g960.nst-full-width-g720
+        h4.ibm-h4.ibm-icon-nolink.ibm-phone-link.nst-icon-visible-g720.nst-contact-message-header
+          span.nst-mobile-line Call us at:
+            span.nst-phone
+              a.nst-phone-number(href="tel" + "#{data.phone}")= data.phone
+          span.nst-mobile-line
+            |(Priority code:
+            span.nst-priority= data.priority
+            |)
+      .ibm-col-5-2.nst-flex-vertical.flex-g960.nst-full-height-g960.nst-full-width-g720
+        h4.ibm-h4.nst-contact-list-header Visit us on:
+        ul.nst-social-list.ibm-link-list
+          li
+            a.ibm-blog-link(rel="external", target="_blank", title="IBM API Economy Blog", href="#{data.ibmUrl}")
+          li
+            a.ibm-twitter-link(rel="external", target="_blank", title="IBM API Economy on Twitter", href="#{data.twitterUrl}")
+          li
+            a.ibm-youtube-link(rel="external", target="_blank", title="IBM API Economy on YouTube", href="#{data.youtubeUrl}")
+          li
+            a.ibm-googleplus-link(rel="external", target="_blank", title="IBM API Economy on Google+", href="#{data.googleUrl}")
 

@@ -1,52 +1,52 @@
-<div id="wrapper">
-  <div id="ColumnContainer">
-    <nav class="navbar navbar-default col-md-10">
-      <div class="collapse navbar-collapse">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">V18 Page Creater</a>
-        </div>
-        <div class="collapse navbar-collapse navbar-left">
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <select class="form-control" ng-model="currentData" ng-options="option.name for option in settingData">
-                <option value="">Select a template</option>
-              </select>
-              </span>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-default form-group" ng-disabled="currentData.name == null" ng-click="load()">Load</button>
-              <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=null" data-toggle="modal" data-target="#addModal">Add</button>
-              <button class="btn btn-default form-group" ng-disabled="currentData.name == null || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
-            </div>
-          </form>
-        </div>
-        <p class="navbar-text" ng-show="result==1" style="color: #337ab7;">Add {{templateName}} successfully!</p>
-        <p class="navbar-text text-danger" ng-show="result==2" style="color: #a94442;">Add {{templateName}} unsuccessfully!</p>
-        <p class="navbar-text text-success" ng-show="result==3" style="color: #337ab7;">Delete {{templateName}} successfully!</p>
-        <p class="navbar-text text-danger" ng-show="result==4" style="color: #a94442;">Delete {{templateName}} unsuccessfully!</p>
-        <p class="navbar-text text-success" ng-show="result==5" style="color: #337ab7;">Save {{templateName}} successfully!</p>
-        <p class="navbar-text text-danger" ng-show="result==6" style="color: #a94442;">Save {{templateName}} unsuccessfully!</p>
-        <p class="navbar-text text-danger" ng-show="result==7" style="color: #a94442;">Failed to create a page, please retry!</p>
-        <!-- <div class="alert alert-success " role="alert">Delete success!</div> -->
-        <div class="nav navbar-nav navbar-right">
-          <button class="btn btn-success form-group" id="saveBtn" ng-disabled="currentData.name == null || currentData.name == 'default'" data-loading-text="Saving..." ng-click="save()">Save</button>
-          <button class="btn btn-danger navbar-btn" id="createBtn" data-loading-text="Creating..." ng-click="createPage()">Create Page</button>
-        </div>
-      </div>
-    </nav>
-    <div class="col-md-10  pull-left" style="margin-right:20px">
-      <ul class="nav nav-pills nav-stacked pull-left" style="width:130px">
-        <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
-        <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
-        <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
-        <li ng-class="{active:currentPage==3}"><a ng-href="/setting/promotion1" ng-click="currentPage=3" ui-sref="setting.promotion1">Promotion1</a></li>
-        <li ng-class="{active:currentPage==4}"><a ng-href="/setting/promotion2" ng-click="currentPage=4" ui-sref="setting.promotion2">Promotion2</a></li>
-        <li ng-class="{active:currentPage==5}"><a ng-href="/setting/promotion3" ng-click="currentPage=5" ui-sref="setting.promotion3">Promotion3</a></li>
-        <li ng-class="{active:currentPage==6}"><a ng-href="/setting/discovery" ng-click="currentPage=6" ui-sref="setting.discovery">Discovery*</a></li>
-        <li ng-class="{active:currentPage==7}"><a ng-href="/setting/contact" ng-click="currentPage=7" ui-sref="setting.contact">Contact</a></li>
-      </ul>
-      <div ui-view class="col-md-10 pull-left"></div>
+<nav class="navbar navbar-default navbar-fixed-top topMenu">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">V18 Page Builder</a>
     </div>
+    <div class="navbar-left">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <select class="form-control" id="selectTem" ng-model="currentData" ng-options="option.name for option in settingData">
+            <option value="">Select a template</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-default form-group" ng-disabled="currentData.name == null" ng-click="load()">Load</button>
+          <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=null" data-toggle="modal" data-target="#addModal">New</button>
+          <button class="btn btn-default form-group" ng-disabled="currentData.name == null || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </div>
+      </form>
+    </div>
+    <p class="navbar-text" ng-show="result==1" style="color: #337ab7;">Add {{templateName}} successfully!</p>
+    <p class="navbar-text text-danger" ng-show="result==2" style="color: #a94442;">Add {{templateName}} unsuccessfully!</p>
+    <p class="navbar-text text-success" ng-show="result==3" style="color: #337ab7;">Delete {{templateName}} successfully!</p>
+    <p class="navbar-text text-danger" ng-show="result==4" style="color: #a94442;">Delete {{templateName}} unsuccessfully!</p>
+    <p class="navbar-text text-success" ng-show="result==5" style="color: #337ab7;">Save {{templateName}} successfully!</p>
+    <p class="navbar-text text-danger" ng-show="result==6" style="color: #a94442;">Save {{templateName}} unsuccessfully!</p>
+    <p class="navbar-text text-danger" ng-show="result==7" style="color: #a94442;">Please input enough data of required modules!</p>
+    <p class="navbar-text text-success" ng-show="result==8" style="color: #337ab7;">Swap Promotion Data successfully!</p>
+    <!-- <div class="alert alert-success " role="alert">Delete success!</div> -->
+    <div class="nav navbar-nav navbar-right">
+      <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="currentData.name == null || currentData.name == 'default'" data-loading-text="Saving..." ng-click="save()">Save</button>
+      <button class="btn btn-danger navbar-btn" id="createBtn" data-loading-text="Creating..." ng-click="createPage()">Create</button>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <ul class="nav nav-pills nav-stacked col-md-2">
+      <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
+      <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
+      <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
+      <li ng-class="{active:currentPage==3}">
+        <a ng-href="/setting/promotion1" ng-click="currentPage=3" ui-sref="setting.promotion1">Promotion1 <span ng-show="currentPage==3" class="glyphicon glyphicon-arrow-down" data-toggle="modal" data-target="#swap1and2Modal"></span></a>
+      </li>
+      <li ng-class="{active:currentPage==4}"><a ng-href="/setting/promotion2" ng-click="currentPage=4" ui-sref="setting.promotion2">Promotion2 <span ng-show="currentPage==4" class="glyphicon glyphicon-arrow-down" data-toggle="modal" data-target="#swap2and3Modal"> </span> <span ng-show="currentPage==4" class="glyphicon glyphicon-arrow-up" data-toggle="modal" data-target="#swap1and2Modal"></span></a></li>
+      <li ng-class="{active:currentPage==5}"><a ng-href="/setting/promotion3" ng-click="currentPage=5" ui-sref="setting.promotion3">Promotion3 <span ng-show="currentPage==5" class="glyphicon glyphicon-arrow-up" data-toggle="modal" data-target="#swap2and3Modal"></span></a></li>
+      <li ng-class="{active:currentPage==6}"><a ng-href="/setting/discovery" ng-click="currentPage=6" ui-sref="setting.discovery">Discovery*</a></li>
+      <li ng-class="{active:currentPage==7}"><a ng-href="/setting/contact" ng-click="currentPage=7" ui-sref="setting.contact">Contact</a></li>
+    </ul>
+    <div ui-view class="col-md-10 mainBody"></div>
   </div>
 </div>
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
@@ -95,6 +95,44 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="delete()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="swap1and2Modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Swap Promotion Data</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4>Are you sure to swap <strong>Promotion1</strong> with <strong>Promotion2</strong> ?</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="swap(1)" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="swap2and3Modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Swap Promotion Data</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4>Are you sure to swap <strong>Promotion2</strong> with <strong>Promotion3</strong> ?</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="swap(2)" data-dismiss="modal">OK</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

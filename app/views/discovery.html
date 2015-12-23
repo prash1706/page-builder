@@ -1,213 +1,212 @@
-<div class="col-md-12" style="margin-left:50px">
-  <legend class="color4">Discovery</legend>
-  <form class="col-md-12" ng-show="!mySetting.substyle">
-    <div class="form-group">
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">Choose style</button>
-    </div>
-  </form>
-  <div class="col-md-8" ng-show="mySetting.substyle==1">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
-      <img src="../images/discovery-style_01.jpg" alt="">
-    </a>
+<legend class="color4" ng-show="mySetting.substyle">Discovery / {{style[mySetting.type]}} / {{substyle[mySetting.substyle]}}</legend>
+<legend class="color4" ng-show="!mySetting.substyle">Discovery</legend>
+<form class="col-md-8" ng-show="!mySetting.substyle">
+  <div class="form-group">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">Choose style</button>
   </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==2">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
-      <img src="../images/discovery-substyle-related_resources_01.png" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==3">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
-      <img src="../images/discovery-substyle-related_resources_02.png" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==4">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
-      <img src="../images/discovery-substyle-related_resources_03.png" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==5">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
-      <img src="../images/discovery-substyle-related_resources_04.png" alt="">
-    </a>
-  </div>
-  <div class="col-md-8" ng-show="mySetting.substyle==6">
-    <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
-      <img src="../images/discovery-substyle-related_resources_05.png" alt="">
-    </a>
-  </div>
-  <!--Call to action module -->
-  <form class="form-horizontal" ng-if="mySetting.type == 1 && mySetting.substyle == 1">
-    <legend><small>Call to action module</small></legend>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA Lead-in</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.action.ctaLeadIn">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.action.cta">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA URL</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.action.ctaUrl">
-      </div>
-    </div>
-  </form>
-  <!--Related resources module -->
-  <form class="form-horizontal" ng-if="mySetting.type==2 &&  mySetting.substyle >= 2 && mySetting.substyle <= 6">
-    <legend><small>Related resources module</small></legend>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Subhead</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.subhead">
-      </div>
-    </div>
-    <!-- Resource 1 -->
-    <div class="form-group">
-      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource1</small></legend>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Body</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.res1.body">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.res1.cta">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.res1.ctaUrl">
-      </div>
-    </div>
-    <!-- Resource 2 -->
-    <div class="form-group">
-      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource2</small></legend>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Body</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.res2.body">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.res2.cta">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">CTA Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.disc.resource.res2.ctaUrl">
-      </div>
-    </div>
-    <!-- Resource 3 -->
-    <div ng-show="mySetting.substyle >= 3">
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource3</small></legend>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Body</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res3.body">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res3.cta">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res3.ctaUrl">
-        </div>
-      </div>
-    </div>
-    <!-- Resource 4 -->
-    <div ng-show="mySetting.substyle >= 4">
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource4</small></legend>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Body</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res4.body">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res4.cta">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res4.ctaUrl">
-        </div>
-      </div>
-    </div>
-    <!-- Resource 5 -->
-    <div ng-show="mySetting.substyle >= 5">
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource5</small></legend>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Body</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res5.body">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res5.cta">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res5.ctaUrl">
-        </div>
-      </div>
-    </div>
-    <!-- Resource 6 -->
-    <div ng-show="mySetting.substyle == 6">
-      <div class="form-group">
-        <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource6</small></legend>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Body</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res6.body">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res6.cta">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">CTA Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.disc.resource.res6.ctaUrl">
-        </div>
-      </div>
-    </div>
-  </form>
+</form>
+<div class="col-md-8" ng-show="mySetting.substyle==1">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
+    <img src="../images/discovery-style_01.jpg" alt="">
+  </a>
 </div>
+<div class="col-md-8" ng-show="mySetting.substyle==2">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
+    <img src="../images/discovery-substyle-related_resources_01.png" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==3">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
+    <img src="../images/discovery-substyle-related_resources_02.png" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==4">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
+    <img src="../images/discovery-substyle-related_resources_03.png" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==5">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
+    <img src="../images/discovery-substyle-related_resources_04.png" alt="">
+  </a>
+</div>
+<div class="col-md-8" ng-show="mySetting.substyle==6">
+  <a class="thumbnail selected" data-toggle="modal" data-target="#discModal" ng-click="getStyle()">
+    <img src="../images/discovery-substyle-related_resources_05.png" alt="">
+  </a>
+</div>
+<!--Call to action module -->
+<form class="form-horizontal col-md-12" ng-if="mySetting.type == 1 && mySetting.substyle == 1">
+  <legend><small>Call to action module</small></legend>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Lead-in</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.action.ctaLeadIn">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.action.cta">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA URL</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.action.ctaUrl">
+    </div>
+  </div>
+</form>
+<!--Related resources module -->
+<form class="form-horizontal col-md-12" ng-if="mySetting.type==2 &&  mySetting.substyle >= 2 && mySetting.substyle <= 6">
+  <legend><small>Related resources module</small></legend>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Subhead</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.subhead">
+    </div>
+  </div>
+  <!-- Resource 1 -->
+  <div class="form-group">
+    <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource1</small></legend>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Body</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.res1.body">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.res1.cta">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.res1.ctaUrl">
+    </div>
+  </div>
+  <!-- Resource 2 -->
+  <div class="form-group">
+    <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource2</small></legend>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Body</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.res2.body">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.res2.cta">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">CTA Url</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.disc.resource.res2.ctaUrl">
+    </div>
+  </div>
+  <!-- Resource 3 -->
+  <div ng-show="mySetting.substyle >= 3">
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource3</small></legend>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Body</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res3.body">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res3.cta">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res3.ctaUrl">
+      </div>
+    </div>
+  </div>
+  <!-- Resource 4 -->
+  <div ng-show="mySetting.substyle >= 4">
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource4</small></legend>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Body</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res4.body">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res4.cta">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res4.ctaUrl">
+      </div>
+    </div>
+  </div>
+  <!-- Resource 5 -->
+  <div ng-show="mySetting.substyle >= 5">
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource5</small></legend>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Body</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res5.body">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res5.cta">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res5.ctaUrl">
+      </div>
+    </div>
+  </div>
+  <!-- Resource 6 -->
+  <div ng-show="mySetting.substyle == 6">
+    <div class="form-group">
+      <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Resource6</small></legend>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Body</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res6.body">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res6.cta">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">CTA Url</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="data.disc.resource.res6.ctaUrl">
+      </div>
+    </div>
+  </div>
+</form>
 <!-- Pop up Box -->
 <div class="modal fade" id="discModal" tabindex="-1" role="dialog" aria-labelledby="discModalLabel">
   <div class="modal-dialog modal-lg">
@@ -216,8 +215,7 @@
         <div class="pull-right">
           <label class="text-danger" ng-show="showWarning1">Please Choose a style.&nbsp;&nbsp;</label>
           <label class="text-danger" ng-show="showWarning2">Please Choose a substyle.&nbsp;&nbsp;</label>
-          <button type="button" class="btn btn-danger" ng-click="deleteStyle()">None</button>
-          <button type="button" class="btn btn-warning" ng-show="tempSetting.type!=0" ng-click="tempSetting.type=0">Reselect Style</button>
+          <button type="button" class="btn btn-warning" ng-show="tempSetting.type!=0" ng-click="tempSetting.type=0">Back</button>
           <button type="button" class="btn btn-primary" ng-click="setStyle()">OK</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
