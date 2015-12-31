@@ -25,21 +25,59 @@ app.use(express.static(path.join(__dirname, 'app')));
 
 // create a page
 app.post('/page', function(req, res) {
-  var file = './app/tmp/test.html';
-  var fn = jade.compileFile('./app/tmp/jade/index.jade', {
+  var space = req.body.space;
+  var name = req.body.name;
+  var file = './app/pages/' + space + '/' + name + '.html';
+  var dir = './app/pages/' + space + '/';
+  var fn = jade.compileFile('./app/jade/index.jade', {
     pretty: true
   });
-  var html = fn(req.body);
-  fs.writeFile(file, html, function(err) {
-    if (err) {} else {
-      console.log('New html created!');
+  var html = fn(req.body.data);
+  console.log(file);
+  fs.exists(dir, function(exist) {
+    if (!exist) {
+      fs.mkdir(dir, function(err) {
+        fs.open(file, "w", function(err, fd) {
+          console.log(fd);
+          if (err) {
+            console.log(err);
+            res.send(err);
+          } else {
+            fs.writeFile(file, html, function(err) {
+              if (err) {
+                // console.log(err);
+              } else {
+                console.log('New html created!');
+              };
+              res.send(html);
+            });
+          };
+        });
+      });
+    } else {
+      fs.open(file, "w", function(err, fd) {
+        console.log(fd);
+        if (err) {
+          console.log(err);
+          res.send(err);
+        } else {
+          fs.writeFile(file, html, function(err) {
+            if (err) {
+              // console.log(err);
+            } else {
+              console.log('New html created!');
+            };
+            res.send(html);
+          });
+        };
+      });
     };
-    res.send(html);
-  })
+  });
 });
 
 // add a template
 app.post('/templates', function(req, res) {
+  console.log(req.body.space);
   Data.create(req.body, function(err, data) {
     if (err) {
       res.send(err);
