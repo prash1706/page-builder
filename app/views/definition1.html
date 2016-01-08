@@ -378,17 +378,17 @@
           <div class="form-group" ng-show="tempSetting.type==0">
             <label>Choose a style</label>
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-10" ng-hide="data.setting.defi2.type==1">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==1}" ng-click="tempSetting.type=1">
                   <img src="../images/style-introduction.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10">
+              <div class="col-md-10" ng-hide="data.setting.defi2.type==2">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==2}" ng-click="tempSetting.type=2">
                   <img src="../images/style-asset.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10">
+              <div class="col-md-10" ng-hide="data.setting.defi2.type==3">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==3}" ng-click="tempSetting.type=3">
                   <img src="../images/style-stepbystep.jpg" alt="">
                 </a>

@@ -27,9 +27,26 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   });
 
   $scope.settingData = [];
+  $scope.spaces = ['Public'];
   $scope.settingData.push(DataService.getDefaultData);
+
   DataService.getData(function(res) {
     $scope.settingData = $scope.settingData.concat(res);
+    angular.forEach($scope.settingData, function(item){
+      if (!item.space) {
+        item.space = "Public";
+      };
+      var i;
+      for (i = 0; i < $scope.spaces.length; i++){
+        if ($scope.spaces[i] === item.space){
+          break;
+        }
+      };
+      if (i === $scope.spaces.length){
+        $scope.spaces.push(item.space);
+      };
+    });
+    console.log($scope.spaces);
   }, function(res) {
     console.log("Get Templates Failed.")
   });
@@ -39,6 +56,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.tarData = null;
   $scope.tarName = null;
   $scope.templateName = null;
+  $scope.tarNewSpace = null;
+  $scope.fromSpace = null;
   $scope.result = 0;
 
   function showResult(result, name) {
@@ -50,38 +69,26 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   }
 
   $scope.load = function() {
+    $scope.currentData = $scope.tarData;
+    $scope.currentSpace = $scope.tarSpace;
     var str = angular.toJson($scope.currentData.data);
     $rootScope.data = angular.fromJson(str);
   };
 
   $scope.createPage = function() {
     $('#createBtn').button('loading');
-    var data = $rootScope.data;
+    var data = {
+      name: $scope.currentData.name,
+      space: $scope.currentData.space,
+      data: $scope.currentData.data
+    };
     DataService.createPage(data, function(res) {
       $timeout(function() {
         $('#createBtn').button('reset');
-        window.open('../tmp/test.html', '_blank');
+        window.open('./pages/' + data.space + '/' + data.name + '.html', '_blank');
       }, 500);
     }, function(res) {
       showResult(7, "");
-      $timeout(function() {
-        $('#selectTem').focus();
-        $timeout(function() {
-          $('#selectTem').blur();
-          $timeout(function() {
-            $('#selectTem').focus();
-            $timeout(function() {
-              $('#selectTem').blur();
-              $timeout(function() {
-                $('#selectTem').focus();
-                $timeout(function() {
-                  $('#selectTem').blur();
-                }, 200);
-              }, 200);
-            }, 200);
-          }, 200);
-        }, 200);
-      }, 200);
       $('#createBtn').button('reset');
     });
   };
@@ -89,32 +96,46 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.add = function() {
     if ($scope.tarName == "" || $scope.tarName == "default") {
       showResult(2, $scope.tarName);
-      $('#addModal').modal('hide');
     } else {
       var isRight = true;
+      if (!$scope.tarSpace){
+        for (var i = 0; i < $scope.spaces.length; i++){
+          if ($scope.spaces[i] == $scope.tarNewSpace){
+            isRight = false;
+            showResult(2, $scope.tarName);
+            break;
+          }
+        };
+      };
       for (var i = 0; i < $scope.settingData.length; i++) {
-        if ($scope.settingData[i].name == $scope.tarName) {
+        if ($scope.settingData[i].name == $scope.tarName && $scope.settingData[i].space == $scope.tarSpace) {
           isRight = false;
-          $('#addModal').modal('hide');
           showResult(2, $scope.tarName);
           break;
-        }
+        };
       };
       if (isRight) {
         var data = {};
         data.name = $scope.tarName;
-        if ($scope.tarData) {
+        if (!$scope.tarSpace){
+          data.space = $scope.tarNewSpace;
+        } else{
+          data.space = $scope.tarSpace;
+        };
+        if ($scope.fromSpace && $scope.tarData) {
           data.data = $scope.tarData.data;
         };
+        console.log(data, 'data');
         DataService.add(data, function(res) {
           showResult(1, $scope.tarName);
-          $scope.settingData.push(res);
-          $('#addModal').modal('hide');
+          $scope.settingData.push(data);
+          if (!$scope.tarSpace){
+            $scope.spaces.push(data.space);
+          };
         }, function(res) {
           showResult(2, $scope.tarName);
-          $('#addModal').modal('hide');
-        })
-      }
+        });
+      };
     };
   };
 
@@ -144,7 +165,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     console.log($rootScope.data.prom2);
   };
 
-
   $scope.delete = function() {
     DataService.delete($scope.currentData, function(res) {
       for (var i = 0; i < $scope.settingData.length; i++) {
@@ -163,15 +183,16 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $('#saveBtn').button('loading');
     var data = {
       name: $scope.currentData.name,
+      space: $scope.currentData.space,
       data: $rootScope.data
     };
     DataService.saveData(data, function(res) {
       for (var i = 0; i < $scope.settingData.length; i++) {
-        if ($scope.settingData[i].name == $scope.currentData.name) {
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
           $scope.settingData.data = data.data;
           $scope.currentData.data = data.data;
           break;
-        }
+        };
       };
       $timeout(function() {
         $('#saveBtn').button('reset');

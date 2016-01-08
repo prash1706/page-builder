@@ -18,6 +18,7 @@ serviceApp.factory('DataService', function($http) {
     },
     getDefaultData: {
       "name": "default",
+      "space": "Public",
       "data": {
         "contact": {
           "googleUrl": "https://plus.google.com/106375465587386953111/about",
