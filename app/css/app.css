@@ -41,11 +41,6 @@ div.mainBody {
   min-width: 1080px;
 }
 
-.navbar-header{
-  position: absolute;
-  left: 50px;
-}
-
 .container {
   width: 1080px;
   max-width: none !important
@@ -73,4 +68,17 @@ button.close {
 ul.dropDown>li>a>span {
   float: right;
   cursor: pointer;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+div#addModal div.modal-header h4 {
+  display: inline;
+}
+
+div#addModal div.modal-header label {
+  display: inline;
+  margin-left: 30px;
 }

@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top topMenu">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">V18 Page Builder</a>
+  </div>
   <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">V18 Page Builder</a>
-    </div>
     <div class="navbar-left navbar-menu">
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Load</button>
-          <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=null" data-toggle="modal" data-target="#addModal">New</button>
-          <button class="btn btn-default form-group" ng-disabled="currentData.name == null || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=''" data-toggle="modal" data-target="#addModal">New</button>
+          <button class="btn btn-default form-group" ng-disabled="currentData.name == '' || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </form>
     </div>
@@ -41,6 +41,7 @@
       <li ng-class="{active:currentPage==5}"><a ng-href="/setting/promotion3" ng-click="currentPage=5" ui-sref="setting.promotion3">Promotion3 <span ng-show="currentPage==5" class="glyphicon glyphicon-arrow-up" data-toggle="modal" data-target="#swap2and3Modal"></span></a></li>
       <li ng-class="{active:currentPage==6}"><a ng-href="/setting/discovery" ng-click="currentPage=6" ui-sref="setting.discovery">Discovery*</a></li>
       <li ng-class="{active:currentPage==7}"><a ng-href="/setting/contact" ng-click="currentPage=7" ui-sref="setting.contact">Contact</a></li>
+      <li ng-class="{active:currentPage==8}"><a ng-click="currentPage=8" ui-sref="setting.meta">Meta Data*</a></li>
     </ul>
     <div ui-view class="col-md-10 mainBody"></div>
   </div>
@@ -51,7 +52,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add a new Page</h4>
+        <h4 class="modal-title" id="myModalLabel">Create a new Page</h4>
+        <!-- <label class="text-danger">{{tarNewSpace}} space has existed!space has existedspace has existed  existedspace has existed</label> -->
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
@@ -104,7 +106,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Select a page</h4>
+        <h4 class="modal-title" id="myModalLabel">Load a page</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
@@ -115,7 +117,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-show="tarSpace">
             <label class="col-sm-3 control-label">Page</label>
             <div class="col-sm-6">
               <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace }">
@@ -131,16 +133,17 @@
     </div>
   </div>
 </div>
+<!-- Delete modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Delete a template</h4>
+        <h4 class="modal-title" id="myModalLabel">Delete a page</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <h4>Are you sure to delete the <strong>{{currentData.name}}</strong> template?</h4>
+          <h4>Are you sure to delete the <strong>{{currentData.name}}</strong> page?</h4>
         </div>
       </div>
       <div class="modal-footer">

@@ -1,12 +1,48 @@
 meta(charset="UTF-8")
 link(rel="icon", href="//www.ibm.com/favicon.ico")
 link(rel="canonical", href="http://www.ibm.com/middleware/integration/en-us/api-economy.html")
-meta(name="dcterms.date", content="YYYY-MM-DD")
-meta(name="dcterms.rights", content="© Copyright IBM Corp. 2014")
-meta(name="description", content="Thrive in the API Economy. Power innovation and build new revenue streams by making APIs part of your business model.")
-meta(name="geo.country", content="US")
-meta(name="keywords", content="IBM API Economy, API economy, API Management")
-meta(name="robots", content="index,follow")
+if meta.keywords
+  meta(name="Keywords", content="#{meta.keywords}")
+if meta.description
+  meta(name="Description", content="#{meta.description}")
+if meta.title
+  meta(name="Title", content="#{meta.title}")
+if meta.industry
+  meta(name="Industry", content="#{meta.industry}")
+if meta.version
+  meta(name="Version", content="#{meta.version}")
+if meta.publisher
+  meta(name="Publisher", content="#{meta.publisher}")
+if meta.country
+  meta(name="Country", content="#{meta.country}")
+if meta.type
+  meta(name="Content Type", content="#{meta.type}")
+if meta.delivery
+  meta(name="Content Delivery", content="#{meta.delivery}")
+if meta.producer
+  meta(name="Content Producer", content="#{meta.producer}")
+if meta.owner
+  meta(name="Owner Email Address", content="#{meta.owner}")
+if meta.locale
+  meta(name="IBM Locale", content="#{meta.locale}")
+if meta.view
+  meta(name="Default View", content="#{meta.view}")
+if meta.subjects
+  meta(name="Subjects", content="#{meta.subjects}")
+if meta.destination
+  meta(name="Destination", content="#{meta.destination}")
+if meta.account
+  meta(name="Account Name", content="#{meta.account}")
+if meta.rep
+  meta(name="Rep ID", content="#{meta.rep}")
+if meta.publishdate
+  meta(name="Publish Date", content="#{meta.publishdate}")
+if meta.expirydate
+  meta(name="Expiry Date", content="#{meta.expirydate}")
+if meta.site
+  meta(name="Site ID", content="#{meta.site}")
+if meta.category
+  meta(name="IBM.WTMCategory", content="#{meta.category}")
 meta(name="viewport", content="width=device-width, initial-scale=1")
 script.
   digitalData = {

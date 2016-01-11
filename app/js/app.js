@@ -49,6 +49,11 @@ angular.module('myApp', ['ui.router', 'myPageApp'])
         url: '/setting/contact',
         templateUrl: 'views/contact.html',
         controller: 'SetContactCtrl'
+      })
+      .state('setting.meta', {
+        url: '/setting/meta',
+        templateUrl: 'views/meta.html',
+        controller: 'SetMetaCtrl'
       });
   }])
   .run(function($rootScope) {

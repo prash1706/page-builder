@@ -18,6 +18,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       $scope.currentPage = 6;
     } else if ($state.current.name == "setting.contact") {
       $scope.currentPage = 7;
+    } else if ($state.current.name == "setting.meta") {
+      $scope.currentPage = 8;
     };
   };
   $scope.$watch(function() {
@@ -32,17 +34,17 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 
   DataService.getData(function(res) {
     $scope.settingData = $scope.settingData.concat(res);
-    angular.forEach($scope.settingData, function(item){
+    angular.forEach($scope.settingData, function(item) {
       if (!item.space) {
         item.space = "Public";
       };
       var i;
-      for (i = 0; i < $scope.spaces.length; i++){
-        if ($scope.spaces[i] === item.space){
+      for (i = 0; i < $scope.spaces.length; i++) {
+        if ($scope.spaces[i] === item.space) {
           break;
         }
       };
-      if (i === $scope.spaces.length){
+      if (i === $scope.spaces.length) {
         $scope.spaces.push(item.space);
       };
     });
@@ -54,11 +56,22 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 
   $scope.currentData = null;
   $scope.tarData = null;
-  $scope.tarName = null;
-  $scope.templateName = null;
-  $scope.tarNewSpace = null;
-  $scope.fromSpace = null;
+  $scope.tarName = "";
+  $scope.templateName = "";
+  $scope.tarNewSpace = "";
+  $scope.fromSpace = "";
   $scope.result = 0;
+
+  $scope.$watch(function(){
+    return $scope.tarName + $scope.tarNewSpace;
+  }, function(){
+    if ($scope.tarName){
+      $scope.tarName = $scope.tarName.replace(/\s/, '_');
+      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
+      $scope.tarNewSpace = $scope.tarNewSpace.replace(/\s/, '_');
+      $scope.tarNewSpace = $scope.tarNewSpace.replace(/[^\d\w\_\-]/, '');
+    };
+  });
 
   function showResult(result, name) {
     $scope.result = result;
@@ -78,10 +91,13 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.createPage = function() {
     $('#createBtn').button('loading');
     var data = {
-      name: $scope.currentData.name,
-      space: $scope.currentData.space,
-      data: $scope.currentData.data
+      data: $rootScope.data
     };
+    if ($scope.currentData) {
+      data.name = $scope.currentData.name;
+      data.space = $scope.currentData.space;
+    };
+    // console.log("Meta Data:", $rootScope.data.meta);
     DataService.createPage(data, function(res) {
       $timeout(function() {
         $('#createBtn').button('reset');
@@ -98,9 +114,9 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       showResult(2, $scope.tarName);
     } else {
       var isRight = true;
-      if (!$scope.tarSpace){
-        for (var i = 0; i < $scope.spaces.length; i++){
-          if ($scope.spaces[i] == $scope.tarNewSpace){
+      if (!$scope.tarSpace) {
+        for (var i = 0; i < $scope.spaces.length; i++) {
+          if ($scope.spaces[i] == $scope.tarNewSpace) {
             isRight = false;
             showResult(2, $scope.tarName);
             break;
@@ -117,9 +133,9 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       if (isRight) {
         var data = {};
         data.name = $scope.tarName;
-        if (!$scope.tarSpace){
+        if (!$scope.tarSpace) {
           data.space = $scope.tarNewSpace;
-        } else{
+        } else {
           data.space = $scope.tarSpace;
         };
         if ($scope.fromSpace && $scope.tarData) {
@@ -129,7 +145,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         DataService.add(data, function(res) {
           showResult(1, $scope.tarName);
           $scope.settingData.push(data);
-          if (!$scope.tarSpace){
+          if (!$scope.tarSpace) {
             $scope.spaces.push(data.space);
           };
         }, function(res) {
@@ -638,4 +654,8 @@ myPageApp.controller('SetContactCtrl', function($scope, $rootScope) {
   $scope.deleteStyle = function() {
     $rootScope.data.setting.contact = 0;
   };
+});
+
+myPageApp.controller('SetMetaCtrl', function($scope, $rootScope) {
+
 });
