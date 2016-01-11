@@ -34,6 +34,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 
   DataService.getData(function(res) {
     $scope.settingData = $scope.settingData.concat(res);
+<<<<<<< HEAD
     angular.forEach($scope.settingData, function(item) {
       if (!item.space) {
         item.space = "Public";
@@ -45,6 +46,16 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         }
       };
       if (i === $scope.spaces.length) {
+=======
+    angular.forEach($scope.settingData, function(item){
+      var i;
+      for (i = 0; i < $scope.spaces.length; i++){
+        if ($scope.spaces[i] === item.space){
+          break;
+        }
+      };
+      if (i === $scope.spaces.length){
+>>>>>>> 629dc7404d424371ac870afaf85b5995a2165305
         $scope.spaces.push(item.space);
       };
     });
@@ -56,10 +67,17 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 
   $scope.currentData = null;
   $scope.tarData = null;
+<<<<<<< HEAD
   $scope.tarName = "";
   $scope.templateName = "";
   $scope.tarNewSpace = "";
   $scope.fromSpace = "";
+=======
+  $scope.tarName = null;
+  $scope.templateName = null;
+  $scope.tarNewSpace = null;
+  $scope.fromSpace = null;
+>>>>>>> 629dc7404d424371ac870afaf85b5995a2165305
   $scope.result = 0;
 
   $scope.$watch(function(){
@@ -91,6 +109,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.createPage = function() {
     $('#createBtn').button('loading');
     var data = {
+<<<<<<< HEAD
       data: $rootScope.data
     };
     if ($scope.currentData) {
@@ -98,6 +117,12 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       data.space = $scope.currentData.space;
     };
     // console.log("Meta Data:", $rootScope.data.meta);
+=======
+      name: $scope.currentData.name,
+      space: $scope.currentData.space,
+      data: $scope.currentData.data
+    };
+>>>>>>> 629dc7404d424371ac870afaf85b5995a2165305
     DataService.createPage(data, function(res) {
       $timeout(function() {
         $('#createBtn').button('reset');
@@ -114,9 +139,15 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       showResult(2, $scope.tarName);
     } else {
       var isRight = true;
+<<<<<<< HEAD
       if (!$scope.tarSpace) {
         for (var i = 0; i < $scope.spaces.length; i++) {
           if ($scope.spaces[i] == $scope.tarNewSpace) {
+=======
+      if (!$scope.tarSpace){
+        for (var i = 0; i < $scope.spaces.length; i++){
+          if ($scope.spaces[i] == $scope.tarNewSpace){
+>>>>>>> 629dc7404d424371ac870afaf85b5995a2165305
             isRight = false;
             showResult(2, $scope.tarName);
             break;
@@ -133,9 +164,15 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       if (isRight) {
         var data = {};
         data.name = $scope.tarName;
+<<<<<<< HEAD
         if (!$scope.tarSpace) {
           data.space = $scope.tarNewSpace;
         } else {
+=======
+        if (!$scope.tarSpace){
+          data.space = $scope.tarNewSpace;
+        } else{
+>>>>>>> 629dc7404d424371ac870afaf85b5995a2165305
           data.space = $scope.tarSpace;
         };
         if ($scope.fromSpace && $scope.tarData) {
@@ -145,7 +182,11 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         DataService.add(data, function(res) {
           showResult(1, $scope.tarName);
           $scope.settingData.push(data);
+<<<<<<< HEAD
           if (!$scope.tarSpace) {
+=======
+          if (!$scope.tarSpace){
+>>>>>>> 629dc7404d424371ac870afaf85b5995a2165305
             $scope.spaces.push(data.space);
           };
         }, function(res) {

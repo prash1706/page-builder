@@ -41,6 +41,11 @@ div.mainBody {
   min-width: 1080px;
 }
 
+.navbar-header{
+  position: absolute;
+  left: 50px;
+}
+
 .container {
   width: 1080px;
   max-width: none !important
@@ -69,6 +74,7 @@ ul.dropDown>li>a>span {
   float: right;
   cursor: pointer;
 }
+<<<<<<< HEAD
 
 .modal-footer {
   text-align: center;
