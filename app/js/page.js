@@ -233,6 +233,7 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout
 
   $scope.style = ['', 'Style:Introduction', 'Style:Asset promo', 'Style:Step-by-step'];
   $scope.substyle = ['', 'Substyle:Text only,one column', 'Substyle:Text only,two columns', 'Substyle:With CTA,one column', 'Substyle:With CTA,two columns', 'Substyle:With image', 'Substyle:With video', 'Substyle:Icons with individual CTAs(3 steps)', 'Substyle:Icons with individual CTAs(4 steps)', 'Substyle:Icons with single CTA(3 steps)', 'Substyle:Icons with single CTA(4 steps)', 'Substyle:Numbers with individual CTAs(3 steps)', 'Substyle:Numbers with individual CTAs(4 steps)', 'Substyle:Numbers with single CTAs(3 steps)', 'Substyle:Numbers with single CTAs(4 steps)'];
+
   $scope.$watch(function() {
     return $rootScope.data.setting.defi1;
   }, function() {
