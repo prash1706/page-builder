@@ -33,22 +33,26 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.settingData.push(DataService.getDefaultData);
 
   DataService.getData(function(res) {
-    $scope.settingData = $scope.settingData.concat(res);
-    angular.forEach($scope.settingData, function(item) {
-      if (!item.space) {
-        item.space = "Public";
-      };
-      var i;
-      for (i = 0; i < $scope.spaces.length; i++) {
-        if ($scope.spaces[i] === item.space) {
-          break;
-        }
-      };
-      if (i === $scope.spaces.length) {
-        $scope.spaces.push(item.space);
-      };
-    });
-    console.log($scope.spaces);
+    $scope.settingData = [];
+    for (var i in res) {
+      if (res[i].data) {
+        if (!res[i].space) {
+          res[i].space = "Public";
+        };
+        var j;
+        for (j = 0; j < $scope.spaces.length; j++) {
+          if ($scope.spaces[j] === res[i].space) {
+            break;
+          }
+        };
+        if (j === $scope.spaces.length) {
+          $scope.spaces.push(res[i].space);
+        };
+        $scope.settingData.push(res[i]);
+      }
+    };
+    console.log("[DetData] $scope.settingData=", $scope.settingData);
+    console.log("[DetData] $scope.spaces=", $scope.spaces);
   }, function(res) {
     console.log("Get Templates Failed.")
   });
@@ -62,10 +66,10 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.fromSpace = "";
   $scope.result = 0;
 
-  $scope.$watch(function(){
+  $scope.$watch(function() {
     return $scope.tarName + $scope.tarNewSpace;
-  }, function(){
-    if ($scope.tarName){
+  }, function() {
+    if ($scope.tarName) {
       $scope.tarName = $scope.tarName.replace(/\s/, '_');
       $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
       $scope.tarNewSpace = $scope.tarNewSpace.replace(/\s/, '_');
@@ -86,6 +90,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $scope.currentSpace = $scope.tarSpace;
     var str = angular.toJson($scope.currentData.data);
     $rootScope.data = angular.fromJson(str);
+    console.log("[Load finished] $rootScope.data = ", $rootScope.data);
   };
 
   $scope.createPage = function() {
@@ -238,6 +243,7 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout
     return $rootScope.data.setting.defi1;
   }, function() {
     $scope.mySetting = $rootScope.data.setting.defi1;
+    console.log("[Defi1 Data Changed] $scope.mySetting = ", $scope.mySetting);
   });
 
   $scope.showWarning1 = false;
