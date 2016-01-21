@@ -34,22 +34,24 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 
   DataService.getData(function(res) {
     $scope.settingData = [];
+    $scope.settingData.push(DataService.getDefaultData);
     for (var i in res) {
-      if (res[i].data) {
-        if (!res[i].space) {
-          res[i].space = "Public";
-        };
-        var j;
-        for (j = 0; j < $scope.spaces.length; j++) {
-          if ($scope.spaces[j] === res[i].space) {
-            break;
-          }
-        };
-        if (j === $scope.spaces.length) {
-          $scope.spaces.push(res[i].space);
-        };
-        $scope.settingData.push(res[i]);
-      }
+      if (!res[i].data) {
+        res[i].data = DataService.getNullData.data;
+      };
+      if (!res[i].space) {
+        res[i].space = "Public";
+      };
+      var j;
+      for (j = 0; j < $scope.spaces.length; j++) {
+        if ($scope.spaces[j] === res[i].space) {
+          break;
+        }
+      };
+      if (j === $scope.spaces.length) {
+        $scope.spaces.push(res[i].space);
+      };
+      $scope.settingData.push(res[i]);
     };
     console.log("[DetData] $scope.settingData=", $scope.settingData);
     console.log("[DetData] $scope.spaces=", $scope.spaces);
@@ -145,8 +147,10 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
         if ($scope.fromSpace && $scope.tarData) {
           data.data = $scope.tarData.data;
+        } else {
+          data.data = DataService.getNullData.data;
         };
-        console.log(data, 'data');
+        console.log("[add] data = ", data);
         DataService.add(data, function(res) {
           showResult(1, $scope.tarName);
           $scope.settingData.push(data);

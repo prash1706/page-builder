@@ -455,7 +455,448 @@ serviceApp.factory('DataService', function($http) {
           publishdate: "Oct 6, 2015, 4:44:14 PM EDT",
           category: "SB03"
         },
-      },
+      }
+    },
+    getNullData: {
+      "name": "null",
+      "space": "Public",
+      "data": {
+        "contact": {
+          "googleUrl": "",
+          "youtubeUrl": "",
+          "twitterUrl": "",
+          "ibmUrl": "",
+          "priority": "",
+          "phone": ""
+        },
+        "disc": {
+          "resource": {
+            "res6": {
+              "ctaUrl": "",
+              "cta": "",
+              "body": ""
+            },
+            "res5": {
+              "ctaUrl": "",
+              "cta": "",
+              "body": ""
+            },
+            "res4": {
+              "ctaUrl": "",
+              "cta": "",
+              "body": ""
+            },
+            "res3": {
+              "ctaUrl": "",
+              "cta": "",
+              "body": ""
+            },
+            "res2": {
+              "ctaUrl": "",
+              "cta": "",
+              "body": ""
+            },
+            "res1": {
+              "ctaUrl": "",
+              "cta": "",
+              "body": ""
+            },
+            "subhead": ""
+          },
+          "action": {
+            "ctaUrl": "",
+            "cta": "",
+            "ctaLeadIn": ""
+          }
+        },
+        "defi2": {
+          "step": {
+            "step4": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "step3": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "step2": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "step1": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "ctaUrl": "",
+            "cta": "",
+            "ctaLeadIn": "",
+            "subhead": ""
+          },
+          "asset": {
+            "videoUrl": "",
+            "imgUrl": "",
+            "ctaUrl": "",
+            "cta": "",
+            "body": "",
+            "subhead": ""
+          },
+          "intro": {
+            "ctaUrl": "",
+            "cta": "",
+            "ctaLeadIn": "",
+            "column2": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "column1": "",
+            "subhead": ""
+          }
+        },
+        "defi1": {
+          "step": {
+            "step4": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "step3": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "step2": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "step1": {
+              "ctaUrl": "",
+              "cta": "",
+              "desc": "",
+              "title": "",
+              "imgUrl": ""
+            },
+            "ctaUrl": "",
+            "cta": "",
+            "ctaLeadIn": "",
+            "subhead": ""
+          },
+          "asset": {
+            "videoUrl": "",
+            "imgUrl": "",
+            "ctaUrl": "",
+            "cta": "",
+            "body": "",
+            "subhead": ""
+          },
+          "intro": {
+            "ctaUrl": "",
+            "cta": "",
+            "ctaLeadIn": "",
+            "column2": [
+              "",
+              "",
+              "",
+              ""
+            ],
+            "column1": "",
+            "subhead": ""
+          }
+        },
+        "lead": {
+          "catUrl": "",
+          "cat": "",
+          "videoUrl": "",
+          "imgUrl": "",
+          "subhead": "",
+          "headline": ""
+        },
+        "setting": {
+          "contact": 0,
+          "disc": {
+            "substyle": 0,
+            "type": 0
+          },
+          "prom3": {
+            "substyle": 0,
+            "type": 0
+          },
+          "prom2": {
+            "substyle": 0,
+            "type": 0
+          },
+          "prom1": {
+            "substyle": 0,
+            "type": 0
+          },
+          "defi2": {
+            "substyle": 0,
+            "type": 0
+          },
+          "defi1": {
+            "substyle": 0,
+            "type": 0
+          },
+          "lead": 0
+        },
+        "prom1": {
+          "feat": {
+            "subhead": "",
+            "solu1": {
+              "body": "",
+              "imgUrl": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": ""
+            },
+            "solu2": {
+              "body": "",
+              "imgUrl": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": ""
+            },
+            "solu3": {
+              "body": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": "",
+              "imgUrl": ""
+            }
+          },
+          "solu": {
+            "subhead": "",
+            "ctaLeadIn": "",
+            "cta": "",
+            "ctaUrl": "",
+            "solu1": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu2": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu3": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu4": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu5": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu6": {
+              "imgUrl": "",
+              "feat": ""
+            }
+          },
+          "case": {
+            "ctaUrl": "",
+            "cta": "",
+            "caption2": "",
+            "statistic2": 0,
+            "body": "",
+            "subhead": "",
+            "statistic1": 0,
+            "caption1": "",
+            "imgUrl": ""
+          },
+          "test": {
+            "attribution": "",
+            "photo": "",
+            "quote": "",
+            "ctaUrl": "",
+            "cta": ""
+          }
+        },
+        "prom2": {
+          "feat": {
+            "subhead": "",
+            "solu1": {
+              "body": "",
+              "imgUrl": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": ""
+            },
+            "solu2": {
+              "body": "",
+              "imgUrl": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": ""
+            },
+            "solu3": {
+              "body": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": "",
+              "imgUrl": ""
+            }
+          },
+          "solu": {
+            "subhead": "",
+            "ctaLeadIn": "",
+            "cta": "",
+            "ctaUrl": "",
+            "solu1": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu2": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu3": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu4": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu5": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu6": {
+              "imgUrl": "",
+              "feat": ""
+            }
+          },
+          "case": {
+            "ctaUrl": "",
+            "cta": "",
+            "caption2": "",
+            "statistic2": 0,
+            "body": "",
+            "subhead": "",
+            "statistic1": 0,
+            "caption1": "",
+            "imgUrl": ""
+          },
+          "test": {
+            "attribution": "",
+            "photo": "",
+            "quote": "",
+            "ctaUrl": "",
+            "cta": ""
+          }
+        },
+        "prom3": {
+          "feat": {
+            "subhead": "",
+            "solu1": {
+              "body": "",
+              "imgUrl": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": ""
+            },
+            "solu2": {
+              "body": "",
+              "imgUrl": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": ""
+            },
+            "solu3": {
+              "body": "",
+              "title": "",
+              "cta": "",
+              "ctaUrl": "",
+              "imgUrl": ""
+            }
+          },
+          "solu": {
+            "subhead": "",
+            "ctaLeadIn": "",
+            "cta": "",
+            "ctaUrl": "",
+            "solu1": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu2": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu3": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu4": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu5": {
+              "imgUrl": "",
+              "feat": ""
+            },
+            "solu6": {
+              "imgUrl": "",
+              "feat": ""
+            }
+          },
+          "case": {
+            "ctaUrl": "",
+            "cta": "",
+            "caption2": "",
+            "statistic2": 0,
+            "body": "",
+            "subhead": "",
+            "statistic1": 0,
+            "caption1": "",
+            "imgUrl": ""
+          },
+          "test": {
+            "attribution": "",
+            "photo": "",
+            "quote": "",
+            "ctaUrl": "",
+            "cta": ""
+          }
+        },
+        "meta": {
+          "keywords": "",
+          "description": "",
+          "title": "",
+          "industry": "",
+          "version": "",
+          "country": "",
+          "type": "",
+          "owner": "",
+          "locale": "",
+          "subjects": "",
+          "destination": "",
+          "publishdate": "",
+          "category": ""
+        },
+      }
     }
   };
 });
