@@ -1,6 +1,6 @@
 <legend class="color3" ng-show="mySetting.substyle">Promotion3 / {{style[mySetting.type]}} / {{substyle[mySetting.substyle]}}</legend>
 <legend class="color3" ng-show="!mySetting.substyle">Promotion3</legend>
-<button type="button" class="close" ng-click="deleteStyle()"><span class="glyphicon glyphicon-remove"></span></button>
+<button type="button" class="close" ng-hide="!mySetting.substyle" ng-click="deleteStyle()"><span class="glyphicon glyphicon-remove"></span></button>
 <form class="col-md-8" ng-show="!mySetting.substyle">
   <div class="form-group">
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#prom3Modal" ng-click="getStyle()">Choose style</button>

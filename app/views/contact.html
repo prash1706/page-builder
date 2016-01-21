@@ -1,6 +1,6 @@
 <legend class="color5" ng-show="data.setting.contact">Contact / {{substyle[data.setting.contact]}}</legend>
 <legend class="color5" ng-show="!data.setting.contact">Contact</legend>
-<button type="button" class="close" ng-click="deleteStyle()"><span class="glyphicon glyphicon-remove"></span></button>
+<button type="button" class="close" ng-show="data.setting.contact" ng-click="deleteStyle()"><span class="glyphicon glyphicon-remove"></span></button>
 <div class="col-md-6">
   <a class="thumbnail" ng-class="{selected: data.setting.contact==1}" ng-click="data.setting.contact=1">
     <img src="../images/contact-substyle-no_social.jpg" alt="">
