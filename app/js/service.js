@@ -462,6 +462,76 @@ serviceApp.factory('DataService', function($http) {
       "space": "Public",
       "data": {
         "contact": {
+        },
+        "disc": {
+
+        },
+        "defi2": {
+
+        },
+        "defi1": {
+        },
+        "lead": {
+        },
+        "setting": {
+          "contact": 0,
+          "disc": {
+            "substyle": 1,
+            "type": 1
+          },
+          "prom3": {
+            "substyle": 0,
+            "type": 0
+          },
+          "prom2": {
+            "substyle": 0,
+            "type": 0
+          },
+          "prom1": {
+            "substyle": 0,
+            "type": 0
+          },
+          "defi2": {
+            "substyle": 0,
+            "type": 0
+          },
+          "defi1": {
+            "substyle": 1,
+            "type": 1
+          },
+          "lead": 1
+        },
+        "prom1": {
+
+        },
+        "prom2": {
+
+        },
+        "prom3": {
+
+        },
+        "meta": {
+          "keywords": "",
+          "description": "",
+          "title": "",
+          "industry": "",
+          "version": "",
+          "country": "",
+          "type": "",
+          "owner": "",
+          "locale": "",
+          "subjects": "",
+          "destination": "",
+          "publishdate": "",
+          "category": ""
+        },
+      }
+    },
+    getNullData2: {
+      "name": "null",
+      "space": "Public",
+      "data": {
+        "contact": {
           "googleUrl": "",
           "youtubeUrl": "",
           "twitterUrl": "",
@@ -634,8 +704,8 @@ serviceApp.factory('DataService', function($http) {
         "setting": {
           "contact": 0,
           "disc": {
-            "substyle": 0,
-            "type": 0
+            "substyle": 1,
+            "type": 1
           },
           "prom3": {
             "substyle": 0,
@@ -654,10 +724,10 @@ serviceApp.factory('DataService', function($http) {
             "type": 0
           },
           "defi1": {
-            "substyle": 0,
-            "type": 0
+            "substyle": 1,
+            "type": 1
           },
-          "lead": 0
+          "lead": 2
         },
         "prom1": {
           "feat": {
