@@ -65,7 +65,7 @@ serviceApp.factory('DataService', function($http) {
           "action": {
             "ctaUrl": "#",
             "cta": "Lorem ipsum dor",
-            "ctaLeadIn": "How can you thrive in the API economy? Find out now."
+            "ctaLeadIn": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis finibus justo ut mollis. Curabitur in feugiat neque, at feugiat mauris. In condimentum orci non sem varius tempus. Duis malesuada nunc sagittis placerat egestas."
           }
         },
         "defi2": {
@@ -131,7 +131,7 @@ serviceApp.factory('DataService', function($http) {
               "ctaUrl": "http://apps.admin.ibmcloud.com/manage/trial/apim.html",
               "cta": "Sign up for a free trial",
               "desc": "Manage access to your APIs, protect them from breaches and watch how they’re performing.",
-              "title": "3. Secure and track your APIs",
+              "title": "4. Secure and track your APIs",
               "imgUrl": "http://www.ibm.com/middleware/integration/us-en/api-economy/images/mlp-reference-api-icons-03.png"
             },
             "step3": {
@@ -162,7 +162,7 @@ serviceApp.factory('DataService', function($http) {
           },
           "asset": {
             "videoUrl": "https://www.youtube.com/watch?v=flXFf8M6dWI&index=1&list=WL",
-            "imgUrl": "../../../images/mlp_reference-api-whatis.png",
+            "imgUrl": "http://lorempixel.com/700/420/",
             "ctaUrl": "http://www.redbooks.ibm.com/redpapers/pdfs/redp5096.pdf",
             "cta": "View the PDF",
             "body": "Exposing digital services to employees, partners and consumers, the API economy is an environment that’s driving industry transformation as a result of cloud, mobile, the Internet of Things and cognitive computing. Application programming interfaces (APIs) are the glue connecting services and systems across and between organizations.For business leaders, when a business delivers an API, it expands its brand and revenue potential. For architects and developers, APIs create efficiencies and fuel innovation, turning a single idea into an industry-disrupting app.Read the white paper, “The Power of the API Economy,” to gain insight into these new business opportunities.",
@@ -186,7 +186,7 @@ serviceApp.factory('DataService', function($http) {
           "catUrl": "#",
           "cat": "Register for a free consultation",
           "videoUrl": "http://www.ibm.com/middleware/integration/us-en/api-economy/vids/API-economy-assessement-leadspace.mp4",
-          "imgUrl": "../../images/leadspace-bg.jpg",
+          "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/leadspace-purple.jpg",
           "subhead": "Power innovation and build new revenue streams by making APIs part of your business model. Connect with an IBM expert to find out how. ",
           "headline": "API economy"
         },
@@ -216,7 +216,7 @@ serviceApp.factory('DataService', function($http) {
             "substyle": 5,
             "type": 2
           },
-          "lead": 2
+          "lead": 1
         },
         "prom1": {
           "feat": {
@@ -249,27 +249,27 @@ serviceApp.factory('DataService', function($http) {
             "cta": "Watch the demo",
             "ctaUrl": "#",
             "solu1": {
-              "imgUrl": "http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_SolutionOverview_Icons_101915-01.png",
+              "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/API_SolutionOverview_Icons_101915-01.png",
               "feat": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo. 1"
             },
             "solu2": {
-              "imgUrl": "http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_SolutionOverview_Icons_101915-02.png",
+              "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/API_SolutionOverview_Icons_101915-02.png",
               "feat": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo. 2"
             },
             "solu3": {
-              "imgUrl": "http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_SolutionOverview_Icons_101915-03.png",
+              "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/API_SolutionOverview_Icons_101915-03.png",
               "feat": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo. 3"
             },
             "solu4": {
-              "imgUrl": "http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_SolutionOverview_Icons_101915-04.png",
+              "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/API_SolutionOverview_Icons_101915-04.png",
               "feat": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo. 4"
             },
             "solu5": {
-              "imgUrl": "http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_SolutionOverview_Icons_101915-03.png",
+              "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/API_SolutionOverview_Icons_101915-03.png",
               "feat": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo. 5"
             },
             "solu6": {
-              "imgUrl": "http://styleguide.nst.ibm.vsadev.com/assets/northstar/images/API_SolutionOverview_Icons_101915-03.png",
+              "imgUrl": "http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/northstar/images/API_SolutionOverview_Icons_101915-03.png",
               "feat": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo. 6"
             }
           },

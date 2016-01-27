@@ -32,13 +32,12 @@ app.post('/page', function(req, res) {
   var dir = './app/pages/' + space + '/';
   if (!data.setting.lead || !data.setting.defi1.type || !data.setting.disc.type) {
     console.log("Error: data.setting =", data.setting);
-    res.status(400).send(dataErr);
+    res.status(400).send("Error");
   } else {
     var fn = jade.compileFile('./app/jade/index.jade', {
       pretty: true
     });
     var html = fn(data);
-    console.log(fn);
     fs.exists(dir, function(exist) {
       if (!exist) {
         fs.mkdir(dir, function(err) {

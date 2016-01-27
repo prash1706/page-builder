@@ -231,7 +231,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 }]);
 
 myPageApp.controller('SetLeadSpaceCtrl', function($scope, $rootScope) {
-  $scope.substyle = ['', 'Substyle: Image background', 'Substyle: Video background'];
+  $scope.substyle = ['', 'Substyle: Image background', 'Substyle: Video background', 'Substyle: Image background - small'];
 });
 
 myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout) {

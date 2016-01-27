@@ -1,4 +1,5 @@
 meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width, initial-scale=1")
 link(rel="icon", href="//www.ibm.com/favicon.ico")
 link(rel="canonical", href="http://www.ibm.com/middleware/integration/en-us/api-economy.html")
 if meta.keywords
@@ -7,43 +8,6 @@ if meta.description
   meta(name="Description", content="#{meta.description}")
 if meta.title
   meta(name="Title", content="#{meta.title}")
-if meta.industry
-  meta(name="Industry", content="#{meta.industry}")
-if meta.version
-  meta(name="Version", content="#{meta.version}")
-if meta.publisher
-  meta(name="Publisher", content="#{meta.publisher}")
-if meta.country
-  meta(name="Country", content="#{meta.country}")
-if meta.type
-  meta(name="Content Type", content="#{meta.type}")
-if meta.delivery
-  meta(name="Content Delivery", content="#{meta.delivery}")
-if meta.producer
-  meta(name="Content Producer", content="#{meta.producer}")
-if meta.owner
-  meta(name="Owner Email Address", content="#{meta.owner}")
-if meta.locale
-  meta(name="IBM Locale", content="#{meta.locale}")
-if meta.view
-  meta(name="Default View", content="#{meta.view}")
-if meta.subjects
-  meta(name="Subjects", content="#{meta.subjects}")
-if meta.destination
-  meta(name="Destination", content="#{meta.destination}")
-if meta.account
-  meta(name="Account Name", content="#{meta.account}")
-if meta.rep
-  meta(name="Rep ID", content="#{meta.rep}")
-if meta.publishdate
-  meta(name="Publish Date", content="#{meta.publishdate}")
-if meta.expirydate
-  meta(name="Expiry Date", content="#{meta.expirydate}")
-if meta.site
-  meta(name="Site ID", content="#{meta.site}")
-if meta.category
-  meta(name="IBM.WTMCategory", content="#{meta.category}")
-meta(name="viewport", content="width=device-width, initial-scale=1")
 script.
   digitalData = {
     page: {
@@ -75,9 +39,12 @@ script.
       }
     }
   };
-script(src="//1.www.s81c.com/common/stats/ida_stats.js")
 link(href="//1.www.s81c.com/common/v18/css/www.css",rel="stylesheet")
 script(src="//1.www.s81c.com/common/v18/js/www.js")
+script(src="//1.www.s81c.com/common/v18/js/greensock/TweenLite.min.js")
+script(src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js")
+
+link(href="http://webdev.somerslab.ibm.com/v18-portfolio/patterns/assets/fabricator/styles/f.css",rel="stylesheet")
 
 script.
   IBMCore.common.util.config.set({
@@ -99,8 +66,5 @@ script.
      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
      a.appendChild(r);
    })(window, document, '//static.hotjar.com/c/hotjar-', '.js?sv=');
-
-script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js")
-link(rel="stylesheet", href="../../css/northstar.css")
 
 

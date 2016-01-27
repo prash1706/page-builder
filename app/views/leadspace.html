@@ -10,7 +10,12 @@
     <img src="../images/leadspace-substyle-video.jpg" alt="">
   </a>
 </div>
-<form ng-show="data.setting.lead==1 || data.setting.lead==2">
+<div class="col-md-6">
+  <a class="thumbnail" ng-class="{selected: data.setting.lead==3}" ng-click="data.setting.lead=3">
+    <img src="../images/leadspace-substyle-image-small.jpg" alt="">
+  </a>
+</div>
+<form ng-show="data.setting.lead==1 || data.setting.lead==2 || data.setting.lead==3" class="col-md-12">
   <div class="form-group">
     <label>Title</label>
     <input type="text" class="form-control" ng-model="data.lead.headline">
@@ -19,7 +24,7 @@
     <label>Description</label>
     <textarea type="text" class="form-control" ng-model="data.lead.subhead" rows="3"></textarea>
   </div>
-  <div class="form-group" ng-if="data.setting.lead==1">
+  <div class="form-group" ng-if="data.setting.lead==1 || data.setting.lead==3">
     <label>Image URL</label>
     <input type="text" class="form-control" ng-model="data.lead.imgUrl">
   </div>

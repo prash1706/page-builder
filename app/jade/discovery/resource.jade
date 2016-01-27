@@ -1,77 +1,132 @@
-section.nst-section-gap.nst-module__related-resources.nst-border-top.nst-mlp-v0-0
+if substyle == 2
+  - var className = "nst_mlp-m100-m-00-related-resources-two-items"
+else if substyle == 3
+  - var className = "nst_mlp-m100-m-00-related-resources-three-items"
+else if substyle == 4
+  - var className = "nst_mlp-m100-m-00-related-resources-four-items"
+else if substyle == 5
+  - var className = "nst_mlp-m100-m-00-related-resources-five-items"
+else if substyle == 6
+  - var className = "nst_mlp-m100-m-00-related-resources-six-items"
+section.nst-section-gap.nst-module__related-resources.ibm-padding-top-r2.ibm-padding-bottom-r2(class="#{className}")
   .ibm-columns
-    .ibm-col-1-1.nst-text-center
-      h2.ibm-h2.nst-section-header=data.resource.subhead
-  if substyle ==2 || substyle == 4
+    .ibm-col-6-4.ibm-center-block.ibm-center
+      h2.ibm-h2.ibm-light.ibm-padding-bottom-2=data.resource.subhead
+  .ibm-columns(data-widget="setsameheight", data-items=".set-same-height")
+    if substyle == 2
+      .ibm-col-6-1
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res1.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res1.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res1.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res2.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res2.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res2.cta
+    else if substyle == 3
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res1.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res1.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res1.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res2.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res2.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res2.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res3.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res3.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res3.cta
+    else if substyle == 4
+      .ibm-col-6-4.ibm-center-block
+        .ibm-columns
+          .ibm-col-6-2
+            .ibm-card
+              .ibm-card__content.ibm-padding-top-1
+                h3.ibm-light.ibm-h4.set-same-height= data.resource.res1.body
+                p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+                  a(href="#{data.resource.res1.ctaUrl}")
+                    span.ibm-textcolor-blue-50= data.resource.res1.cta
+          .ibm-col-6-2
+            .ibm-card
+              .ibm-card__content.ibm-padding-top-1
+                h3.ibm-light.ibm-h4.set-same-height= data.resource.res2.body
+                p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+                  a(href="#{data.resource.res2.ctaUrl}")
+                    span.ibm-textcolor-blue-50= data.resource.res2.cta
+    else if substyle == 5 || substyle == 6
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res1.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res1.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res1.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res2.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res2.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res2.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res3.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res3.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res3.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res4.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res4.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res4.cta
+      .ibm-col-6-2
+        .ibm-card
+          .ibm-card__content.ibm-padding-top-1
+            h3.ibm-light.ibm-h4.set-same-height= data.resource.res5.body
+            p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+              a(href="#{data.resource.res5.ctaUrl}")
+                span.ibm-textcolor-blue-50= data.resource.res5.cta
+      if substyle == 6
+        .ibm-col-6-2
+          .ibm-card
+            .ibm-card__content.ibm-padding-top-1
+              h3.ibm-light.ibm-h4.set-same-height= data.resource.res6.body
+              p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
+                a(href="#{data.resource.res6.ctaUrl}")
+                  span.ibm-textcolor-blue-50= data.resource.res6.cta
+  if substyle == 4
     .ibm-columns(data-widget="setsameheight", data-items=".set-same-height")
       .ibm-col-6-4.ibm-center-block
         .ibm-columns
           .ibm-col-6-2
             .ibm-card
               .ibm-card__content.ibm-padding-top-1
-                h3.ibm-light.ibm-h4.set-same-height=data.resource.res1.body
+                h3.ibm-light.ibm-h4.set-same-height= data.resource.res3.body
                 p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
-                  a(href="#{data.resource.res1.ctaUrl}")=data.resource.res1.cta
+                  a(href="#{data.resource.res3.ctaUrl}")
+                    span.ibm-textcolor-blue-50= data.resource.res3.cta
           .ibm-col-6-2
             .ibm-card
               .ibm-card__content.ibm-padding-top-1
-                h3.ibm-light.ibm-h4.set-same-height=data.resource.res2.body
+                h3.ibm-light.ibm-h4.set-same-height= data.resource.res4.body
                 p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
-                  a(href="#{data.resource.res2.ctaUrl}")=data.resource.res2.cta
-  else if substyle==3 || substyle==5 || substyle==6
-    .ibm-columns(data-widget="setsameheight", data-items="div > div ")
-      .ibm-col-6-2.nst-stack-space-mobile.nst-stack-space-g540.nst-full-width-g540
-        .nst-card-bg.nst-padding-all-25.nst-transition
-          h4.ibm-h4= data.resource.res1.body
-          p.nst-bottom.ibm-ind-link
-            a.nst-block-link-blue(rel="external", href="#{data.resource.res1.ctaUrl}")= data.resource.res1.cta
-      .ibm-col-6-2.nst-stack-space-mobile.nst-stack-space-g540.nst-full-width-g540
-        .nst-card-bg.nst-padding-all-25.nst-transition
-          h4.ibm-h4= data.resource.res2.body
-          p.nst-bottom.ibm-ind-link
-            a.nst-block-link-blue(rel="external", href="#{data.resource.res2.ctaUrl}")= data.resource.res2.cta
-      .ibm-col-6-2.nst-stack-space-mobile.nst-stack-space-g540.nst-full-width-g540
-        .nst-card-bg.nst-padding-all-25.nst-transition
-          h4.ibm-h4= data.resource.res3.body
-          p.nst-bottom.ibm-ind-link
-            a.nst-block-link-blue(rel="external", href="#{data.resource.res3.ctaUrl}")= data.resource.res3.cta
-  if substyle==4
-    .ibm-columns(data-widget="setsameheight", data-items=".set-same-height")
-      .ibm-col-6-4.ibm-center-block
-        .ibm-columns
-          .ibm-col-6-2
-            .ibm-card
-              .ibm-card__content.ibm-padding-top-1
-                h3.ibm-light.ibm-h4.set-same-height=data.resource.res1.body
-                p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
-                  a(href="#{data.resource.res3.ctaUrl}")=data.resource.res3.cta
-          .ibm-col-6-2
-            .ibm-card
-              .ibm-card__content.ibm-padding-top-1
-                h3.ibm-light.ibm-h4.set-same-height=data.resource.res2.body
-                p.set-same-height.ibm-light.ibm-padding-top-1.ibm-padding-bottom-0
-                  a(href="#{data.resource.res4.ctaUrl}")=data.resource.res4.cta
-  else if substyle==5 || substyle==6
-    .ibm-columns(data-widget="setsameheight", data-items="div > div ")
-      .ibm-col-6-2.nst-stack-space-mobile.nst-stack-space-g540.nst-full-width-g540
-        .nst-card-bg.nst-padding-all-25.nst-transition
-          h4.ibm-h4= data.resource.res4.body
-          p.nst-bottom.ibm-ind-link
-            a.nst-block-link-blue(rel="external", href="#{data.resource.res4.ctaUrl}")= data.resource.res4.cta
-      .ibm-col-6-2.nst-stack-space-mobile.nst-stack-space-g540.nst-full-width-g540
-        .nst-card-bg.nst-padding-all-25.nst-transition
-          h4.ibm-h4= data.resource.res5.body
-          p.nst-bottom.ibm-ind-link
-            a.nst-block-link-blue(rel="external", href="#{data.resource.res5.ctaUrl}")= data.resource.res5.cta
-      if substyle==6
-        .ibm-col-6-2.nst-stack-space-mobile.nst-stack-space-g540.nst-full-width-g540
-          .nst-card-bg.nst-padding-all-25.nst-transition
-            h4.ibm-h4= data.resource.res6.body
-            p.nst-bottom.ibm-ind-link
-              a.nst-block-link-blue(rel="external", href="#{data.resource.res6.ctaUrl}")= data.resource.res6.cta
-
-
-
-
-
-
+                  a(href="#{data.resource.res4.ctaUrl}")
+                    span.ibm-textcolor-blue-50= data.resource.res4.cta
