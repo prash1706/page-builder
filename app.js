@@ -30,35 +30,13 @@ app.post('/page', function(req, res) {
   var data = req.body.data;
   var file = './app/pages/' + space + '/' + name + '.html';
   var dir = './app/pages/' + space + '/';
-  if (!data.setting.lead || !data.setting.defi1.type || !data.setting.disc.type) {
-    console.log("Error: data.setting =", data.setting);
-    res.status(400).send("Error");
-  } else {
-    var fn = jade.compileFile('./app/jade/index.jade', {
-      pretty: true
-    });
-    var html = fn(data);
-    fs.exists(dir, function(exist) {
-      if (!exist) {
-        fs.mkdir(dir, function(err) {
-          fs.open(file, "w", function(err, fd) {
-            console.log(fd);
-            if (err) {
-              console.log(err);
-              res.send(err);
-            } else {
-              fs.writeFile(file, html, function(err) {
-                if (err) {
-                  // console.log(err);
-                } else {
-                  console.log('New html created!');
-                };
-                res.send(html);
-              });
-            };
-          });
-        });
-      } else {
+  var fn = jade.compileFile('./app/jade/index.jade', {
+    pretty: true
+  });
+  var html = fn(data);
+  fs.exists(dir, function(exist) {
+    if (!exist) {
+      fs.mkdir(dir, function(err) {
         fs.open(file, "w", function(err, fd) {
           console.log(fd);
           if (err) {
@@ -75,9 +53,26 @@ app.post('/page', function(req, res) {
             });
           };
         });
-      };
-    });
-  };
+      });
+    } else {
+      fs.open(file, "w", function(err, fd) {
+        console.log(fd);
+        if (err) {
+          console.log(err);
+          res.send(err);
+        } else {
+          fs.writeFile(file, html, function(err) {
+            if (err) {
+              // console.log(err);
+            } else {
+              console.log('New html created!');
+            };
+            res.send(html);
+          });
+        };
+      });
+    };
+  });
 });
 
 // add a template
