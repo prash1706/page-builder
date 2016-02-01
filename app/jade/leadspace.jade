@@ -1,23 +1,31 @@
 header(role='banner', aria-labelledby='ibm-pagetitle-h1', class=(setting.lead==1)?"nst_mlp-m010-m-01-leadspace-reference":(setting.lead==3)?"nst_mlp-m010-m-03-leadspace-small":"nst_mlp-m010-m-02-leadspace-video")
-  #ibm-leadspace-head.ibm-alternate(data-widget="parallaxscroll", style=(setting.lead==1)?"background-image:url(#{lead.imgUrl});":(setting.lead==3)?"background:url(#{lead.imgUrl}) center / cover no-repeat;":"", class=(setting.lead==2)?"ibm-video-background":(setting.lead==3)?"ibm-alternate-background":"")
-    if setting.lead==3
-      #ibm-leadspace-body.ibm-padding-bottom-1.ibm-padding-top-1
-        .ibm-columns
-          .ibm-col-6-4.ibm-padding-top-1
-            h1.ibm-h1.ibm-light.ibm-padding-bottom-0= lead.headline
-            p.ibm-h4.ibm-light.ibm-padding-bottom-2= lead.subhead
-            p.ibm-btn-row
-              a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat
-    else
+  if setting.lead == 1
+    #ibm-leadspace-head(data-widget="parallaxscroll", class="ibm-alternate", style="background-image:url(#{lead.imgUrl});")
       #ibm-leadspace-body.ibm-padding-top-r2.ibm-padding-bottom-r2.ibm-alternate.ibm-alternate-background
         .ibm-columns
          .ibm-col-6-3.ibm-col-medium-4-3
-            h1.ibm-h1.ibm-light(id=(setting.lead==1)?"ibm-pagetitle-h1":"")= lead.headline
+            h1.ibm-h1.ibm-light= lead.headline
             .ibm-padding-top-1.ibm-h3.ibm-light= lead.subhead
             p.ibm-button-link.ibm-padding-top-2
-              a.ibm-btn-pri.ibm-btn-orange-50(rel='external', href=lead.catUrl, target='_blank')= lead.cat
-      if setting.lead==2
-        .ibm-video-background-container.ibm-hidden-small.ibm-hidden-medium
-          video(autoplay, loop, muted,style="width: 100%;")
-            source(src="#{lead.videoUrl}", type="video/mp4")
-
+              a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat
+  else if setting.lead == 2
+    #ibm-leadspace-head(class="ibm-alternate-background ibm-video-background", style="background:url(#{lead.imgUrl});")
+      #ibm-leadspace-body.ibm-padding-top-r2.ibm-padding-bottom-r2.ibm-alternate.ibm-alternate-background
+        .ibm-columns
+         .ibm-col-6-3.ibm-col-medium-4-3
+            h1.ibm-h1.ibm-light= lead.headline
+            .ibm-padding-top-1.ibm-h3.ibm-light= lead.subhead
+            p.ibm-button-link.ibm-padding-top-2
+              a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat
+      .ibm-video-background-container.ibm-hidden-small.ibm-hidden-medium
+        video(autoplay, loop, muted,style="width: 100%;")
+          source(src="#{lead.videoUrl}", type="video/mp4")
+  else if setting.lead == 3
+    #ibm-leadspace-head(class="ibm-alternate ibm-alternate-background", style="background:url(#{lead.imgUrl}) center / cover no-repeat;")
+    #ibm-leadspace-body.ibm-padding-bottom-1.ibm-padding-top-1
+      .ibm-columns
+        .ibm-col-6-4.ibm-padding-top-1
+          h1.ibm-h1.ibm-light.ibm-padding-bottom-0= lead.headline
+          p.ibm-h4.ibm-light.ibm-padding-bottom-2= lead.subhead
+          p.ibm-btn-row
+            a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat

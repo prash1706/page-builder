@@ -11,6 +11,7 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var db = require('./models/db');
 var Data = require('./models/data');
+var domain = require('domain');
 
 var app = express();
 // uncomment after placing your favicon in /public
@@ -22,6 +23,19 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
+
+app.use(function(req, res, next) {
+  var reqDomain = domain.create();
+  reqDomain.on('error', function(err) {
+    fs.appendFile('log.log', Date()+ ' | ' + req.originalUrl + ' | ' + JSON.stringify(req.body) + ' | ' + err  + '\n', function(err){
+      if (err) console.log(err);
+    });
+    console.log("Error req:", req.originalUrl, req.body);
+    res.status(500).send(err);
+  });
+  reqDomain.run(next);
+});
+
 
 // create a page
 app.post('/page', function(req, res) {
@@ -130,5 +144,8 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// process.on('uncaughtException', function (err) {
+//     console.log(err);
+// });
 
 module.exports = app;

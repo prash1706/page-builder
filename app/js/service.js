@@ -442,18 +442,13 @@ serviceApp.factory('DataService', function($http) {
         },
         "meta": {
           keywords: "API Economy",
+          canonical: "http://nsdev.somerslab.ibm.com/",
           description: "V18 Digital Meta data",
           title: "API Economy",
-          industry: "Test industry",
-          version: "v18",
-          country: "US - test",
-          type: "CTB00",
-          owner: "Haresh Patel/Richmond/Contr/IBM",
-          locale: "en-MX",
-          subjects: "IN.J",
-          destination: "Paris, France",
-          publishdate: "Oct 6, 2015, 4:44:14 PM EDT",
-          category: "SB03"
+          geoCountry: "US",
+          robots: "index,follow",
+          dctDate: "2016-01-01",
+          dctRight: "© Copyright IBM Corp. 2014"
         },
       }
     },

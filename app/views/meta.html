@@ -1,33 +1,83 @@
 <legend class="color5">Meta Data</legend>
 <form class="form-horizontal col-md-12">
+  <legend><small>Required</small></legend>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Keywords</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.keywords">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Description</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.description"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Title</label>
+    <label class="col-sm-2 control-label">Title*</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.meta.title"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Industry</label>
+    <label class="col-sm-2 control-label">Canonical*</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.industry"></input>
+      <input type="text" class="form-control" ng-model="data.meta.canonical"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Version</label>
+    <label class="col-sm-2 control-label">Keywords*</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.version"></input>
+      <input type="text" class="form-control" ng-model="data.meta.keywords">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Description*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.description"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Geo Country*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.geoCountry"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Robots*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.robots"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Dcterms Date*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.dctDate"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Dcterms Rights*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.dctRight"></input>
+    </div>
+  </div>
+  <legend><small>Optional</small></legend>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Category</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.category"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Effective Date</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.effectiveDate"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Expriry Date</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.exprityDate"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Language</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.language"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Publish Date</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.publishDate"></input>
     </div>
   </div>
   <div class="form-group">
@@ -37,93 +87,57 @@
     </div>
   </div>
   <div class="form-group">
+    <label class="col-sm-2 control-label">Content Delivery</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.contentDelivery"></input>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Content Producer</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="data.meta.contentProducer"></input>
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-2 control-label">Country</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.meta.country"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Content Type</label>
+    <label class="col-sm-2 control-label">Industry</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.type"></input>
+      <input type="text" class="form-control" ng-model="data.meta.industry"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Content Delivery</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.delivery"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Content Producer</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.producer"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Owner Email Address</label>
+    <label class="col-sm-2 control-label">Owner</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.meta.owner"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">IBM Locale</label>
+    <label class="col-sm-2 control-label">OwningPortal</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.locale"></input>
+      <input type="text" class="form-control" ng-model="data.meta.ownPortal"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Default View</label>
+    <label class="col-sm-2 control-label">SiteID</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.view"></input>
+      <input type="text" class="form-control" ng-model="data.meta.siteID"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Subjects</label>
+    <label class="col-sm-2 control-label">Subject</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.subjects"></input>
+      <input type="text" class="form-control" ng-model="data.meta.subject"></input>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Destination</label>
+    <label class="col-sm-2 control-label">Type</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.destination"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Account Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.account"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Rep ID</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.rep"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Publish Date</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.publishdate"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Expiry Date</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.expirydate"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Site ID</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.site"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">IBM.WTMCategory</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.category"></input>
+      <input type="text" class="form-control" ng-model="data.meta.type"></input>
     </div>
   </div>
 </form>
