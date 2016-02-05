@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top topMenu">
   <div class="navbar-header" style="padding-right: 30px">
-    <a class="navbar-brand" href="/">V18 Page Builder</a>
+    <a class="navbar-brand" href="/">Northstar Page Builder</a>
   </div>
   <div class="container">
     <div class="navbar-left navbar-menu">
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Load</button>
+          <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Open</button>
           <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=''" data-toggle="modal" data-target="#addModal">New</button>
           <button class="btn btn-default form-group" ng-disabled="currentData.name == '' || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
@@ -24,7 +24,7 @@
     <!-- <div class="alert alert-success " role="alert">Delete success!</div> -->
     <div class="nav navbar-nav navbar-right">
       <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="currentData.name == null || currentData.name == 'default'" data-loading-text="Saving..." ng-click="save()">Save</button>
-      <button class="btn btn-danger navbar-btn" id="createBtn" data-loading-text="Creating..." ng-click="createPage()">Create</button>
+      <button class="btn btn-danger navbar-btn" id="createBtn" data-loading-text="Generating..." ng-click="createPage()">Generate page</button>
     </div>
   </div>
 </nav>
@@ -106,7 +106,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Load a page</h4>
+        <h4 class="modal-title" id="myModalLabel">Open a page</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
