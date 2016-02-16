@@ -11,6 +11,7 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var db = require('./models/db');
 var Data = require('./models/data');
+var Folder = require('./models/folder');
 var domain = require('domain');
 
 var app = express();
@@ -135,6 +136,29 @@ app.get('/templates', function(req, res) {
     } else {
       res.send(data);
     };
+  });
+});
+
+// get all folders
+app.get('/folder', function(req, res){
+  Folder.find(function(error, data){
+    if (error){
+      console.log(error);
+      res.status(401).send(error);
+    } else {
+      res.send(data);
+    };
+  });
+});
+
+// add one folder
+app.post('/folder', function(req, res){
+  Folder.create(req.body, function(err, data) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(data);
+    }
   });
 });
 

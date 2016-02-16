@@ -16,6 +16,12 @@ serviceApp.factory('DataService', function($http) {
     createPage: function(data, success, error) {
       $http.post('/page', data).success(success).error(error);
     },
+    addFolder: function(data, success, error){
+      $http.post('/folder', data).success(success).error(error);
+    },
+    getFolder: function(success, error){
+      $http.get('/folder').success(success).error(error);
+    },
     getDefaultData: {
       "name": "default",
       "space": "Public",
