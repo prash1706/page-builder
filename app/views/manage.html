@@ -1,0 +1,18 @@
+<legend class="color1">Manage</legend>
+<div class="col-md-8">
+    <ul class="list-group">
+        <li class="list-group-item"><span class="badge">14</span>TopLevel1</li>
+        <li class="list-group-item">TopLevel2</li>
+        <li class="list-group-item">TopLevel3</li>
+        <li class="list-group-item">TopLevel4</li>
+        <li class="list-group-item">TopLevel5</li>
+        <li class="list-group-item">
+            <div class="input-group">
+                <input type="text" class="form-control" id="option{{$index+1}}" maxlength="30" ng-model="feedback.questions[index_0].options[$index]"/>
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-disabled="ques.options.length>=5" ng-click="addOption($index, index_0)"><span class="glyphicon glyphicon-plus"></span></button>
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>

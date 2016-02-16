@@ -54,6 +54,11 @@ angular.module('myApp', ['ui.router', 'myPageApp'])
         url: '/setting/meta',
         templateUrl: 'views/meta.html',
         controller: 'SetMetaCtrl'
+      })
+      .state('setting.manage', {
+        url: '/setting/manage',
+        templateUrl: 'views/manage.html',
+        controller: 'ManageCtrl'
       });
   }])
   .run(function($rootScope) {
