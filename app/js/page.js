@@ -674,7 +674,7 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
       name: $scope.tarFolder
     };
     DataService.addFolder(folder, function(res) {
-      $scope.folderData.push(folder);
+      $scope.spaces.push(folder);
       $scope.tarFolder = '';
     }, function(res) {
 
