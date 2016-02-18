@@ -12,7 +12,7 @@
         </div>
       </form>
     </div>
-    <p class="navbar-text navbar-position" ng-show="currentData">{{currentSpace}} / {{currentData.name}}</p>
+    <p class="navbar-text navbar-position" ng-show="currentData">{{currentSpace.name}} / {{currentData.name}}</p>
     <p class="navbar-text" ng-show="result==1" style="color: #337ab7;">Add {{templateName}} successfully!</p>
     <p class="navbar-text text-danger" ng-show="result==2" style="color: #a94442;">Add {{templateName}} unsuccessfully!</p>
     <p class="navbar-text text-success" ng-show="result==3" style="color: #337ab7;">Delete {{templateName}} successfully!</p>
@@ -66,21 +66,14 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Space</label>
             <div class="col-sm-6">
-              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space for space in spaces">
-                <option value="">Create a new Space</option>
+              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces">
               </select>
-            </div>
-          </div>
-          <div class="form-group" ng-show="tarSpace == null">
-            <label class="col-sm-3 control-label">Space Name</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" ng-model="tarNewSpace">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Copy from</label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="fromSpace" ng-options="space for space in spaces">
+              <select class="form-control" ng-model="fromSpace" ng-options="space.name for space in spaces">
                 <option value="">None</option>
               </select>
             </div>
@@ -88,7 +81,7 @@
           <div class="form-group" ng-show="fromSpace">
             <label class="col-sm-3 control-label"></label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : fromSpace }">
+              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : fromSpace._id }">
               </select>
             </div>
           </div>
@@ -113,14 +106,14 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">Space</label>
             <div class="col-sm-6">
-              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space for space in spaces">
+              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces">
               </select>
             </div>
           </div>
           <div class="form-group" ng-show="tarSpace">
             <label class="col-sm-3 control-label">Page</label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace }">
+              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace._id }">
               </select>
             </div>
           </div>

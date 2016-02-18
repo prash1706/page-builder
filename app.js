@@ -9,7 +9,9 @@ var fs = require('fs');
 var jade = require('jade');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
-var db = require('./models/db');
+// var db = require('./models/db');
+var cloudant = require('./models/cloudant');
+var db = cloudant.db.use('northstar_page');
 var Data = require('./models/data');
 var Folder = require('./models/folder');
 var domain = require('domain');
@@ -28,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use(function(req, res, next) {
   var reqDomain = domain.create();
   reqDomain.on('error', function(err) {
-    fs.appendFile('log.log', Date()+ ' | ' + req.originalUrl + ' | ' + JSON.stringify(req.body) + ' | ' + err  + '\n', function(err){
+    fs.appendFile('log.log', Date() + ' | ' + req.originalUrl + ' | ' + JSON.stringify(req.body) + ' | ' + err + '\n', function(err) {
       if (err) console.log(err);
     });
     console.log("Error req:", req.originalUrl, req.body);
@@ -92,34 +94,38 @@ app.post('/page', function(req, res) {
 
 // add a template
 app.post('/templates', function(req, res) {
-  console.log(req.body.space);
-  Data.create(req.body, function(err, data) {
+  db = cloudant.db.use('northstar_page');
+  db.insert(req.body, function(err, body) {
     if (err) {
-      res.send(err);
+      console.error(err);
+      res.status(401).send(err);
     } else {
-      res.send(data);
-    }
+      console.log(body);
+      res.send(body);
+    };
   });
 });
 
 // delete a template
-app.delete('/templates/:id', function(req, res) {
-  Data.remove({
-    _id: req.params.id
-  }, function(err, data) {
+app.delete('/templates/:id/:rev', function(req, res) {
+  db = cloudant.db.use('northstar_page');
+  var id = req.params.id;
+  var rev = req.params.rev;
+  console.log(req.params);
+  db.destroy(id, rev, function(err, body) {
     if (err) {
-      res.send(err);
+      console.error(err);
     } else {
-      res.send(data);
-    }
-  })
+      console.log(body);
+    };
+    res.send(body);
+  });
 });
 
 // save a template
 app.post('/templates/:id', function(req, res) {
-  Data.update({
-    name: req.body.name
-  }, req.body, function(error, data) {
+  db = cloudant.db.use('northstar_page');
+  db.insert(req.body, function(error, data) {
     if (error) {
       res.status(401).send(error);
     } else {
@@ -130,30 +136,47 @@ app.post('/templates/:id', function(req, res) {
 
 // get all templates
 app.get('/templates', function(req, res) {
-  Data.find(function(error, data) {
-    if (error) {
-      res.status(401).send(error);
+  db = cloudant.db.use('northstar_page');
+  db.fetch({}, function(err, body) {
+    if (err) {
+      console.error(err);
+      res.status(401).send(err);
     } else {
+      var data = [];
+      body.rows.forEach(function(value) {
+        if (typeof(value.doc) == 'object') {
+          data.push(value.doc);
+        }
+      });
       res.send(data);
     };
   });
 });
 
 // get all folders
-app.get('/folder', function(req, res){
-  Folder.find(function(error, data){
-    if (error){
-      console.log(error);
-      res.status(401).send(error);
+app.get('/folder', function(req, res) {
+  db = cloudant.db.use('northstar_folder');
+  db.fetch({}, function(err, body) {
+    if (err) {
+      console.error(err);
+      res.status(401).send(err);
     } else {
+      var data = [];
+      console.log(data);
+      body.rows.forEach(function(value) {
+        if (typeof(value.doc) == 'object') {
+          data.push(value.doc);
+        }
+      });
       res.send(data);
     };
   });
 });
 
 // add one folder
-app.post('/folder', function(req, res){
-  Folder.create(req.body, function(err, data) {
+app.post('/folder', function(req, res) {
+  db = cloudant.db.use('northstar_folder');
+  db.insert(req.body, function(err, data) {
     if (err) {
       res.send(err);
     } else {
@@ -161,6 +184,27 @@ app.post('/folder', function(req, res){
     }
   });
 });
+
+// import data to Cloudant
+// var importData = function() {
+//   fs.readFile('data.json', 'utf-8', function(err, data) {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       var obj = JSON.parse(data);
+//       console.log(typeof(obj));
+//       for (var i in obj){
+//         delete obj[i].__v;
+//       };
+//       db.bulk({docs:obj}, function(er) {
+//         if (er) {
+//           throw er;
+//         }
+//         console.log('Inserted all documents');
+//       });
+//     };
+//   });
+// };
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

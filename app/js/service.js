@@ -5,7 +5,7 @@ serviceApp.factory('DataService', function($http) {
       $http.post('/templates', data).success(success).error(error);
     },
     delete: function(data, success, error) {
-      $http.delete('/templates/' + data._id).success(success).error(error);
+      $http.delete('/templates/' + data._id + '/' + data._rev).success(success).error(error);
     },
     saveData: function(data, success, error) {
       $http.post('/templates/' + data._id, data).success(success).error(error);
