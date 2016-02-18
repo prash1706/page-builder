@@ -65,17 +65,15 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.tarData = null;
   $scope.tarName = "";
   $scope.templateName = "";
-  $scope.fromSpace = {};
+  $scope.fromSpace = "";
   $scope.result = 0;
 
   $scope.$watch(function() {
-    return $scope.tarName + $scope.tarNewSpace;
+    return $scope.tarName;
   }, function() {
     if ($scope.tarName) {
       $scope.tarName = $scope.tarName.replace(/\s/, '_');
       $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
-      $scope.tarNewSpace = $scope.tarNewSpace.replace(/\s/, '_');
-      $scope.tarNewSpace = $scope.tarNewSpace.replace(/[^\d\w\_\-]/, '');
     };
   });
 
@@ -85,7 +83,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $timeout(function() {
       $scope.result = 0;
     }, 2000);
-  }
+  };
 
   $scope.load = function() {
     $scope.currentData = $scope.tarData;
@@ -130,7 +128,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       if (isRight) {
         var data = {};
         data.name = $scope.tarName;
-        data.space = $scope.tarSpace;
+        data.space = $scope.tarSpace._id;
         if ($scope.fromSpace && $scope.tarData) {
           data.data = $scope.tarData.data;
         } else {
