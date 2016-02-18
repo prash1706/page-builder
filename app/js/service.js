@@ -16,15 +16,15 @@ serviceApp.factory('DataService', function($http) {
     createPage: function(data, success, error) {
       $http.post('/page', data).success(success).error(error);
     },
-    addFolder: function(data, success, error){
+    addFolder: function(data, success, error) {
       $http.post('/folder', data).success(success).error(error);
     },
-    getFolder: function(success, error){
+    getFolder: function(success, error) {
       $http.get('/folder').success(success).error(error);
     },
     getDefaultData: {
       "name": "default",
-      "space": "Public",
+      "space": "0",
       "data": {
         "contact": {
           "googleUrl": "https://plus.google.com/106375465587386953111/about",
@@ -451,6 +451,8 @@ serviceApp.factory('DataService', function($http) {
           canonical: "http://nsdev.somerslab.ibm.com/",
           description: "V18 Digital Meta data",
           title: "API Economy",
+          "country": "United States",
+          "language": "English",
           geoCountry: "US",
           robots: "index,follow",
           dctDate: "2016-01-01",
@@ -462,18 +464,15 @@ serviceApp.factory('DataService', function($http) {
       "name": "null",
       "space": "Public",
       "data": {
-        "contact": {
-        },
+        "contact": {},
         "disc": {
 
         },
         "defi2": {
 
         },
-        "defi1": {
-        },
-        "lead": {
-        },
+        "defi1": {},
+        "lead": {},
         "setting": {
           "contact": 0,
           "disc": {
@@ -517,7 +516,8 @@ serviceApp.factory('DataService', function($http) {
           "title": "",
           "industry": "",
           "version": "",
-          "country": "",
+          "country": "United States",
+          "language": "English",
           "type": "",
           "owner": "",
           "locale": "",
@@ -528,446 +528,511 @@ serviceApp.factory('DataService', function($http) {
         },
       }
     },
-    getNullData2: {
-      "name": "null",
-      "space": "Public",
-      "data": {
-        "contact": {
-          "googleUrl": "",
-          "youtubeUrl": "",
-          "twitterUrl": "",
-          "ibmUrl": "",
-          "priority": "",
-          "phone": ""
-        },
-        "disc": {
-          "resource": {
-            "res6": {
-              "ctaUrl": "",
-              "cta": "",
-              "body": ""
-            },
-            "res5": {
-              "ctaUrl": "",
-              "cta": "",
-              "body": ""
-            },
-            "res4": {
-              "ctaUrl": "",
-              "cta": "",
-              "body": ""
-            },
-            "res3": {
-              "ctaUrl": "",
-              "cta": "",
-              "body": ""
-            },
-            "res2": {
-              "ctaUrl": "",
-              "cta": "",
-              "body": ""
-            },
-            "res1": {
-              "ctaUrl": "",
-              "cta": "",
-              "body": ""
-            },
-            "subhead": ""
-          },
-          "action": {
-            "ctaUrl": "",
-            "cta": "",
-            "ctaLeadIn": ""
-          }
-        },
-        "defi2": {
-          "step": {
-            "step4": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "step3": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "step2": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "step1": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "ctaUrl": "",
-            "cta": "",
-            "ctaLeadIn": "",
-            "subhead": ""
-          },
-          "asset": {
-            "videoUrl": "",
-            "imgUrl": "",
-            "ctaUrl": "",
-            "cta": "",
-            "body": "",
-            "subhead": ""
-          },
-          "intro": {
-            "ctaUrl": "",
-            "cta": "",
-            "ctaLeadIn": "",
-            "column2": [
-              "",
-              "",
-              "",
-              ""
-            ],
-            "column1": "",
-            "subhead": ""
-          }
-        },
-        "defi1": {
-          "step": {
-            "step4": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "step3": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "step2": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "step1": {
-              "ctaUrl": "",
-              "cta": "",
-              "desc": "",
-              "title": "",
-              "imgUrl": ""
-            },
-            "ctaUrl": "",
-            "cta": "",
-            "ctaLeadIn": "",
-            "subhead": ""
-          },
-          "asset": {
-            "videoUrl": "",
-            "imgUrl": "",
-            "ctaUrl": "",
-            "cta": "",
-            "body": "",
-            "subhead": ""
-          },
-          "intro": {
-            "ctaUrl": "",
-            "cta": "",
-            "ctaLeadIn": "",
-            "column2": [
-              "",
-              "",
-              "",
-              ""
-            ],
-            "column1": "",
-            "subhead": ""
-          }
-        },
-        "lead": {
-          "catUrl": "",
-          "cat": "",
-          "videoUrl": "",
-          "imgUrl": "",
-          "subhead": "",
-          "headline": ""
-        },
-        "setting": {
-          "contact": 0,
-          "disc": {
-            "substyle": 1,
-            "type": 1
-          },
-          "prom3": {
-            "substyle": 0,
-            "type": 0
-          },
-          "prom2": {
-            "substyle": 0,
-            "type": 0
-          },
-          "prom1": {
-            "substyle": 0,
-            "type": 0
-          },
-          "defi2": {
-            "substyle": 0,
-            "type": 0
-          },
-          "defi1": {
-            "substyle": 1,
-            "type": 1
-          },
-          "lead": 2
-        },
-        "prom1": {
-          "feat": {
-            "subhead": "",
-            "solu1": {
-              "body": "",
-              "imgUrl": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": ""
-            },
-            "solu2": {
-              "body": "",
-              "imgUrl": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": ""
-            },
-            "solu3": {
-              "body": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": "",
-              "imgUrl": ""
-            }
-          },
-          "solu": {
-            "subhead": "",
-            "ctaLeadIn": "",
-            "cta": "",
-            "ctaUrl": "",
-            "solu1": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu2": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu3": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu4": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu5": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu6": {
-              "imgUrl": "",
-              "feat": ""
-            }
-          },
-          "case": {
-            "ctaUrl": "",
-            "cta": "",
-            "caption2": "",
-            "statistic2": 0,
-            "body": "",
-            "subhead": "",
-            "statistic1": 0,
-            "caption1": "",
-            "imgUrl": ""
-          },
-          "test": {
-            "attribution": "",
-            "photo": "",
-            "quote": "",
-            "ctaUrl": "",
-            "cta": ""
-          }
-        },
-        "prom2": {
-          "feat": {
-            "subhead": "",
-            "solu1": {
-              "body": "",
-              "imgUrl": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": ""
-            },
-            "solu2": {
-              "body": "",
-              "imgUrl": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": ""
-            },
-            "solu3": {
-              "body": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": "",
-              "imgUrl": ""
-            }
-          },
-          "solu": {
-            "subhead": "",
-            "ctaLeadIn": "",
-            "cta": "",
-            "ctaUrl": "",
-            "solu1": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu2": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu3": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu4": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu5": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu6": {
-              "imgUrl": "",
-              "feat": ""
-            }
-          },
-          "case": {
-            "ctaUrl": "",
-            "cta": "",
-            "caption2": "",
-            "statistic2": 0,
-            "body": "",
-            "subhead": "",
-            "statistic1": 0,
-            "caption1": "",
-            "imgUrl": ""
-          },
-          "test": {
-            "attribution": "",
-            "photo": "",
-            "quote": "",
-            "ctaUrl": "",
-            "cta": ""
-          }
-        },
-        "prom3": {
-          "feat": {
-            "subhead": "",
-            "solu1": {
-              "body": "",
-              "imgUrl": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": ""
-            },
-            "solu2": {
-              "body": "",
-              "imgUrl": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": ""
-            },
-            "solu3": {
-              "body": "",
-              "title": "",
-              "cta": "",
-              "ctaUrl": "",
-              "imgUrl": ""
-            }
-          },
-          "solu": {
-            "subhead": "",
-            "ctaLeadIn": "",
-            "cta": "",
-            "ctaUrl": "",
-            "solu1": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu2": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu3": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu4": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu5": {
-              "imgUrl": "",
-              "feat": ""
-            },
-            "solu6": {
-              "imgUrl": "",
-              "feat": ""
-            }
-          },
-          "case": {
-            "ctaUrl": "",
-            "cta": "",
-            "caption2": "",
-            "statistic2": 0,
-            "body": "",
-            "subhead": "",
-            "statistic1": 0,
-            "caption1": "",
-            "imgUrl": ""
-          },
-          "test": {
-            "attribution": "",
-            "photo": "",
-            "quote": "",
-            "ctaUrl": "",
-            "cta": ""
-          }
-        },
-        "meta": {
-          "keywords": "",
-          "description": "",
-          "title": "",
-          "industry": "",
-          "version": "",
-          "country": "",
-          "type": "",
-          "owner": "",
-          "locale": "",
-          "subjects": "",
-          "destination": "",
-          "publishdate": "",
-          "category": ""
-        },
-      }
-    }
+    getDefaultCountry: [{
+      code: "af",
+      country: "Afganistan"
+    }, {
+      code: "dz",
+      country: "Algeria"
+    }, {
+      code: "ao",
+      country: "Angola"
+    }, {
+      code: "ai",
+      country: "Anguilla"
+    }, {
+      code: "ag",
+      country: "Antigua and Barbuda"
+    }, {
+      code: "ar",
+      country: "Argentina"
+    }, {
+      code: "aw",
+      country: "Aruba"
+    }, {
+      code: "au",
+      country: "Australia"
+    }, {
+      code: "at",
+      country: "Austria"
+    }, {
+      code: "bs",
+      country: "Bahamas"
+    }, {
+      code: "bh",
+      country: "Bahrain"
+    }, {
+      code: "bd",
+      country: "Bangladesh"
+    }, {
+      code: "bb",
+      country: "Barbados"
+    }, {
+      code: "be",
+      country: "Belgium/Luxembourg"
+    }, {
+      code: "bm",
+      country: "Bermuda"
+    }, {
+      code: "bo",
+      country: "Bolivia"
+    }, {
+      code: "bw",
+      country: "Botswana"
+    }, {
+      code: "br",
+      country: "Brazil"
+    }, {
+      code: "vg",
+      country: "British Virgin Islands"
+    }, {
+      code: "bn",
+      country: "Brunei Darussalam"
+    }, {
+      code: "bg",
+      country: "Bulgaria"
+    }, {
+      code: "bf",
+      country: "Burkina Faso"
+    }, {
+      code: "kh",
+      country: "Cambodia"
+    }, {
+      code: "cm",
+      country: "Cameroon"
+    }, {
+      code: "ca",
+      country: "Canada"
+    }, {
+      code: "ky",
+      country: "Cayman Islands"
+    }, {
+      code: "td",
+      country: "Chad"
+    }, {
+      code: "cl",
+      country: "Chile"
+    }, {
+      code: "cn",
+      country: "China"
+    }, {
+      code: "co",
+      country: "Colombia"
+    }, {
+      code: "cg",
+      country: "Congo"
+    }, {
+      code: "cr",
+      country: "Costa Rica"
+    }, {
+      code: "hr",
+      country: "Croatia"
+    }, {
+      code: "cw",
+      country: "Curacao"
+    }, {
+      code: "cy",
+      country: "Cyprus"
+    }, {
+      code: "cz",
+      country: "Czech Republic"
+    }, {
+      code: "dk",
+      country: "Denmark"
+    }, {
+      code: "dm",
+      country: "Dominica"
+    }, {
+      code: "cd",
+      country: "Congo, The Democratic Republic of the"
+    }, {
+      code: "ec",
+      country: "Ecuador"
+    }, {
+      code: "eg",
+      country: "Egypt"
+    }, {
+      code: "ee",
+      country: "Estonia"
+    }, {
+      code: "et",
+      country: "Ethiopia"
+    }, {
+      code: "fi",
+      country: "Finland"
+    }, {
+      code: "fr",
+      country: "France"
+    }, {
+      code: "ga",
+      country: "Gabon"
+    }, {
+      code: "de",
+      country: "Germany"
+    }, {
+      code: "gh",
+      country: "Ghana"
+    }, {
+      code: "gr",
+      country: "Greece"
+    }, {
+      code: "gd",
+      country: "Grenada"
+    }, {
+      code: "gy",
+      country: "Guyana"
+    }, {
+      code: "hk",
+      country: "Hong Kong"
+    }, {
+      code: "hu",
+      country: "Hungary"
+    }, {
+      code: "in",
+      country: "India"
+    }, {
+      code: "id",
+      country: "Indonesia"
+    }, {
+      code: "iq",
+      country: "Iraq"
+    }, {
+      code: "ie",
+      country: "Ireland"
+    }, {
+      code: "il",
+      country: "Israel"
+    }, {
+      code: "it",
+      country: "Italy"
+    }, {
+      code: "ci",
+      country: "Ivory Coast"
+    }, {
+      code: "jm",
+      country: "Jamaica"
+    }, {
+      code: "jp",
+      country: "Japan"
+    }, {
+      code: "jo",
+      country: "Jordan"
+    }, {
+      code: "kz",
+      country: "Kazakhstan"
+    }, {
+      code: "ke",
+      country: "Kenya"
+    }, {
+      code: "kr",
+      country: "Korea, Republic of"
+    }, {
+      code: "kw",
+      country: "Kuwait"
+    }, {
+      code: "lv",
+      country: "Latvia"
+    }, {
+      code: "lb",
+      country: "Lebanon"
+    }, {
+      code: "lt",
+      country: "Lithuania"
+    }, {
+      code: "ly",
+      country: "Libya"
+    }, {
+      code: "mg",
+      country: "Madagascar"
+    }, {
+      code: "mw",
+      country: "Malawi"
+    }, {
+      code: "my",
+      country: "Malaysia"
+    }, {
+      code: "mu",
+      country: "Mauritius"
+    }, {
+      code: "mx",
+      country: "Mexico"
+    }, {
+      code: "ms",
+      country: "Montserrat"
+    }, {
+      code: "ma",
+      country: "Morocco"
+    }, {
+      code: "mz",
+      country: "Mozambique"
+    }, {
+      code: "na",
+      country: "Namibia"
+    }, {
+      code: "np",
+      country: "Nepal"
+    }, {
+      code: "nl",
+      country: "Netherlands"
+    }, {
+      code: "nz",
+      country: "New Zealand"
+    }, {
+      code: "ne",
+      country: "Niger"
+    }, {
+      code: "ng",
+      country: "Nigeria"
+    }, {
+      code: "no",
+      country: "Norway"
+    }, {
+      code: "om",
+      country: "Oman"
+    }, {
+      code: "pk",
+      country: "Pakistan"
+    }, {
+      code: "py",
+      country: "Paraguay"
+    }, {
+      code: "pe",
+      country: "Peru"
+    }, {
+      code: "ph",
+      country: "Philippines"
+    }, {
+      code: "pl",
+      country: "Poland"
+    }, {
+      code: "pt",
+      country: "Portugal"
+    }, {
+      code: "qa",
+      country: "Qatar"
+    }, {
+      code: "ro",
+      country: "Romania"
+    }, {
+      code: "ru",
+      country: "Russian Federation"
+    }, {
+      code: "kn",
+      country: "Saint Kitts and Nevis"
+    }, {
+      code: "lc",
+      country: "Saint Lucia"
+    }, {
+      code: "vc",
+      country: "Saint Vincent and the Grenadines"
+    }, {
+      code: "sa",
+      country: "Saudi Arabia"
+    }, {
+      code: "sn",
+      country: "Senegal"
+    }, {
+      code: "rs",
+      country: "Serbia"
+    }, {
+      code: "sc",
+      country: "Seychelles"
+    }, {
+      code: "sl",
+      country: "Sierra Leone"
+    }, {
+      code: "sg",
+      country: "Singapore"
+    }, {
+      code: "sk",
+      country: "Slovakia"
+    }, {
+      code: "si",
+      country: "Slovenia"
+    }, {
+      code: "za",
+      country: "South Africa"
+    }, {
+      code: "es",
+      country: "Spain"
+    }, {
+      code: "lk",
+      country: "Sri Lanka"
+    }, {
+      code: "sr",
+      country: "Suriname"
+    }, {
+      code: "se",
+      country: "Sweden"
+    }, {
+      code: "ch",
+      country: "Switzerland"
+    }, {
+      code: "tw",
+      country: "Taiwan"
+    }, {
+      code: "tz",
+      country: "Tanzania, United Republic of"
+    }, {
+      code: "th",
+      country: "Thailand"
+    }, {
+      code: "tt",
+      country: "Trinidad and Tobago"
+    }, {
+      code: "tn",
+      country: "Tunisia"
+    }, {
+      code: "tr",
+      country: "Turkey"
+    }, {
+      code: "tc",
+      country: "Turks and Caicos Islands"
+    }, {
+      code: "ug",
+      country: "Uganda"
+    }, {
+      code: "ua",
+      country: "Ukraine"
+    }, {
+      code: "ae",
+      country: "United Arab Emirates"
+    }, {
+      code: "uk",
+      country: "United Kingdom"
+    }, {
+      code: "us",
+      country: "United States"
+    }, {
+      code: "uy",
+      country: "Uruguay"
+    }, {
+      code: "uz",
+      country: "Uzbekistan"
+    }, {
+      code: "ve",
+      country: "Venezuela"
+    }, {
+      code: "vn",
+      country: "Vietnam"
+    }, {
+      code: "ye",
+      country: "Yemen"
+    }, {
+      code: "zm",
+      country: "Zambia"
+    }, {
+      code: "zw",
+      country: "Zimbabwe"
+    }],
+    getDefaultLanguage: [{
+      code: "bg",
+      language: "Bulgarian"
+    }, {
+      code: "zh",
+      language: "Chinese (Simplified)"
+    }, {
+      code: "zh",
+      language: "Chinese (Traditional)"
+    }, {
+      code: "hr",
+      language: "Croatian"
+    }, {
+      code: "cs",
+      language: "Czech"
+    }, {
+      code: "da",
+      language: "Danish"
+    }, {
+      code: "nl",
+      language: "Dutch"
+    }, {
+      code: "en",
+      language: "English"
+    }, {
+      code: "et",
+      language: "Estonian"
+    }, {
+      code: "fi",
+      language: "Finnish"
+    }, {
+      code: "fr",
+      language: "French"
+    }, {
+      code: "de",
+      language: "German"
+    }, {
+      code: "el",
+      language: "Greek"
+    }, {
+      code: "he",
+      language: "Hebrew"
+    }, {
+      code: "hu",
+      language: "Hungarian"
+    }, {
+      code: "it",
+      language: "Italian"
+    }, {
+      code: "ja",
+      language: "Japanese"
+    }, {
+      code: "kk",
+      language: "Kazakh"
+    }, {
+      code: "ko",
+      language: "Korean"
+    }, {
+      code: "lv",
+      language: "Latvian"
+    }, {
+      code: "lt",
+      language: "Lithuanian"
+    }, {
+      code: "no",
+      language: "Norwegian"
+    }, {
+      code: "pl",
+      language: "Polish"
+    }, {
+      code: "pt",
+      language: "Portuguese"
+    }, {
+      code: "ro",
+      language: "Romanian"
+    }, {
+      code: "ru",
+      language: "Russian"
+    }, {
+      code: "sr",
+      language: "Serbian"
+    }, {
+      code: "sk",
+      language: "Slovak"
+    }, {
+      code: "sl",
+      language: "Slovenian"
+    }, {
+      code: "es",
+      language: "Spanish"
+    }, {
+      code: "sv",
+      language: "Swedish"
+    }, {
+      code: "tr",
+      language: "Turkish"
+    }, {
+      code: "uk",
+      language: "Ukrainian"
+    }, {
+      code: "uz",
+      language: "Uzbek"
+    }, {
+      code: "vi",
+      language: "Vietnamese"
+    }, {
+      code: "en",
+      language: "Zimbabwe"
+    }],
   };
 });

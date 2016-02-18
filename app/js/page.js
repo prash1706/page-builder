@@ -51,6 +51,15 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         if (!res[i].space || space_str.indexOf(res[i].space) === -1) {
           res[i].space = "0";
         };
+        if (!res[i].data.meta) {
+          res[i].data.meta = {
+            language: DataService.getDefaultLanguage[7].language,
+            country: DataService.getDefaultCountry[124].country
+          };
+        } else if (!res[i].data.meta.country || !res[i].data.meta.language) {
+          res[i].data.meta.country = res[i].data.meta.country || DataService.getDefaultCountry[124].country;
+          res[i].data.meta.language = res[i].data.meta.language || DataService.getDefaultLanguage[7].language;
+        };
         $scope.settingData.push(res[i]);
       };
       console.log("[DetData] $scope.settingData:", $scope.settingData);
@@ -98,9 +107,26 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     var data = {
       data: $rootScope.data
     };
+    var str = angular.toJson($rootScope.data);
+    data.data = angular.fromJson(str);
+
     if ($scope.currentData && $scope.currentSpace) {
       data.name = $scope.currentData.name;
       data.space = $scope.currentSpace.name;
+    };
+    if (data.data.meta.country && data.data.meta.language) {
+      for (var i = 0; i < DataService.getDefaultCountry.length; i++) {
+        if (DataService.getDefaultCountry[i].country == data.data.meta.country) {
+          data.data.meta.country = DataService.getDefaultCountry[i].code;
+          break;
+        };
+      };
+      for (var i = 0; i < DataService.getDefaultLanguage.length; i++) {
+        if (DataService.getDefaultLanguage[i].language == data.data.meta.language) {
+          data.data.meta.language = DataService.getDefaultLanguage[i].code;
+          break;
+        };
+      };
     };
     DataService.createPage(data, function(res) {
       $timeout(function() {
@@ -651,7 +677,177 @@ myPageApp.controller('SetContactCtrl', function($scope, $rootScope) {
 });
 
 myPageApp.controller('SetMetaCtrl', function($scope, $rootScope) {
-
+  $scope.countryStr = ["Afganistan",
+    "Algeria",
+    "Angola",
+    "Anguilla",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Aruba",
+    "Australia",
+    "Austria",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belgium/Luxembourg",
+    "Bermuda",
+    "Bolivia",
+    "Botswana",
+    "Brazil",
+    "British Virgin Islands",
+    "Brunei Darussalam",
+    "Bulgaria",
+    "Burkina Faso",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Cayman Islands",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Congo",
+    "Costa Rica",
+    "Croatia",
+    "Curacao",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Dominica",
+    "Congo, The Democratic Republic of the",
+    "Ecuador",
+    "Egypt",
+    "Estonia",
+    "Ethiopia",
+    "Finland",
+    "France",
+    "Gabon",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guyana",
+    "Hong Kong",
+    "Hungary",
+    "India",
+    "Indonesia",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Ivory Coast",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Korea, Republic of",
+    "Kuwait",
+    "Latvia",
+    "Lebanon",
+    "Lithuania",
+    "Libya",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Mauritius",
+    "Mexico",
+    "Montserrat",
+    "Morocco",
+    "Mozambique",
+    "Namibia",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Niger",
+    "Nigeria",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russian Federation",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "South Africa",
+    "Spain",
+    "Sri Lanka",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Taiwan",
+    "Tanzania, United Republic of",
+    "Thailand",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turks and Caicos Islands",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe"
+  ];
+  $scope.languageStr = [
+    "Bulgarian",
+    "Chinese (Simplified)",
+    "Chinese (Traditional)",
+    "Croatian",
+    "Czech",
+    "Danish",
+    "Dutch",
+    "English",
+    "Estonian",
+    "Finnish",
+    "French",
+    "German",
+    "Greek",
+    "Hebrew",
+    "Hungarian",
+    "Italian",
+    "Japanese",
+    "Kazakh",
+    "Korean",
+    "Latvian",
+    "Lithuanian",
+    "Norwegian",
+    "Polish",
+    "Portuguese",
+    "Romanian",
+    "Russian",
+    "Serbian",
+    "Slovak",
+    "Slovenian",
+    "Spanish",
+    "Swedish",
+    "Turkish",
+    "Ukrainian",
+    "Uzbek",
+    "Vietnamese",
+    "Zimbabwe"
+  ];
 });
 
 myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {

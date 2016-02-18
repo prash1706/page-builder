@@ -2,6 +2,20 @@
 <form class="form-horizontal col-md-12">
   <legend><small>Required</small></legend>
   <div class="form-group">
+    <label class="col-sm-2 control-label">Country*</label>
+    <div class="col-sm-6">
+      <select class="form-control" ng-model="data.meta.country" ng-options="option for option in countryStr">
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Language*</label>
+    <div class="col-sm-6">
+      <select class="form-control" ng-model="data.meta.language" ng-options="option for option in languageStr">
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-2 control-label">Title*</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.meta.title"></input>
@@ -69,12 +83,6 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Language</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.language"></input>
-    </div>
-  </div>
-  <div class="form-group">
     <label class="col-sm-2 control-label">Publish Date</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.meta.publishDate"></input>
@@ -96,12 +104,6 @@
     <label class="col-sm-2 control-label">Content Producer</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.meta.contentProducer"></input>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Country</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.meta.country"></input>
     </div>
   </div>
   <div class="form-group">
