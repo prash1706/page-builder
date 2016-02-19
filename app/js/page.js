@@ -148,39 +148,64 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $('#createBtn').button('loading');
     $scope.startPro();
     var data = {
+      _id: $scope.currentData._id,
+      _rev: $scope.currentData._rev,
+      name: $scope.currentData.name,
+      space: $scope.currentData.space,
       data: $rootScope.data
     };
-    var str = angular.toJson($rootScope.data);
-    data.data = angular.fromJson(str);
+    DataService.saveData(data, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+          $scope.settingData.data = data.data;
+          $scope.settingData._id = res.id;
+          $scope.settingData._rev = res.rev;
+          $scope.currentData.data = data.data;
+          $scope.currentData._id = res.id;
+          $scope.currentData._rev = res.rev;
+          break;
+        };
+      };
+      showResult(5, $scope.currentData.name);
+      var data_cre = {
+        data: $rootScope.data
+      };
+      var str = angular.toJson($rootScope.data);
+      data_cre.data = angular.fromJson(str);
 
-    if ($scope.currentData && $scope.currentSpace) {
-      data.name = $scope.currentData.name;
-      data.space = $scope.currentSpace.name;
-    };
-    if (data.data.meta.country && data.data.meta.language) {
-      for (var i = 0; i < DataService.getDefaultCountry.length; i++) {
-        if (DataService.getDefaultCountry[i].country == data.data.meta.country) {
-          data.data.meta.country = DataService.getDefaultCountry[i].code;
-          break;
+      if ($scope.currentData && $scope.currentSpace) {
+        data_cre.name = $scope.currentData.name;
+        data_cre.space = $scope.currentSpace.name;
+      };
+      if (data_cre.data.meta.country && data_cre.data.meta.language) {
+        for (var i = 0; i < DataService.getDefaultCountry.length; i++) {
+          if (DataService.getDefaultCountry[i].country == data_cre.data.meta.country) {
+            data_cre.data.meta.country = DataService.getDefaultCountry[i].code;
+            break;
+          };
+        };
+        for (var i = 0; i < DataService.getDefaultLanguage.length; i++) {
+          if (DataService.getDefaultLanguage[i].language == data_cre.data.meta.language) {
+            data_cre.data.meta.language = DataService.getDefaultLanguage[i].code;
+            break;
+          };
         };
       };
-      for (var i = 0; i < DataService.getDefaultLanguage.length; i++) {
-        if (DataService.getDefaultLanguage[i].language == data.data.meta.language) {
-          data.data.meta.language = DataService.getDefaultLanguage[i].code;
-          break;
-        };
-      };
-    };
-    DataService.createPage(data, function(res) {
-      $timeout(function() {
+      DataService.createPage(data_cre, function(res) {
+        $timeout(function() {
+          $('#createBtn').button('reset');
+          window.open('./pages/' + data_cre.space + '/' + data_cre.name + '.html', '_blank');
+        }, 500);
+        $scope.stopPro();
+      }, function(res) {
+        showResult(7, "");
         $('#createBtn').button('reset');
-        window.open('./pages/' + data.space + '/' + data.name + '.html', '_blank');
-      }, 500);
-      $scope.stopPro();
+        $scope.stopPro();
+      });
     }, function(res) {
-      showResult(7, "");
-      $('#createBtn').button('reset');
+      showResult(6, $scope.currentData.name);
       $scope.stopPro();
+      $('#saveBtn').button('reset');
     });
   };
 
@@ -293,7 +318,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       showResult(6, $scope.currentData.name);
       $scope.stopPro();
       $('#saveBtn').button('reset');
-    })
+    });
   };
 }]);
 
