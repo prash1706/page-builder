@@ -1,17 +1,19 @@
+// MASTHEAD_BEGIN
 #ibm-masthead(rol="banner", aria-label="IBM")
   #ibm-universal-nav
     nav(role="navigation", aria-label="IBM")
       #ibm-home
-        a(href="http://www.ibm.com/us/en/") IBM®
+        a(href="http://www.ibm.com/#{meta.country}/#{meta.language}/") IBM®
       ul#ibm-menu-links(role="toolbar", aria-label="Site map")
         li
-          a(href="http://www.ibm.com/sitemap/us/en/") Site map
+          a(href="http://www.ibm.com/sitemap/#{meta.country}/#{meta.language}/") Site map
     #ibm-search-module(role="search", aria-labelledby="ibm-masthead")
       form#ibm-search-form(action="http://www.ibm.com/Search/", method="get")
         p
           input#q(type="text", maxlength="100", value="", placeholder="Search", name="q", aria-label="Search")
           input(type="hidden", value="18", name="v")
           input(type="hidden", value="utf", name="en")
-          input(type="hidden", value="en", name="lang")
-          input(type="hidden", value="us", name="cc")
+          input(type="hidden", value="#{meta.language}", name="lang")
+          input(type="hidden", value="#{meta.country}", name="cc")
           input#ibm-search(type="submit", class="ibm-btn-search", value="Submit")
+// MASTHEAD_END
