@@ -31,8 +31,47 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.settingData = [];
   $scope.spaces = [];
   $scope.settingData.push(DataService.getDefaultData);
+  $scope.value = 0;
+  $scope.startPro = function() {
+    $scope.showPro = true;
+    $scope.value = 0;
+    $scope.timeout = $timeout(function() {
+      $scope.value = Math.random() * 30 + 30;
+      var maxTemp = Math.random() * 10 + 80;
+      var cell = 0;
+
+      function slowPro() {
+        cell = (maxTemp - $scope.value) / 20;
+        $scope.timeout = $timeout(function() {
+          $scope.value += cell;
+          slowPro();
+        }, 200);
+      };
+      slowPro();
+    }, 100);
+  };
+
+  $scope.stopPro = function() {
+    $timeout.cancel($scope.timeout);
+    $scope.value = 100;
+    $timeout(function() {
+      $scope.showPro = false;
+    }, 500);
+  };
+
+  $scope.$on(
+    "$destroy",
+    function(event) {
+      $timeout.cancel($scope.timeout);
+    }
+  );
+  // setInterval(function() {
+  //   $scope.$apply($scope.startPro);
+  // }, 5000);
+
 
   DataService.getFolder(function(res) {
+    $scope.startPro();
     console.log(res);
     $scope.spaces = res;
     $scope.spaces.unshift({ _id: '0', name: 'Public' });
@@ -63,11 +102,14 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         $scope.settingData.push(res[i]);
       };
       console.log("[DetData] $scope.settingData:", $scope.settingData);
+      $scope.stopPro();
     }, function(res) {
-      console.log("Get Templates Failed.")
+      console.log("Get Templates Failed.");
+      $scope.stopPro();
     });
   }, function(res) {
-    console.log("Get Folders Failed.")
+    console.log("Get Folders Failed.");
+    $scope.stopPro();
   });
 
   $scope.currentData = null;
@@ -99,11 +141,12 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $scope.currentSpace = $scope.tarSpace;
     var str = angular.toJson($scope.currentData.data);
     $rootScope.data = angular.fromJson(str);
-    console.log("[Load finished] $rootScope.data = ", $rootScope.data);
+    console.log("[Load finished] ", $scope.currentData);
   };
 
   $scope.createPage = function() {
     $('#createBtn').button('loading');
+    $scope.startPro();
     var data = {
       data: $rootScope.data
     };
@@ -133,9 +176,11 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         $('#createBtn').button('reset');
         window.open('./pages/' + data.space + '/' + data.name + '.html', '_blank');
       }, 500);
+      $scope.stopPro();
     }, function(res) {
       showResult(7, "");
       $('#createBtn').button('reset');
+      $scope.stopPro();
     });
   };
 
@@ -152,6 +197,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
       };
       if (isRight) {
+        $scope.startPro();
         var data = {};
         data.name = $scope.tarName;
         data.space = $scope.tarSpace._id;
@@ -163,8 +209,12 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         console.log("[add] data = ", data);
         DataService.add(data, function(res) {
           showResult(1, $scope.tarName);
+          data._id = res.id;
+          data._rev = res.rev;
           $scope.settingData.push(data);
+          $scope.stopPro();
         }, function(res) {
+          $scope.stopPro();
           showResult(2, $scope.tarName);
         });
       };
@@ -198,6 +248,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   };
 
   $scope.delete = function() {
+    $scope.startPro();
     DataService.delete($scope.currentData, function(res) {
       for (var i = 0; i < $scope.settingData.length; i++) {
         if ($scope.settingData[i].name == $scope.currentData.name) {
@@ -205,14 +256,17 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
           showResult(3, $scope.currentData.name);
           break;
         };
-      }
+      };
+      $scope.stopPro();
     }, function(res) {
       showResult(4, $scope.currentData.name);
+      $scope.stopPro();
     });
   };
 
   $scope.save = function() {
     $('#saveBtn').button('loading');
+    $scope.startPro();
     var data = {
       _id: $scope.currentData._id,
       _rev: $scope.currentData._rev,
@@ -224,16 +278,20 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       for (var i = 0; i < $scope.settingData.length; i++) {
         if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
           $scope.settingData.data = data.data;
+          $scope.settingData._id = res.id;
+          $scope.settingData._rev = res.rev;
           $scope.currentData.data = data.data;
+          $scope.currentData._id = res.id;
+          $scope.currentData._rev = res.rev;
           break;
         };
       };
-      $timeout(function() {
-        $('#saveBtn').button('reset');
-        showResult(5, $scope.currentData.name);
-      }, 1000);
+      $('#saveBtn').button('reset');
+      showResult(5, $scope.currentData.name);
+      $scope.stopPro();
     }, function(res) {
       showResult(6, $scope.currentData.name);
+      $scope.stopPro();
       $('#saveBtn').button('reset');
     })
   };
@@ -864,14 +922,17 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
   };
 
   $scope.addFolder = function() {
+    $scope.startPro();
     var folder = {
       name: $scope.tarFolder
     };
     DataService.addFolder(folder, function(res) {
       $scope.spaces.push(folder);
       $scope.tarFolder = '';
+      $scope.stopPro();
     }, function(res) {
-
+      $scope.stopPro();
+      console.error(res);
     });
   };
 });

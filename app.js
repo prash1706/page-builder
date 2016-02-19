@@ -114,11 +114,12 @@ app.delete('/templates/:id/:rev', function(req, res) {
   console.log(req.params);
   db.destroy(id, rev, function(err, body) {
     if (err) {
-      console.error(err);
+      console.error(error);
+      res.status(401).send(error);
     } else {
       console.log(body);
+      res.send(body);
     };
-    res.send(body);
   });
 });
 
@@ -127,8 +128,10 @@ app.post('/templates/:id', function(req, res) {
   db = cloudant.db.use('northstar_page');
   db.insert(req.body, function(error, data) {
     if (error) {
+      console.error(error);
       res.status(401).send(error);
     } else {
+      console.log(data);
       res.send(data);
     };
   })
@@ -162,7 +165,6 @@ app.get('/folder', function(req, res) {
       res.status(401).send(err);
     } else {
       var data = [];
-      console.log(data);
       body.rows.forEach(function(value) {
         if (typeof(value.doc) == 'object') {
           data.push(value.doc);
@@ -178,7 +180,8 @@ app.post('/folder', function(req, res) {
   db = cloudant.db.use('northstar_folder');
   db.insert(req.body, function(err, data) {
     if (err) {
-      res.send(err);
+      console.error(error);
+      res.status(401).send(error);
     } else {
       res.send(data);
     }
