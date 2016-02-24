@@ -182,8 +182,12 @@
   </div>
   <div class="form-group" ng-show="mySetting.substyle==5">
     <label class="col-sm-2 control-label">Asset Image URL</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.defi1.asset.imgUrl">
+    <div class="input-group col-sm-10" style="padding-left:15px;padding-right:15px;padding-top:10px">
+      <input type="text" class="form-control" ng-init="data.defi1.asset.imgUrl=data.defi1.asset.imgUrl==undefined?'':data.defi1.asset.imgUrl" ng-model="data.defi1.asset.imgUrl">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetUploadModal" id="uploadBtn" data-loading-text="Uploading..." >Upload</button>
+<!--         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetRetrieveModal">Retrieve</button>
+ -->      </span>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==6">
@@ -503,6 +507,123 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="assetUploadModal" tabindex="-1" role="dialog" aria-labelledby="assetUploadModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pull-right">
+        </div>
+        <h4 class="modal-title">Upload Image</h4>
+      </div>
+      <div class="modal-body">
+        <h5><span class="glyphicon glyphicon-info-sign"></span><strong> <strong>Image will be uploaded into Cloudant and it will be public at the URL</strong></h5>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">I want to</label>
+            <div class="col-sm-8">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" ng-init="isNewImage=false" value="option1" ng-checked="isNewImage==false" ng-click="isNewImage=false" checked> Use an existing folder for saving a new image
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-click="isNewImage=true" ng-checked="isNewImage==true" value="option2">Create a new folder for saving a new image
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" ng-hide="!isNewImage">
+            <label class="col-sm-3 control-label">Project folder</label>
+            <div class="col-sm-6">
+              <input class="form-control" type="text" ng-model="tarImage" >
+            </div>
+          </div>
+          <div class="form-group" ng-hide="isNewImage">
+            <label class="col-sm-3 control-label">Project folder</label>
+            <div class="col-sm-6">
+              <select class="form-control" ng-model="currentImage" ng-options="image.folder for image in images">
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Uploaded image</label>
+            <div class="col-sm-9">
+              <input class="col-sm-9" style="margin-top:10px;margin-bottom: 10px;padding-left:0" type="file" ngf-select ng-model="myFile" name="myFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+              <button type="button" class="close" style="right:auto;margin-top:10px;margin-bottom: 10px" aria-label="Close" ng-show="myFile" ng-click="myFile=''"><span aria-hidden="true">&times;</span></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Image thumbnail</label>
+            <div class="col-sm-9">
+              <img style="max-width: 30%" ng-show="myFile" ngf-thumbnail="myFile">
+              <span ng-show="myFile">({{myFile.size/1024|number:2}}kb)</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!myFile || (isNewImage && !tarImage) || (!isNewImage && !currentImage)" ng-click="upload()">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="assetRetrieveModal" tabindex="-1" role="dialog" aria-labelledby="assetRetrieveModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pull-right">
+        </div>
+        <h4 class="modal-title">Retrieve Image</h4>
+      </div>
+      <div class="modal-body">
+        <h5><span class="glyphicon glyphicon-info-sign"></span><strong> To get a URL please select a project folder then select an image and then hit OK button.</strong></h5>
+        <div class="col-sm-12" style="padding:5px; margin-top: 40px; margin-bottom: 40px">
+          <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
+            <div class="list-group" ng-init="image_id=''">
+              <a class="list-group-item" ng-repeat="image in images track by $index" ng-click="image">{{image.folder}}</a>
+            </div>
+          </div>
+          <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">
+            <table class="table table-hover table-striped">
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox">
+                  </td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox">
+                  </td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox">
+                  </td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="clear:both">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

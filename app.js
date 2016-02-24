@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var jade = require('jade');
 var multiparty = require('connect-multiparty');
-var multipartyMiddleware = multiparty();
+multipartyMiddleware = multiparty();
 // var db = require('./models/db');
 var cloudant = require('./models/cloudant');
 var db = cloudant.db.use('northstar_page');
@@ -38,7 +38,6 @@ app.use(function(req, res, next) {
   });
   reqDomain.run(next);
 });
-
 
 // create a page
 app.post('/page', function(req, res) {
@@ -187,6 +186,115 @@ app.post('/folder', function(req, res) {
     }
   });
 });
+
+/*
+doc = {
+  _id:'',
+  _rev:'',
+  name: '',
+  images:[{
+    url:'',
+    length:''
+    },{
+    url:'',
+    length:''
+    }
+  ]
+};
+*/
+
+// get all images
+app.get('/image', function(req, res) {
+  db = cloudant.db.use('files_space_dev');
+  db.fetch({}, function(err, body) {
+    if (err) {
+      console.error(err);
+      res.status(401).send(err);
+    } else {
+      var data = [];
+      console.log(body);
+      body.rows.forEach(function(value) {
+        console.log('value.doc', value.doc);
+        if (typeof(value.doc) == 'object') {
+          var doc = {
+            _id: value.doc._id,
+            _rev: value.doc._rev,
+            folder: value.doc._id.slice(8),
+            images: []
+          };
+          for (var key in value.doc._attachments) {
+            console.log('key', value.doc._attachments[key]);
+            var image = {
+              name: key,
+              url: "https://ibmddm.cloudant.com/files_space_dev/" + value.doc._id + "/" + key,
+              length: value.doc._attachments[key].length
+            };
+            doc.images.push(image);
+          };
+        };
+        data.push(doc);
+      });
+      res.send(data);
+    };
+  });
+});
+
+// upload a image
+app.post('/image/upload', multipartyMiddleware, function(req, res) {
+  var data = req.body;
+  var file = req.files.file;
+  console.log('file:', file);
+  console.log('data:', data);
+  db = cloudant.db.use('files_space_dev');
+  fs.readFile(file.path, function(err, imageData) {
+    if (data._rev) {
+      console.log("Update Images");
+      db.attachment.insert('_design/' + data.folder, file.name, imageData, file.type, {
+        rev: data._rev
+      }, function(err, body) {
+        if (!err) {
+          var image = {
+            _id: body.id,
+            _rev: body.rev,
+            folder: body.id.slice(8),
+            image: {
+              name: file.name,
+              url: "https://ibmddm.cloudant.com/files_space_dev/" + body.id + "/" + file.name,
+              length: file.size
+            }
+          };
+          console.log(image);
+          res.send(image);
+        } else {
+          console.error(err);
+          res.status(501).send(err);
+        };
+      });
+    } else {
+      console.log("Add A New Image");
+      db.attachment.insert('_design/' + data.folder, file.name, imageData, file.type, function(err, body) {
+        if (!err) {
+          var image = {
+            _id: body.id,
+            _rev: body.rev,
+            folder: body.id.slice(8),
+            images: [{
+              name: file.name,
+              url: "https://ibmddm.cloudant.com/files_space_dev/" + body.id + "/" + file.name,
+              length: file.size
+            }]
+          };
+          console.log(image);
+          res.send(image);
+        } else {
+          console.error(err);
+          res.status(501).send(err);
+        };
+      });
+    };
+  })
+});
+
 
 // import data to Cloudant
 // var importData = function() {

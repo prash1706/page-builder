@@ -22,6 +22,9 @@ serviceApp.factory('DataService', function($http) {
     getFolder: function(success, error) {
       $http.get('/folder').success(success).error(error);
     },
+    getImage: function(success, error){
+      $http.get('/image').success(success).error(error);
+    },
     getDefaultData: {
       "name": "default",
       "space": "0",

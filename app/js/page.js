@@ -1,4 +1,4 @@
-var myPageApp = angular.module('myPageApp', ['ui.router', 'serviceApp']);
+var myPageApp = angular.module('myPageApp', ['ui.router', 'ngFileUpload', 'serviceApp']);
 
 myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$rootScope', 'DataService', function($scope, $http, $timeout, $state, $rootScope, DataService) {
   function setState() {
@@ -30,6 +30,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
 
   $scope.settingData = [];
   $scope.spaces = [];
+  $scope.images = [];
   $scope.settingData.push(DataService.getDefaultData);
   $scope.value = 0;
   $scope.startPro = function() {
@@ -101,8 +102,16 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
         $scope.settingData.push(res[i]);
       };
-      console.log("[DetData] $scope.settingData:", $scope.settingData);
-      $scope.stopPro();
+      console.log("[GetData] $scope.settingData:", $scope.settingData);
+      $scope.images = [];
+      DataService.getImage(function(res) {
+        $scope.images = res;
+        console.log("[GetImage] $scope.images:", $scope.images);
+        $scope.stopPro();
+      }, function(res) {
+        console.error(res);
+        $scope.stopPro();
+      });
     }, function(res) {
       console.log("Get Templates Failed.");
       $scope.stopPro();
@@ -326,7 +335,7 @@ myPageApp.controller('SetLeadSpaceCtrl', function($scope, $rootScope) {
   $scope.substyle = ['', 'Substyle: Image background', 'Substyle: Video background', 'Substyle: Image background - small'];
 });
 
-myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout) {
+myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, $timeout) {
   $scope.mySetting = {
     type: $rootScope.data.setting.defi1.type,
     substyle: $rootScope.data.setting.defi1.substyle
@@ -391,6 +400,52 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout
       substyle: $rootScope.data.setting.defi1.substyle
     };
   };
+
+  $scope.upload = function() {
+    $("#uploadBtn").button('loading');
+    $scope.startPro();
+    console.log("$scope.isNewImage", $scope.isNewImage);
+    console.log("$scope.tarImage", $scope.tarImage);
+    console.log("$scope.currentImage", $scope.currentImage);
+    var data = {};
+    if ($scope.isNewImage) {
+      data = {
+        folder: $scope.tarImage
+      };
+    } else {
+      data = {
+        _id: $scope.currentImage._id,
+        _rev: $scope.currentImage._rev,
+        folder: $scope.currentImage.folder
+      };
+    };
+    Upload.upload({
+      url: '/image/upload',
+      data: data,
+      file: $scope.myFile
+    }).then(function(res) {
+      $scope.stopPro();
+      console.log(res.data);
+      if ($scope.isNewImage) {
+        $scope.images.push(res.data);
+        $rootScope.data.defi1.asset.imgUrl = res.data.images[0].url;
+        console.log($scope.images);
+      } else {
+        $scope.currentImage._rev = res.data._rev;
+        $scope.currentImage._id = res.data._id;
+        $scope.currentImage.images.push(res.data.image);
+        $rootScope.data.defi1.asset.imgUrl = res.data.image.url;
+        console.log($scope.images);
+      };
+      $scope.tarImage = '';
+      $scope.isNewImage = false;
+      $("#uploadBtn").button('reset');
+    }, function(err) {
+      $scope.stopPro();
+      console.error(err);
+      $("#uploadBtn").button('reset');
+    });
+  }
 });
 
 myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout) {

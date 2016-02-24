@@ -20,3 +20,15 @@ Wed Feb 17 2016 00:09:58 GMT+0800 (China Standard Time) | /folder | {} | Referen
 Fri Feb 19 2016 17:01:34 GMT+0800 (China Standard Time) | /templates/e880dc36b0ecdc1da7f0ca7309cf40e9/1-2588e8660001a3d2ab7c738a546bf5ff | {} | ReferenceError: error is not defined
 Fri Feb 19 2016 17:03:15 GMT+0800 (China Standard Time) | /templates/e880dc36b0ecdc1da7f0ca7309cf40e9/2-d4582ad1ff572ac94ebab87e6cf4233d | {} | ReferenceError: error is not defined
 Fri Feb 19 2016 19:09:55 GMT+0800 (China Standard Time) | /templates/568d7de73227c9400013e0c7/17-ba7ea558bb9819d8e237770735374a53 | {} | ReferenceError: error is not defined
+Tue Feb 23 2016 21:35:00 GMT+0800 (China Standard Time) | /image/upload | {} | TypeError: first argument must be a string or Buffer
+Tue Feb 23 2016 22:05:12 GMT+0800 (China Standard Time) | /image/upload | {} | TypeError: first argument must be a string or Buffer
+Tue Feb 23 2016 22:06:29 GMT+0800 (China Standard Time) | /image/upload | {} | TypeError: first argument must be a string or Buffer
+Tue Feb 23 2016 22:13:13 GMT+0800 (China Standard Time) | /image/upload | {} | TypeError: first argument must be a string or Buffer
+Tue Feb 23 2016 22:14:25 GMT+0800 (China Standard Time) | /image/upload | {} | TypeError: first argument must be a string or Buffer
+Wed Feb 24 2016 14:38:51 GMT+0800 (China Standard Time) | /image | {} | TypeError: Cannot read property 'length' of undefined
+Wed Feb 24 2016 14:39:11 GMT+0800 (China Standard Time) | /image | {} | TypeError: Cannot read property 'length' of undefined
+Wed Feb 24 2016 14:40:33 GMT+0800 (China Standard Time) | /image | {} | TypeError: Cannot read property 'length' of undefined
+Wed Feb 24 2016 14:41:46 GMT+0800 (China Standard Time) | /image | {} | TypeError: Cannot read property 'length' of undefined
+Wed Feb 24 2016 14:44:18 GMT+0800 (China Standard Time) | /image | {} | TypeError: Cannot read property 'length' of undefined
+Wed Feb 24 2016 16:58:56 GMT+0800 (China Standard Time) | /image/upload | {"_id":"_design/public","_rev":"28-627c12621fec7d7365ad48ad828bf87e","folder":"public"} | ReferenceError: string is not defined
+Wed Feb 24 2016 17:01:07 GMT+0800 (China Standard Time) | /image/upload | {"_id":"_design/public","_rev":"28-627c12621fec7d7365ad48ad828bf87e","folder":"public"} | ReferenceError: string is not defined
