@@ -456,7 +456,6 @@ serviceApp.factory('DataService', function($http) {
           title: "API Economy",
           "country": "United States",
           "language": "English",
-          geoCountry: "US",
           robots: "index,follow",
           dctDate: "2016-01-01",
           dctRight: "© Copyright IBM Corp. 2014"
