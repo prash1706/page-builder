@@ -401,6 +401,18 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
     };
   };
 
+  $scope.updateIndex = function(index) {
+    $scope.imageIndex = index;
+  };
+
+  $scope.updateUrl = function(url){
+    $scope.imageUrl = url;
+  };
+
+  $scope.setImageUrl = function() {
+    $rootScope.data.defi1.asset.imgUrl = $scope.imageUrl;
+  };
+
   $scope.upload = function() {
     $("#uploadBtn").button('loading');
     $scope.startPro();

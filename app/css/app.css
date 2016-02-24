@@ -89,3 +89,8 @@ div#addModal div.modal-header label {
   margin-bottom: -3px;
   background-color: transparent;
 }
+
+tr.selectRow {
+  background-color: #337ab7;
+  color:white;
+}

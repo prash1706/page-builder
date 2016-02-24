@@ -186,8 +186,8 @@
       <input type="text" class="form-control" ng-init="data.defi1.asset.imgUrl=data.defi1.asset.imgUrl==undefined?'':data.defi1.asset.imgUrl" ng-model="data.defi1.asset.imgUrl">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetUploadModal" id="uploadBtn" data-loading-text="Uploading..." >Upload</button>
-<!--         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetRetrieveModal">Retrieve</button>
- -->      </span>
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetRetrieveModal">Retrieve</button>
+      </span>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==6">
@@ -585,36 +585,17 @@
         <h5><span class="glyphicon glyphicon-info-sign"></span><strong> To get a URL please select a project folder then select an image and then hit OK button.</strong></h5>
         <div class="col-sm-12" style="padding:5px; margin-top: 40px; margin-bottom: 40px">
           <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
-            <div class="list-group" ng-init="image_id=''">
-              <a class="list-group-item" ng-repeat="image in images track by $index" ng-click="image">{{image.folder}}</a>
+            <div class="list-group" ng-init="imageIndex=0">
+              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images track by $index" ng-class="{active: imageIndex == $index}" ng-click="updateIndex($index)">{{image.folder}}</a>
             </div>
           </div>
           <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">
-            <table class="table table-hover table-striped">
+            <table class="table" ng-init="imageUrl=''">
               <tbody>
-                <tr>
-                  <td>
-                    <input type="checkbox">
-                  </td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox">
-                  </td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox">
-                  </td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                <tr ng-repeat="image in images[imageIndex].images" ng-class="{selectRow: imageUrl==image.url}" style="cursor:pointer;" ng-click="updateUrl(image.url)">
+                  <td><img ng-src="{{image.url}}" alt="" style="max-width: 30px;
+    margin: 0 5px;"><span>{{image.name}}</span></td>
+                  <td>{{image.length/1024|number:2}}kb</td>
                 </tr>
               </tbody>
             </table>
@@ -622,7 +603,7 @@
         </div>
       </div>
       <div class="modal-footer" style="clear:both">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!imageUrl" ng-click="setImageUrl()">OK</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
