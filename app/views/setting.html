@@ -34,9 +34,9 @@
     </div>
   </div>
 </nav>
-<div class="container" ng-hide="!currentData.name && currentPage != 10">
+<div class="container" ng-hide="!currentData && currentPage != 10">
   <div class="row">
-    <ul class="nav nav-pills nav-stacked col-md-2"  ng-hide="!currentData.name">
+    <ul class="nav nav-pills nav-stacked col-md-2"  ng-hide="!currentData">
       <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
       <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
       <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
