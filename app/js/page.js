@@ -60,6 +60,15 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     }, 500);
   };
 
+  $scope.stopProAsyn = function(callback) {
+    $timeout.cancel($scope.timeout);
+    $scope.value = 100;
+    $timeout(function() {
+      $scope.showPro = false;
+      callback();
+    }, 500);
+  };
+
   $scope.$on(
     "$destroy",
     function(event) {
@@ -138,9 +147,10 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   });
 
   function showResult(result, name) {
+    $timeout.cancel($scope.mesTimeout);
     $scope.result = result;
     $scope.templateName = name;
-    $timeout(function() {
+    $scope.mesTimeout = $timeout(function() {
       $scope.result = 0;
     }, 2000);
   };
@@ -163,19 +173,61 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       space: $scope.currentData.space,
       data: $rootScope.data
     };
-    DataService.saveData(data, function(res) {
-      for (var i = 0; i < $scope.settingData.length; i++) {
-        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
-          $scope.settingData.data = data.data;
-          $scope.settingData._id = res.id;
-          $scope.settingData._rev = res.rev;
-          $scope.currentData.data = data.data;
-          $scope.currentData._id = res.id;
-          $scope.currentData._rev = res.rev;
-          break;
+    if ($scope.currentData.name != 'default') {
+      DataService.saveData(data, function(res) {
+        for (var i = 0; i < $scope.settingData.length; i++) {
+          if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+            $scope.settingData.data = data.data;
+            $scope.settingData._id = res.id;
+            $scope.settingData._rev = res.rev;
+            $scope.currentData.data = data.data;
+            $scope.currentData._id = res.id;
+            $scope.currentData._rev = res.rev;
+            break;
+          };
         };
-      };
-      showResult(5, $scope.currentData.name);
+        showResult(5, $scope.currentData.name);
+        var data_cre = {
+          data: $rootScope.data
+        };
+        var str = angular.toJson($rootScope.data);
+        data_cre.data = angular.fromJson(str);
+
+        if ($scope.currentData && $scope.currentSpace) {
+          data_cre.name = $scope.currentData.name;
+          data_cre.space = $scope.currentSpace.name;
+        };
+        if (data_cre.data.meta.country && data_cre.data.meta.language) {
+          for (var i = 0; i < DataService.getDefaultCountry.length; i++) {
+            if (DataService.getDefaultCountry[i].country == data_cre.data.meta.country) {
+              data_cre.data.meta.country = DataService.getDefaultCountry[i].code;
+              break;
+            };
+          };
+          for (var i = 0; i < DataService.getDefaultLanguage.length; i++) {
+            if (DataService.getDefaultLanguage[i].language == data_cre.data.meta.language) {
+              data_cre.data.meta.language = DataService.getDefaultLanguage[i].code;
+              break;
+            };
+          };
+        };
+        DataService.createPage(data_cre, function(res) {
+          $timeout(function() {
+            $('#createBtn').button('reset');
+            window.open('./pages/' + data_cre.space + '/' + data_cre.name + '.html', '_blank');
+          }, 500);
+          $scope.stopPro();
+        }, function(res) {
+          showResult(7, "");
+          $('#createBtn').button('reset');
+          $scope.stopPro();
+        });
+      }, function(res) {
+        showResult(6, $scope.currentData.name);
+        $scope.stopPro();
+        $('#saveBtn').button('reset');
+      });
+    } else {
       var data_cre = {
         data: $rootScope.data
       };
@@ -211,11 +263,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         $('#createBtn').button('reset');
         $scope.stopPro();
       });
-    }, function(res) {
-      showResult(6, $scope.currentData.name);
-      $scope.stopPro();
-      $('#saveBtn').button('reset');
-    });
+    };
   };
 
   $scope.add = function() {
@@ -246,13 +294,23 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
           data._id = res.id;
           data._rev = res.rev;
           $scope.settingData.push(data);
-          $scope.stopPro();
+          $scope.stopProAsyn(function() {
+            $('#loadAutoModal').modal('show');
+          });
         }, function(res) {
           $scope.stopPro();
           showResult(2, $scope.tarName);
         });
       };
     };
+  };
+
+  $scope.loadAuto = function(){
+    $scope.currentData = $scope.tarData;
+    $scope.currentSpace = $scope.tarSpace;
+    var str = angular.toJson($scope.currentData.data);
+    $rootScope.data = angular.fromJson(str);
+    console.log("[Load finished] ", $scope.currentData);
   };
 
   $scope.swap = function(type) {
@@ -292,6 +350,37 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
       };
       $scope.stopPro();
+      $scope.currentData = null;
+      $scope.currentSpace = null;
+      $rootScope.data = {};
+      $rootScope.data.setting = {
+        lead: 0,
+        defi1: {
+          type: 0,
+          substyle: 0,
+        },
+        defi2: {
+          type: 0,
+          substyle: 0,
+        },
+        prom1: {
+          type: 0,
+          substyle: 0
+        },
+        prom2: {
+          type: 0,
+          substyle: 0
+        },
+        prom3: {
+          type: 0,
+          substyle: 0
+        },
+        disc: {
+          type: 0,
+          substyle: 0
+        },
+        contact: 0
+      };
     }, function(res) {
       showResult(4, $scope.currentData.name);
       $scope.stopPro();
@@ -405,7 +494,7 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
     $scope.imageIndex = index;
   };
 
-  $scope.updateUrl = function(url){
+  $scope.updateUrl = function(url) {
     $scope.imageUrl = url;
   };
 

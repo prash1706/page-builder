@@ -8,22 +8,24 @@
         <div class="form-group">
           <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Open</button>
           <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=''" data-toggle="modal" data-target="#addModal">New</button>
-          <button class="btn btn-default form-group" ng-disabled="currentData.name == '' || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          <button class="btn btn-default form-group" ng-disabled="!currentData.name || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </form>
     </div>
     <p class="navbar-text navbar-position" ng-show="currentData">User Folder: <strong>{{currentSpace.name}}</strong> / Page Name: <strong>{{currentData.name}}</strong></p>
-    <p class="navbar-text" ng-show="result==1" style="color: #337ab7;">Add {{templateName}} successfully!</p>
-    <p class="navbar-text text-danger" ng-show="result==2" style="color: #a94442;">Add {{templateName}} unsuccessfully!</p>
-    <p class="navbar-text text-success" ng-show="result==3" style="color: #337ab7;">Delete {{templateName}} successfully!</p>
-    <p class="navbar-text text-danger" ng-show="result==4" style="color: #a94442;">Delete {{templateName}} unsuccessfully!</p>
-    <p class="navbar-text text-success" ng-show="result==5" style="color: #337ab7;">Save {{templateName}} successfully!</p>
-    <p class="navbar-text text-danger" ng-show="result==6" style="color: #a94442;">Save {{templateName}} unsuccessfully!</p>
-    <p class="navbar-text text-danger" ng-show="result==7" style="color: #a94442;">Please input enough data of required modules!</p>
-    <p class="navbar-text text-success" ng-show="result==8" style="color: #337ab7;">Swap Promotion Data successfully!</p>
+    <div>
+      <p class="navbar-text" ng-show="result==1" style="color: #337ab7;">Add {{templateName}} successfully!</p>
+      <p class="navbar-text text-danger" ng-show="result==2" style="color: #a94442;">Add {{templateName}} unsuccessfully!</p>
+      <p class="navbar-text text-success" ng-show="result==3" style="color: #337ab7;">Delete {{templateName}} successfully!</p>
+      <p class="navbar-text text-danger" ng-show="result==4" style="color: #a94442;">Delete {{templateName}} unsuccessfully!</p>
+      <p class="navbar-text text-success" ng-show="result==5" style="color: #337ab7;">Save {{templateName}} successfully!</p>
+      <p class="navbar-text text-danger" ng-show="result==6" style="color: #a94442;">Save {{templateName}} unsuccessfully!</p>
+      <p class="navbar-text text-danger" ng-show="result==7" style="color: #a94442;">Please input enough data of required modules!</p>
+      <p class="navbar-text text-success" ng-show="result==8" style="color: #337ab7;">Swap Promotion Data successfully!</p>
+    </div>
     <!-- <div class="alert alert-success " role="alert">Delete success!</div> -->
     <div class="nav navbar-nav navbar-right">
-      <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="currentData.name == null || currentData.name == 'default'" data-loading-text="Saving..." ng-click="save()">Save</button>
+      <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="!currentData.name || currentData.name == 'default'" data-loading-text="Saving..." ng-click="save()">Save</button>
       <button class="btn btn-danger navbar-btn" id="createBtn" ng-disabled="currentData.name == null" data-loading-text="Generating..." ng-click="createPage()">Generate page</button>
     </div>
   </div>
@@ -32,7 +34,7 @@
     </div>
   </div>
 </nav>
-<div class="container">
+<div class="container" ng-hide="!currentData.name">
   <div class="row">
     <ul class="nav nav-pills nav-stacked col-md-2">
       <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
@@ -149,6 +151,27 @@
     </div>
   </div>
 </div>
+<!-- Load Automatically -->
+<div class="modal fade" id="loadAutoModal" tabindex="-1" role="dialog" aria-labelledby="loadAutoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Open a page</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4>Are you sure to open the <strong>{{tarData.name}}</strong> page?</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="loadAuto()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Swap -->
 <div class="modal fade" id="swap1and2Modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
