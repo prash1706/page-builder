@@ -100,7 +100,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         if (!res[i].data) {
           res[i].data = DataService.getNullData.data;
         };
-        if (!res[i].space || space_str.indexOf(res[i].space) === -1) {
+        if (!res[i].space) {
           res[i].space = "0";
         };
         if (!res[i].data.meta) {
