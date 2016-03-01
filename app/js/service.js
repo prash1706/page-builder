@@ -19,6 +19,12 @@ serviceApp.factory('DataService', function($http) {
     addFolder: function(data, success, error) {
       $http.post('/folder', data).success(success).error(error);
     },
+    deleteFolder: function(data, success, error){
+      $http.delete('/folder/' + data._id + '/' + data._rev).success(success).error(error);
+    },
+    renameFolder: function(data, success, error){
+      $http.put('/folder/' + data._id, data).success(success).error(error);
+    },
     getFolder: function(success, error) {
       $http.get('/folder').success(success).error(error);
     },

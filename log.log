@@ -32,3 +32,4 @@ Wed Feb 24 2016 14:41:46 GMT+0800 (China Standard Time) | /image | {} | TypeErro
 Wed Feb 24 2016 14:44:18 GMT+0800 (China Standard Time) | /image | {} | TypeError: Cannot read property 'length' of undefined
 Wed Feb 24 2016 16:58:56 GMT+0800 (China Standard Time) | /image/upload | {"_id":"_design/public","_rev":"28-627c12621fec7d7365ad48ad828bf87e","folder":"public"} | ReferenceError: string is not defined
 Wed Feb 24 2016 17:01:07 GMT+0800 (China Standard Time) | /image/upload | {"_id":"_design/public","_rev":"28-627c12621fec7d7365ad48ad828bf87e","folder":"public"} | ReferenceError: string is not defined
+Tue Mar 01 2016 17:00:06 GMT+0800 (China Standard Time) | /folder/undefined/undefined | {} | ReferenceError: error is not defined

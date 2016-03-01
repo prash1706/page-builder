@@ -1,34 +1,85 @@
-<legend class="color1">Manage</legend>
-<h4>Top Level Folder</h4>
-<div class="col-md-8">
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in spaces">{{item.name}}</li>
-        <li class="list-group-item">
-            <div class="input-group">
-                <input type="text" class="form-control" maxlength="20" ng-model="tarFolder"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="addFolder()" ng-disabled="!tarFolder"><span class="glyphicon glyphicon-plus"></span></button>
-                </span>
-            </div>
-        </li>
-    </ul>
+<legend class="color1">Manage User Folder</legend>
+<div class="col-md-10" ng-show="hasLogged">
+  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addFolderModal" ><span class="glyphicon glyphicon-plus"></span>Add</button>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in spaces"><span>{{item.name}}</span>
+      <button type="button" class="renameFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#renameFolderModal" ng-hide="item.name == 'Public'"><span class="glyphicon glyphicon-pencil"></span></button>
+      <button type="button" class="deleteFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#deleteFolderModal" ng-hide="item.name == 'Public'"><span class="glyphicon glyphicon-remove"></span></button>
+    </li>
+  </ul>
 </div>
-<div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="folderModalLabel">
+<div class="col-md-8" ng-show="!hasLogged">
+  <form>
+    <div class="form-group">
+      <label for="adminPassword">Please input the password</label>
+      <input type="password" class="form-control" id="adminPassword" tabindex="1" ng-model="password" placeholder="password" />
+    </div>
+    <button type="submit" class="btn btn-primary" style="width:20%" ng-disabled="!password" ng-click="check()">OK</button>
+  </form>
+</div>
+<div class="modal fade" id="deleteFolderModal" tabindex="-1" role="dialog" aria-labelledby="deleteFolderModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">Please input the password</h4>
-    </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Delete a Folder</h4>
+      </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <label class="col-md-2 control-label"></label>
-          <div class="col-md-8">
-            <input type="password" class="form-control" ng-model="password" />
-          </div>
+          <h4>Are you sure to delete the <strong>{{myFolder.name}}</strong> folder and hide its pages?</h4>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="width:20%" ng-disabled="!password" ng-click="check()">OK</button>
+        <button type="button" class="btn btn-primary" ng-click="deleteFolder()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="renameFolderModal" tabindex="-1" role="dialog" aria-labelledby="renameFolderModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Rename a Folder</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="folderName" class="col-sm-3 control-label">Folder Name</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="folderName" maxlength="20" tabindex="1" ng-model="tarFolder" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="renameFolder()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addFolderModal" tabindex="-1" role="dialog" aria-labelledby="addFolderModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add a Folder</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="folderName" class="col-sm-3 control-label">Folder Name</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="folderName" maxlength="20" tabindex="1" ng-model="tarFolder" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="addFolder()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -133,7 +133,7 @@ app.post('/templates/:id', function(req, res) {
       console.log(data);
       res.send(data);
     };
-  })
+  });
 });
 
 // get all templates
@@ -177,8 +177,8 @@ app.get('/folder', function(req, res) {
 // add one folder
 app.post('/folder', function(req, res) {
   db = cloudant.db.use('northstar_folder');
-  db.insert(req.body, function(err, data) {
-    if (err) {
+  db.insert(req.body, function(error, data) {
+    if (error) {
       console.error(error);
       res.status(401).send(error);
     } else {
@@ -186,6 +186,41 @@ app.post('/folder', function(req, res) {
     }
   });
 });
+
+
+// rename one folder
+app.put('/folder/:id', function(req, res) {
+  db = cloudant.db.use('northstar_folder');
+  console.log(req.body);
+  db.insert(req.body, function(error, data) {
+    if (error) {
+      console.error(error);
+      res.status(401).send(error);
+    } else {
+      console.log(data);
+      res.send(data);
+    };
+  });
+});
+
+// delete one folder
+app.delete('/folder/:id/:rev', function(req, res) {
+  db = cloudant.db.use('northstar_folder');
+  var id = req.params.id;
+  var rev = req.params.rev;
+  console.log(req.params);
+  db.destroy(id, rev, function(error, body) {
+    if (error) {
+      console.error(error);
+      res.status(401).send(error);
+    } else {
+      console.log(body);
+      res.send(body);
+    };
+  });
+});
+
+
 
 /*
 doc = {
@@ -212,9 +247,7 @@ app.get('/image', function(req, res) {
       res.status(401).send(err);
     } else {
       var data = [];
-      console.log(body);
       body.rows.forEach(function(value) {
-        console.log('value.doc', value.doc);
         if (typeof(value.doc) == 'object') {
           var doc = {
             _id: value.doc._id,
@@ -223,7 +256,6 @@ app.get('/image', function(req, res) {
             images: []
           };
           for (var key in value.doc._attachments) {
-            console.log('key', value.doc._attachments[key]);
             var image = {
               name: key,
               url: "https://ibmddm.cloudant.com/files_space_dev/" + value.doc._id + "/" + key,

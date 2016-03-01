@@ -82,6 +82,7 @@ div#addModal div.modal-header label {
   display: inline;
   margin-left: 30px;
 }
+
 #toolProgressBar {
   float: left;
   width: 100%;
@@ -92,5 +93,23 @@ div#addModal div.modal-header label {
 
 tr.selectRow {
   background-color: #337ab7;
-  color:white;
+  color: white;
+}
+
+button.renameFolder {
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  position: absolute;
+  right: 40px;
+}
+
+button.deleteFolder {
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  position: absolute;
+  right: 15px;
 }
