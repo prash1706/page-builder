@@ -305,8 +305,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     };
   };
 
-  $scope.loadAuto = function(){
-    $scope.currentData = $scope.tarData;
+  $scope.loadAuto = function() {
+    $scope.currentData = $scope.settingData[$scope.settingData.length - 1];
     $scope.currentSpace = $scope.tarSpace;
     var str = angular.toJson($scope.currentData.data);
     $rootScope.data = angular.fromJson(str);
