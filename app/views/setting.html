@@ -111,14 +111,14 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">User Folder</label>
             <div class="col-sm-6">
-              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces">
+              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
               </select>
             </div>
           </div>
           <div class="form-group" ng-show="tarSpace">
             <label class="col-sm-3 control-label">Page</label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace._id }">
+              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace._id } | orderBy : 'name' : false">
               </select>
             </div>
           </div>

@@ -298,7 +298,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
           data._rev = res.rev;
           $scope.settingData.push(data);
           $scope.stopProAsyn(function() {
-            $('#loadAutoModal').modal('show');
+            $scope.loadAuto();
           });
         }, function(res) {
           $scope.stopPro();
@@ -552,18 +552,20 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
     $("#uploadBtn").button('loading');
     $scope.startPro();
     console.log("$scope.isNewImage", $scope.isNewImage);
-    console.log("$scope.tarImage", $scope.tarImage);
+    console.log("$scope.tarProjectName", $scope.tarProjectName);
     console.log("$scope.currentImage", $scope.currentImage);
     var data = {};
     if ($scope.isNewImage) {
       data = {
-        folder: $scope.tarImage
+        projectName: $scope.tarProjectName,
+        folderId: $scope.tarSpace._id
       };
     } else {
       data = {
         _id: $scope.currentImage._id,
         _rev: $scope.currentImage._rev,
-        folder: $scope.currentImage.folder
+        projectName: $scope.currentImage._id,
+        folderId: $scope.currentImage.folderId
       };
     };
     Upload.upload({
@@ -580,11 +582,12 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
       } else {
         $scope.currentImage._rev = res.data._rev;
         $scope.currentImage._id = res.data._id;
+        $scope.currentImage.folderId = res.data.folderId;
         $scope.currentImage.images.push(res.data.image);
         $rootScope.data.defi1.asset.imgUrl = res.data.image.url;
         console.log($scope.images);
       };
-      $scope.tarImage = '';
+      $scope.tarProjectName = '';
       $scope.isNewImage = false;
       $("#uploadBtn").button('reset');
     }, function(err) {

@@ -7,7 +7,7 @@ header(role='banner', aria-labelledby='ibm-pagetitle-h1', class=(setting.lead==1
             h1.ibm-h1.ibm-light= lead.headline
             .ibm-padding-top-1.ibm-h3.ibm-light= lead.subhead
             p.ibm-button-link.ibm-padding-top-2
-              a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat
+              a.ibm-btn-pri.ibm-btn-orange-50(href="#{lead.catUrl}")= lead.cat
   else if setting.lead == 2
     #ibm-leadspace-head(class="ibm-alternate-background ibm-video-background", style="background:url(#{lead.imgUrl});")
       #ibm-leadspace-body.ibm-padding-top-r2.ibm-padding-bottom-r2.ibm-alternate.ibm-alternate-background
@@ -16,7 +16,7 @@ header(role='banner', aria-labelledby='ibm-pagetitle-h1', class=(setting.lead==1
             h1.ibm-h1.ibm-light= lead.headline
             .ibm-padding-top-1.ibm-h3.ibm-light= lead.subhead
             p.ibm-button-link.ibm-padding-top-2
-              a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat
+              a.ibm-btn-pri.ibm-btn-orange-50(href="#{lead.catUrl}")= lead.cat
       .ibm-video-background-container.ibm-hidden-small.ibm-hidden-medium
         video(autoplay, loop, muted,style="width: 100%;")
           source(src="#{lead.videoUrl}", type="video/mp4")
@@ -28,4 +28,4 @@ header(role='banner', aria-labelledby='ibm-pagetitle-h1', class=(setting.lead==1
             h1.ibm-h1.ibm-light.ibm-padding-bottom-0= lead.headline
             p.ibm-h4.ibm-light.ibm-padding-bottom-2= lead.subhead
             p.ibm-btn-row
-              a.ibm-btn-pri.ibm-btn-orange-50(href=lead.catUrl)= lead.cat
+              a.ibm-btn-pri.ibm-btn-orange-50(href="#{lead.catUrl}")= lead.cat
