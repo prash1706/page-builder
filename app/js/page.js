@@ -352,6 +352,49 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     console.log("[Load finished] ", $scope.currentData);
   };
 
+  $scope.verifyCurrentPage = function() {
+    $scope.tarData = null;
+    $scope.tarName = '';
+    if (!$scope.currentData) {
+      $("#addModal").modal('show');
+    } else {
+      $("#verifyPageOpened").modal('show');
+    }
+    console.log("[add] currentData = ", $scope.currentData);
+  };
+
+  $scope.saveCurrentPage = function() {
+    $('#saveBtn').button('loading');
+    $scope.startPro();
+    var data = {
+      _id: $scope.currentData._id,
+      _rev: $scope.currentData._rev,
+      name: $scope.currentData.name,
+      space: $scope.currentData.space,
+      data: $rootScope.data
+    };
+    DataService.saveData(data, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+          $scope.settingData.data = data.data;
+          $scope.settingData._id = res.id;
+          $scope.settingData._rev = res.rev;
+          $scope.currentData.data = data.data;
+          $scope.currentData._id = res.id;
+          $scope.currentData._rev = res.rev;
+          break;
+        };
+        $("#addModal").modal('show');
+      };
+      $('#saveBtn').button('reset');
+      showResult(5, $scope.currentData.name);
+      $scope.stopPro();
+    }, function(res) {
+      showResult(6, $scope.currentData.name);
+      $scope.stopPro();
+      $('#saveBtn').button('reset');
+    });
+  };
   $scope.swap = function(type) {
     // type: 1  swap pro1 and prom2
     // type: 2  swap pro2 and prom3
