@@ -33,8 +33,14 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.settingData = [];
   $scope.spaces = [];
   $scope.images = [];
-  $scope.settingData.push(DataService.getDefaultData);
+  $scope.currentData = null;
+  $scope.tarData = null;
+  $scope.tarName = "";
+  $scope.templateName = "";
+  $scope.fromSpace = "";
+  $scope.result = 0;
   $scope.value = 0;
+  // $scope.errorMsg = 'test';
 
   $scope.startPro = function() {
     $scope.showPro = true;
@@ -78,16 +84,11 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       $timeout.cancel($scope.timeout);
     }
   );
-  // setInterval(function() {
-  //   $scope.$apply($scope.startPro);
-  // }, 5000);
-
 
   DataService.getFolder(function(res) {
     $scope.startPro();
-    console.log(res);
+    console.log("[GetFolder] Folder:", res);
     $scope.spaces = res;
-    $scope.spaces.unshift({ _id: '0', name: 'Public' });
     var space_arr = [];
     $scope.spaces.forEach(function(space) {
       space_arr.push(space._id);
@@ -95,13 +96,12 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     var space_str = space_arr.join(',');
     DataService.getData(function(res) {
       $scope.settingData = [];
-      $scope.settingData.push(DataService.getDefaultData);
-      for (var i in res) {
+      for (var i = 0; i < res.length; i++) {
+        if (!res[i].space) {
+          continue;
+        };
         if (!res[i].data) {
           res[i].data = DataService.getNullData.data;
-        };
-        if (!res[i].space) {
-          res[i].space = "0";
         };
         if (!res[i].data.meta) {
           res[i].data.meta = {
@@ -114,11 +114,11 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
         $scope.settingData.push(res[i]);
       };
-      console.log("[GetData] $scope.settingData:", $scope.settingData);
+      console.log("[GetData] SettingData:", $scope.settingData);
       $scope.images = [];
       DataService.getImage(function(res) {
         $scope.images = res;
-        console.log("[GetImage] $scope.images:", $scope.images);
+        console.log("[GetImage] Images:", $scope.images);
         $scope.stopPro();
       }, function(res) {
         console.error(res);
@@ -133,19 +133,12 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $scope.stopPro();
   });
 
-  $scope.currentData = null;
-  $scope.tarData = null;
-  $scope.tarName = "";
-  $scope.templateName = "";
-  $scope.fromSpace = "";
-  $scope.result = 0;
-
   $scope.$watch(function() {
     return $scope.tarName;
   }, function() {
     if ($scope.tarName) {
-      $scope.tarName = $scope.tarName.replace(/\s/, '_');
-      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
+      // $scope.tarName = $scope.tarName.replace(/\s/, '_');
+      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-\s]/, '');
     };
   });
 
@@ -270,7 +263,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   };
 
   $scope.add = function() {
-    if ($scope.tarName == "" || $scope.tarName == "default") {
+    if ($scope.tarName == "") {
       showResult(2, $scope.tarName);
     } else {
       var isRight = true;
@@ -291,7 +284,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         } else {
           data.data = DataService.getNullData.data;
         };
-        console.log("[add] data = ", data);
+        console.log("[Add Page] data = ", data);
         DataService.add(data, function(res) {
           showResult(1, $scope.tarName);
           data._id = res.id;
@@ -311,7 +304,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.verifyPageOpened = function() {
     $scope.tarData = null;
     $scope.tarName = '';
-    if (!$scope.currentData || $scope.currentData.name == 'default') {
+    if (!$scope.currentData) {
       $('#addModal').modal('show');
     } else {
       $('#saveCurrentModal').modal('show');

@@ -3,8 +3,8 @@
   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addFolderModal" ><span class="glyphicon glyphicon-plus"></span>Add</button>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="item in spaces"><span>{{item.name}}</span>
-      <button type="button" class="renameFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#renameFolderModal" ng-hide="item.name == 'Public'"><span class="glyphicon glyphicon-pencil"></span></button>
-      <button type="button" class="deleteFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#deleteFolderModal" ng-hide="item.name == 'Public'"><span class="glyphicon glyphicon-remove"></span></button>
+      <button type="button" class="renameFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#renameFolderModal"><span class="glyphicon glyphicon-pencil"></span></button>
+      <button type="button" class="deleteFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#deleteFolderModal"><span class="glyphicon glyphicon-remove"></span></button>
     </li>
   </ul>
 </div>

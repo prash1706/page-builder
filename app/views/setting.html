@@ -8,7 +8,7 @@
         <div class="form-group">
           <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Open</button>
           <button class="btn btn-default form-group" ng-disabled="" ng-click="verifyPageOpened()">New</button>
-          <button class="btn btn-default form-group" ng-disabled="!currentData.name || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          <button class="btn btn-default form-group" ng-disabled="!currentData.name" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </form>
     </div>
@@ -25,8 +25,8 @@
     </div>
     <!-- <div class="alert alert-success " role="alert">Delete success!</div> -->
     <div class="nav navbar-nav navbar-right">
-      <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="!currentData.name || currentData.name == 'default'" data-loading-text="Saving..." ng-click="save()">Save</button>
-      <button class="btn btn-danger navbar-btn" id="createBtn" ng-disabled="currentData.name == null" data-loading-text="Generating..." ng-click="createPage()">Generate page</button>
+      <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="!currentData.name" data-loading-text="Saving..." ng-click="save()">Save</button>
+      <button class="btn btn-danger navbar-btn" id="createBtn" ng-disabled="!currentData.name" data-loading-text="Generating..." ng-click="createPage()">Generate page</button>
     </div>
   </div>
   <div class="progress" id="toolProgressBar">
@@ -34,9 +34,13 @@
     </div>
   </div>
 </nav>
-<div class="container" ng-hide="!currentData && currentPage != 10">
+<!-- <div class="errorBox" ng-init="errorMsg == 'test'">
+  <p class="errorMsg">{{errorMsg}}</p>
+  <button type="button" class="close" aria-label="Close" ng-click="errorMsg = false" style="top: 9px"><span aria-hidden="true">×</span></button>
+</div>
+ --><div class="container" ng-hide="!currentData && currentPage != 10">
   <div class="row">
-    <ul class="nav nav-pills nav-stacked col-md-2"  ng-hide="!currentData">
+    <ul class="nav nav-pills nav-stacked col-md-2">
       <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
       <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
       <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
@@ -211,6 +215,7 @@
     </div>
   </div>
 </div>
+<!-- Swap Modal -->
 <div class="modal fade" id="swap2and3Modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

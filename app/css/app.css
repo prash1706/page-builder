@@ -113,3 +113,46 @@ button.deleteFolder {
   position: absolute;
   right: 15px;
 }
+
+
+.successBox {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 5px;
+  width: 20%;
+  z-index: 10;
+}
+
+.successMsg {
+  display: block;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 20px;
+  background: #1fcf6d;
+  border-radius: 5px;
+  color: white;
+}
+
+.errorBox {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 5px;
+  width: 20%;
+  z-index: 1100;
+}
+
+.errorMsg {
+  display: block;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 20px;
+  background: #DE2525;
+  border-radius: 5px;
+  color: white;
+}
