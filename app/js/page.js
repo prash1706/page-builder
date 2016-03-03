@@ -20,6 +20,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       $scope.currentPage = 7;
     } else if ($state.current.name == "setting.meta") {
       $scope.currentPage = 8;
+    } else if ($state.current.name == "setting.manage") {
+      $scope.currentPage = 10;
     };
   };
   $scope.$watch(function() {
@@ -33,6 +35,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
   $scope.images = [];
   $scope.settingData.push(DataService.getDefaultData);
   $scope.value = 0;
+
   $scope.startPro = function() {
     $scope.showPro = true;
     $scope.value = 0;
@@ -97,7 +100,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         if (!res[i].data) {
           res[i].data = DataService.getNullData.data;
         };
-        if (!res[i].space || space_str.indexOf(res[i].space) === -1) {
+        if (!res[i].space) {
           res[i].space = "0";
         };
         if (!res[i].data.meta) {
@@ -303,6 +306,49 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         });
       };
     };
+  };
+
+  $scope.verifyPageOpened = function() {
+    $scope.tarData = null;
+    $scope.tarName = '';
+    if (!$scope.currentData || $scope.currentData.name == 'default') {
+      $('#addModal').modal('show');
+    } else {
+      $('#saveCurrentModal').modal('show');
+    };
+  };
+
+  $scope.saveAuto = function() {
+    $('#saveBtn').button('loading');
+    $scope.startPro();
+    var data = {
+      _id: $scope.currentData._id,
+      _rev: $scope.currentData._rev,
+      name: $scope.currentData.name,
+      space: $scope.currentData.space,
+      data: $rootScope.data
+    };
+    DataService.saveData(data, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+          $scope.settingData.data = data.data;
+          $scope.settingData._id = res.id;
+          $scope.settingData._rev = res.rev;
+          $scope.currentData.data = data.data;
+          $scope.currentData._id = res.id;
+          $scope.currentData._rev = res.rev;
+          break;
+        };
+      };
+      $('#saveBtn').button('reset');
+      showResult(5, $scope.currentData.name);
+      $scope.stopPro();
+      $('#addModal').modal('show');
+    }, function(res) {
+      showResult(6, $scope.currentData.name);
+      $scope.stopPro();
+      $('#saveBtn').button('reset');
+    });
   };
 
   $scope.loadAuto = function() {
@@ -549,18 +595,20 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
     $("#uploadBtn").button('loading');
     $scope.startPro();
     console.log("$scope.isNewImage", $scope.isNewImage);
-    console.log("$scope.tarImage", $scope.tarImage);
+    console.log("$scope.tarProjectName", $scope.tarProjectName);
     console.log("$scope.currentImage", $scope.currentImage);
     var data = {};
     if ($scope.isNewImage) {
       data = {
-        folder: $scope.tarImage
+        projectName: $scope.tarProjectName,
+        folderId: $scope.tarSpace._id
       };
     } else {
       data = {
         _id: $scope.currentImage._id,
         _rev: $scope.currentImage._rev,
-        folder: $scope.currentImage.folder
+        projectName: $scope.currentImage._id,
+        folderId: $scope.currentImage.folderId
       };
     };
     Upload.upload({
@@ -577,11 +625,12 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
       } else {
         $scope.currentImage._rev = res.data._rev;
         $scope.currentImage._id = res.data._id;
+        $scope.currentImage.folderId = res.data.folderId;
         $scope.currentImage.images.push(res.data.image);
         $rootScope.data.defi1.asset.imgUrl = res.data.image.url;
         console.log($scope.images);
       };
-      $scope.tarImage = '';
+      $scope.tarProjectName = '';
       $scope.isNewImage = false;
       $("#uploadBtn").button('reset');
     }, function(err) {
@@ -1133,16 +1182,18 @@ myPageApp.controller('SetMetaCtrl', function($scope, $rootScope) {
 });
 
 myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
-  $('#folderModal').modal({
-    backdrop: 'static',
-    keyboard: false,
-    show: true
-  });
+
+  $scope.hasLogged = false;
+  $scope.myFolder = {};
 
   $scope.check = function() {
     if ($scope.password == 'admin') {
-      $('#folderModal').modal('hide');
+      $scope.hasLogged = true;
     };
+  };
+
+  $scope.setMyFolder = function(item) {
+    $scope.myFolder = item;
   };
 
   $scope.addFolder = function() {
@@ -1151,7 +1202,57 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
       name: $scope.tarFolder
     };
     DataService.addFolder(folder, function(res) {
+      folder._id = res.id;
+      folder._rev = res.rev;
       $scope.spaces.push(folder);
+      $scope.tarFolder = '';
+      $scope.stopPro();
+    }, function(res) {
+      $scope.stopPro();
+      console.error(res);
+    });
+  };
+
+  $scope.deleteFolder = function() {
+    $scope.startPro();
+    var folder = {
+      _id: $scope.myFolder._id,
+      _rev: $scope.myFolder._rev,
+      name: $scope.myFolder.name
+    };
+    DataService.deleteFolder(folder, function(res) {
+      var index = 0;
+      for (index = 0; index < $scope.spaces.length; index++) {
+        if ($scope.spaces[index]._id == folder._id) {
+          break;
+        };
+      };
+      $scope.spaces.splice(index, 1);
+      $scope.tarFolder = '';
+      $scope.stopPro();
+    }, function(res) {
+      $scope.stopPro();
+      console.error(res);
+    });
+  };
+
+  $scope.renameFolder = function() {
+    $scope.startPro();
+    var folder = {
+      _id: $scope.myFolder._id,
+      _rev: $scope.myFolder._rev,
+      name: $scope.tarFolder
+    };
+    DataService.renameFolder(folder, function(res) {
+      folder._id = res.id;
+      folder._rev = res.rev;
+      var index = 0;
+      for (index = 0; index < $scope.spaces.length; index++) {
+        if ($scope.spaces[index]._id == $scope.myFolder._id) {
+          break;
+        };
+      };
+      $scope.spaces.splice(index, 1, folder);
       $scope.tarFolder = '';
       $scope.stopPro();
     }, function(res) {

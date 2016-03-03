@@ -252,13 +252,13 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.desc">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.ctaUrl">
@@ -286,13 +286,13 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.desc">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.ctaUrl">
@@ -320,13 +320,13 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.desc">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.ctaUrl">
@@ -355,13 +355,13 @@
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.desc">
       </div>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+    <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
       <label class="col-sm-2 control-label">CTA Button Label</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.cta">
       </div>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+    <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
       <label class="col-sm-2 control-label">CTA Button URL</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.ctaUrl">
@@ -543,16 +543,23 @@
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">User Folder</label>
+            <div class="col-sm-6">
+              <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
+              </select>
+            </div>
+          </div>
           <div class="form-group" ng-hide="!isNewImage">
             <label class="col-sm-3 control-label">Project folder</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" ng-model="tarImage" >
+              <input class="form-control" type="text" ng-model="tarProjectName" >
             </div>
           </div>
           <div class="form-group" ng-hide="isNewImage">
             <label class="col-sm-3 control-label">Project folder</label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="currentImage" ng-options="image.folder for image in images">
+              <select class="form-control" ng-model="currentImage" ng-options="image._id for image in images | filter: {folderId : tarSpace._id } | orderBy : '_id' : false">
               </select>
             </div>
           </div>
@@ -573,7 +580,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!myFile || (isNewImage && !tarImage) || (!isNewImage && !currentImage)" ng-click="upload()">OK</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!myFile || (isNewImage && !tarProjectName) || (!isNewImage && !currentImage)" ng-click="upload()">OK</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -589,10 +596,17 @@
       </div>
       <div class="modal-body">
         <h5><span class="glyphicon glyphicon-info-sign"></span><strong> To get a URL please select a project folder then select an image and then hit OK button.</strong></h5>
-        <div class="col-sm-12" style="padding:5px; margin-top: 40px; margin-bottom: 40px">
+        <div class="form-group col-sm-8" style="margin: 20px auto">
+          <label class="col-sm-2 control-label">User Folder</label>
+          <div class="col-sm-6">
+            <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12" style="padding:5px;">
           <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
             <div class="list-group" ng-init="imageIndex=0">
-              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images track by $index" ng-class="{active: imageIndex == $index}" ng-click="updateIndex($index)">{{image.folder}}</a>
+              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id}" ng-class="{active: imageIndex == $index}" ng-click="updateIndex($index)">{{image._id}}</a>
             </div>
           </div>
           <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">

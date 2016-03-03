@@ -8,7 +8,7 @@ if type == 1
           h2.ibm-h4.ibm-light.ibm-textcolor-white-core.ibm-padding-bottom-0
             span.ibm-icon-nolink.ibm-phone-link.ibm-hidden-medium.ibm-hidden-small
             |#{data.callUsAt}
-            a.ibm-textcolor-white-core(href="tel" + "#{data.phone}")= data.phone
+            a.ibm-textcolor-white-core(href="tel:" + "#{data.phone}")= data.phone
             |(#{data.priorityCode}
             span.ibm-textcolor-yellow-30= data.priority
             |)
@@ -19,9 +19,9 @@ else
         .ibm-col-5-3.ibm-col-medium-1-1.ibm-padding-bottom-r1
           h2.ibm-h4.ibm-light.ibm-textcolor-white-core.ibm-padding-bottom-0
             span.ibm-icon-nolink.ibm-phone-link.ibm-hidden-small.ibm-hidden-medium
-            |Call us at:
-            a.ibm-textcolor-white-core(href="tel" + "#{data.phone}")= data.phone
-            |(Priority code:
+            |#{data.callUsAt}
+            a.ibm-textcolor-white-core(href="tel:" + "#{data.phone}")= data.phone
+            |(#{data.priorityCode}
             span.ibm-textcolor-yellow-30= data.priority
             |)
         .ibm-col-5-1.ibm-right

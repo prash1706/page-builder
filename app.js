@@ -133,7 +133,7 @@ app.post('/templates/:id', function(req, res) {
       console.log(data);
       res.send(data);
     };
-  })
+  });
 });
 
 // get all templates
@@ -177,8 +177,8 @@ app.get('/folder', function(req, res) {
 // add one folder
 app.post('/folder', function(req, res) {
   db = cloudant.db.use('northstar_folder');
-  db.insert(req.body, function(err, data) {
-    if (err) {
+  db.insert(req.body, function(error, data) {
+    if (error) {
       console.error(error);
       res.status(401).send(error);
     } else {
@@ -186,6 +186,41 @@ app.post('/folder', function(req, res) {
     }
   });
 });
+
+
+// rename one folder
+app.put('/folder/:id', function(req, res) {
+  db = cloudant.db.use('northstar_folder');
+  console.log(req.body);
+  db.insert(req.body, function(error, data) {
+    if (error) {
+      console.error(error);
+      res.status(401).send(error);
+    } else {
+      console.log(data);
+      res.send(data);
+    };
+  });
+});
+
+// delete one folder
+app.delete('/folder/:id/:rev', function(req, res) {
+  db = cloudant.db.use('northstar_folder');
+  var id = req.params.id;
+  var rev = req.params.rev;
+  console.log(req.params);
+  db.destroy(id, rev, function(error, body) {
+    if (error) {
+      console.error(error);
+      res.status(401).send(error);
+    } else {
+      console.log(body);
+      res.send(body);
+    };
+  });
+});
+
+
 
 /*
 doc = {
@@ -212,18 +247,16 @@ app.get('/image', function(req, res) {
       res.status(401).send(err);
     } else {
       var data = [];
-      console.log(body);
       body.rows.forEach(function(value) {
-        console.log('value.doc', value.doc);
+        console.log(value);
         if (typeof(value.doc) == 'object') {
           var doc = {
             _id: value.doc._id,
             _rev: value.doc._rev,
-            folder: value.doc._id.slice(8),
+            folderId: value.doc.folderId,
             images: []
           };
           for (var key in value.doc._attachments) {
-            console.log('key', value.doc._attachments[key]);
             var image = {
               name: key,
               url: "https://ibmddm.cloudant.com/files_space_dev/" + value.doc._id + "/" + key,
@@ -249,14 +282,14 @@ app.post('/image/upload', multipartyMiddleware, function(req, res) {
   fs.readFile(file.path, function(err, imageData) {
     if (data._rev) {
       console.log("Update Images");
-      db.attachment.insert('_design/' + data.folder, file.name, imageData, file.type, {
+      db.attachment.insert(data.projectName, file.name, imageData, file.type, {
         rev: data._rev
       }, function(err, body) {
         if (!err) {
           var image = {
             _id: body.id,
             _rev: body.rev,
-            folder: body.id.slice(8),
+            folderId: data.folderId,
             image: {
               name: file.name,
               url: "https://ibmddm.cloudant.com/files_space_dev/" + body.id + "/" + file.name,
@@ -272,27 +305,39 @@ app.post('/image/upload', multipartyMiddleware, function(req, res) {
       });
     } else {
       console.log("Add A New Image");
-      db.attachment.insert('_design/' + data.folder, file.name, imageData, file.type, function(err, body) {
-        if (!err) {
-          var image = {
-            _id: body.id,
-            _rev: body.rev,
-            folder: body.id.slice(8),
-            images: [{
-              name: file.name,
-              url: "https://ibmddm.cloudant.com/files_space_dev/" + body.id + "/" + file.name,
-              length: file.size
-            }]
-          };
-          console.log(image);
-          res.send(image);
-        } else {
-          console.error(err);
+      var docData = { _id: data.projectName, folderId: data.folderId };
+      db.insert(docData, function(err, docbody) {
+        if (err) {
+          console.log(err);
           res.status(501).send(err);
+        } else {
+          console.log(docbody);
+          db.attachment.insert(data.projectName, file.name, imageData, file.type, {
+            rev: docbody.rev
+          }, function(err, body) {
+            if (!err) {
+              console.log(body);
+              var image = {
+                _id: docbody.id,
+                _rev: docbody.rev,
+                folderId: data.folderId,
+                images: [{
+                  name: file.name,
+                  url: "https://ibmddm.cloudant.com/files_space_dev/" + body.id + "/" + file.name,
+                  length: file.size
+                }]
+              };
+              console.log(image);
+              res.send(image);
+            } else {
+              console.error(err);
+              res.status(501).send(err);
+            };
+          });
         };
       });
     };
-  })
+  });
 });
 
 

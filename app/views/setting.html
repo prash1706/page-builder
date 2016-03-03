@@ -34,9 +34,9 @@
     </div>
   </div>
 </nav>
-<div class="container" ng-hide="!currentData.name">
+<div class="container" ng-hide="!currentData && currentPage != 10">
   <div class="row">
-    <ul class="nav nav-pills nav-stacked col-md-2">
+    <ul class="nav nav-pills nav-stacked col-md-2"  ng-hide="!currentData">
       <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
       <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
       <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
@@ -111,14 +111,14 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">User Folder</label>
             <div class="col-sm-6">
-              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces">
+              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
               </select>
             </div>
           </div>
           <div class="form-group" ng-show="tarSpace">
             <label class="col-sm-3 control-label">Page</label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace._id }">
+              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : tarSpace._id } | orderBy : 'name' : false">
               </select>
             </div>
           </div>
@@ -183,6 +183,26 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="saveCurrentPage()" data-dismiss="modal">OK</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Save User Current Page -->
+<div class="modal fade" id="saveCurrentModal" tabindex="-1" role="dialog" aria-labelledby="saveCurrentModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirm to save</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4>Do you want to save the <strong>{{currentData.name}}</strong> page?</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="saveAuto()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#addModal">Close</button>
       </div>
     </div>
   </div>
