@@ -28,6 +28,10 @@
     <label>Image URL</label>
     <input type="text" class="form-control" ng-model="data.lead.imgUrl">
   </div>
+  <div class="form-group" ng-if="data.setting.lead==1 || data.setting.lead==3">
+    <label>Image Alt</label>
+    <input type="text" class="form-control" ng-model="data.lead.imgAlt">
+  </div>
   <div class="form-group" ng-if="data.setting.lead==2">
     <label>Video URL</label>
     <input type="text" class="form-control" ng-model="data.lead.videoUrl">

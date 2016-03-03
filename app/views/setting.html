@@ -7,7 +7,7 @@
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Open</button>
-          <button class="btn btn-default form-group" ng-disabled="" ng-click="tarData=null;tarName=''" data-toggle="modal" data-target="#addModal">New</button>
+          <button class="btn btn-default form-group" ng-disabled="" ng-click="verifyCurrentPage()">New</button>
           <button class="btn btn-default form-group" ng-disabled="!currentData.name || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </form>
@@ -152,7 +152,7 @@
   </div>
 </div>
 <!-- Load Automatically -->
-<div class="modal fade" id="loadAutoModal" tabindex="-1" role="dialog" aria-labelledby="loadAutoModalLabel">
+<!-- <div class="modal fade" id="loadAutoModal" tabindex="-1" role="dialog" aria-labelledby="loadAutoModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -161,12 +161,28 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <h4>Are you sure to open the <strong>{{tarData.name}}</strong> page?</h4>
+          <h4>Are you sure to open the <strong>{{settingData[settingData.length - 1].name}}</strong> page?</h4>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="loadAuto()" data-dismiss="modal">OK</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Verify currentPage opened -->
+<div class="modal fade" id="verifyPageOpened" tabindex="-1" role="dialog" aria-labelledby="loadAutoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4>Do you want to save the current page?</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="saveCurrentPage()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
