@@ -7,25 +7,26 @@ if type == 1
         .ibm-col-6-3.ibm-col-medium-1-1.ibm-center-block.ibm-center
           h2.ibm-h4.ibm-light.ibm-textcolor-white-core.ibm-padding-bottom-0
             span.ibm-icon-nolink.ibm-phone-link.ibm-hidden-medium.ibm-hidden-small
-            |#{data.callUsAt}
+            |#{data.callUsAt}&nbsp;
             a.ibm-textcolor-white-core(href="tel:" + "#{data.phone}")= data.phone
-            |(#{data.priorityCode}
+            |&nbsp;(#{data.priorityCode}&nbsp;
             span.ibm-textcolor-yellow-30= data.priority
             |)
-else
+else if type == 2
   section.nst-module__contact-band.nst_mlp-m110-m-01-contact-band-social
     .ibm-band.ibm-background-magenta-60
       .ibm-columns.ibm-padding-bottom-0.ibm-padding-top-1
         .ibm-col-5-3.ibm-col-medium-1-1.ibm-padding-bottom-r1
           h2.ibm-h4.ibm-light.ibm-textcolor-white-core.ibm-padding-bottom-0
             span.ibm-icon-nolink.ibm-phone-link.ibm-hidden-small.ibm-hidden-medium
-            |#{data.callUsAt}
+            |#{data.callUsAt}&nbsp;
             a.ibm-textcolor-white-core(href="tel:" + "#{data.phone}")= data.phone
-            |(#{data.priorityCode}
+            |&nbsp;(#{data.priorityCode}&nbsp;
             span.ibm-textcolor-yellow-30= data.priority
             |)
         .ibm-col-5-1.ibm-right
-          span.ibm-h4.ibm-light.ibm-textcolor-white-core.ibm-padding-bottom-r1 Visit us on:
+          span.ibm-h4.ibm-light.ibm-textcolor-white-core.ibm-padding-bottom-r1= data.socialIcon
+          |&nbsp;
         .ibm-col-5-1.ibm-col-medium-5-4.ibm-padding-bottom-0
           p.ibm-icononly
             a.ibm-twitter-link.ibm-padding-bottom-0.ibm-textcolor-white-core(rel="external", target="_blank", title="IBM API Economy on Twitter", href="#{data.twitterUrl}") Visit us on Twitter
