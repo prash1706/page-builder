@@ -1,8 +1,3 @@
-if substyle == 1
-  - var card1 = data.feat.solu1
-  - var card2 = data.feat.solu1
-  - var card3 = data.feat.solu2
-else
   - var card1 = data.feat.solu1
   - var card2 = data.feat.solu2
   - var card3 = data.feat.solu3
@@ -16,7 +11,7 @@ if substyle == 1
       .ibm-col-6-2
         .ibm-card
           .ibm-card__image
-            img.ibm-resize(src="#{card1.imgUrl}")
+            img.ibm-resize(src="#{card1.imgUrl}",alt="#{card1.imgAlt}")
           .ibm-card__content
             h3.ibm-light.ibm-h3= card1.title
             p.set-same-height.ibm-light.ibm-padding-top-1
@@ -25,7 +20,7 @@ if substyle == 1
       .ibm-col-6-2
         .ibm-card
           .ibm-card__image
-            img.ibm-resize(src="#{card2.imgUrl}")
+            img.ibm-resize(src="#{card2.imgUrl}",alt="#{card2.imgAlt}")
           .ibm-card__content
             h3.ibm-light.ibm-h3= card2.title
             p.set-same-height.ibm-light.ibm-padding-top-1
@@ -40,7 +35,7 @@ else
       .ibm-col-6-2
         .ibm-card
           .ibm-card__image
-            img.ibm-resize(src="#{card1.imgUrl}")
+            img.ibm-resize(src="#{card1.imgUrl}",alt="#{card1.imgAlt}")
           .ibm-card__content
             h3.ibm-light.ibm-h3= card1.title
             p.set-same-height.ibm-light.ibm-padding-top-1
@@ -49,7 +44,7 @@ else
       .ibm-col-6-2
         .ibm-card
           .ibm-card__image
-            img.ibm-resize(src="#{card2.imgUrl}")
+            img.ibm-resize(src="#{card2.imgUrl}",alt="#{card2.imgAlt}")
           .ibm-card__content
             h3.ibm-light.ibm-h3= card2.title
             p.set-same-height.ibm-light.ibm-padding-top-1
@@ -58,7 +53,7 @@ else
       .ibm-col-6-2
         .ibm-card
           .ibm-card__image
-            img.ibm-resize(src="#{card3.imgUrl}")
+            img.ibm-resize(src="#{card3.imgUrl}",alt="#{card3.imgAlt}")
           .ibm-card__content
             h3.ibm-light.ibm-h3= card3.title
             p.set-same-height.ibm-light.ibm-padding-top-1
