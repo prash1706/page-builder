@@ -1,6 +1,6 @@
 <legend class="color1">Manage User Folder</legend>
 <div class="col-md-10" ng-show="hasLogged">
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addFolderModal" ><span class="glyphicon glyphicon-plus"></span>Add</button>
+  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addFolderModal" ng-click="tarFolder=''"><span class="glyphicon glyphicon-plus" ></span>Add</button>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="item in spaces | orderBy : 'name' : false"><span>{{item.name}}</span>
       <button type="button" class="renameFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#renameFolderModal"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -72,7 +72,7 @@
           <div class="form-group">
             <label for="folderName" class="col-sm-3 control-label">User Folder</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="folderName" maxlength="20" tabindex="1" ng-model="tarFolder" />
+              <input type="text" class="form-control" id="folderName" maxlength="20" tabindex="1" ng-model="tarFolder"/>
             </div>
           </div>
         </form>

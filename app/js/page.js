@@ -665,7 +665,7 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
       };
       $scope.tarProjectName = '';
       $scope.isNewImage = false;
-      $scope.myFile = null;
+      $scope.myFile = '';
       $("#uploadBtn").button('reset');
     }, function(err) {
       $scope.stopPro();
