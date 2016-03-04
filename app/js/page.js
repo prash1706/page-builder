@@ -22,6 +22,37 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       $scope.currentPage = 8;
     } else if ($state.current.name == "setting.manage") {
       $scope.currentPage = 10;
+      $scope.currentData = null;
+      $scope.currentSpace = null;
+      $rootScope.data = {};
+      $rootScope.data.setting = {
+        lead: 0,
+        defi1: {
+          type: 0,
+          substyle: 0,
+        },
+        defi2: {
+          type: 0,
+          substyle: 0,
+        },
+        prom1: {
+          type: 0,
+          substyle: 0
+        },
+        prom2: {
+          type: 0,
+          substyle: 0
+        },
+        prom3: {
+          type: 0,
+          substyle: 0
+        },
+        disc: {
+          type: 0,
+          substyle: 0
+        },
+        contact: 0
+      };
     };
   };
   $scope.$watch(function() {
@@ -108,9 +139,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
             language: DataService.getDefaultLanguage[7].language,
             country: DataService.getDefaultCountry[124].country
           };
-        } else if (!res[i].data.meta.country || !res[i].data.meta.language) {
-          res[i].data.meta.country = res[i].data.meta.country || DataService.getDefaultCountry[124].country;
-          res[i].data.meta.language = res[i].data.meta.language || DataService.getDefaultLanguage[7].language;
         };
         $scope.settingData.push(res[i]);
       };
@@ -137,8 +165,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     return $scope.tarName;
   }, function() {
     if ($scope.tarName) {
-      // $scope.tarName = $scope.tarName.replace(/\s/, '_');
-      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-\s]/, '');
+      $scope.tarName = $scope.tarName.replace(/\s/, '-');
+      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
     };
   });
 
@@ -572,8 +600,20 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
     };
   };
 
-  $scope.updateIndex = function(index) {
-    $scope.imageIndex = index;
+  $scope.$watch(function(){
+    return $scope.tarSpace;
+  }, function(){
+    $scope.imageIndex = -1;
+  });
+
+  $scope.updateIndex = function(id) {
+    $scope.imageIndex = -1;
+    for (var index = 0; index < $scope.images.length; index++) {
+      if ($scope.images[index]._id == id){
+        $scope.imageIndex = index;
+        break;
+      };
+    };
   };
 
   $scope.updateUrl = function(url) {
@@ -625,6 +665,7 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
       };
       $scope.tarProjectName = '';
       $scope.isNewImage = false;
+      $scope.myFile = null;
       $("#uploadBtn").button('reset');
     }, function(err) {
       $scope.stopPro();
@@ -1175,7 +1216,6 @@ myPageApp.controller('SetMetaCtrl', function($scope, $rootScope) {
 });
 
 myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
-
   $scope.hasLogged = false;
   $scope.myFolder = {};
 
@@ -1187,6 +1227,7 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
 
   $scope.setMyFolder = function(item) {
     $scope.myFolder = item;
+    $scope.tarFolder = $scope.myFolder.name;
   };
 
   $scope.addFolder = function() {

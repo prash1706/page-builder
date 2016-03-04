@@ -2,7 +2,7 @@
 <div class="col-md-10" ng-show="hasLogged">
   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addFolderModal" ><span class="glyphicon glyphicon-plus"></span>Add</button>
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="item in spaces"><span>{{item.name}}</span>
+    <li class="list-group-item" ng-repeat="item in spaces | orderBy : 'name' : false"><span>{{item.name}}</span>
       <button type="button" class="renameFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#renameFolderModal"><span class="glyphicon glyphicon-pencil"></span></button>
       <button type="button" class="deleteFolder" ng-click="setMyFolder(item)" data-toggle="modal" data-target="#deleteFolderModal"><span class="glyphicon glyphicon-remove"></span></button>
     </li>
@@ -22,11 +22,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Delete a Folder</h4>
+        <h4 class="modal-title">Delete User Folder</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <h4>Are you sure to delete the <strong>{{myFolder.name}}</strong> folder and hide its pages?</h4>
+          <h4>Are you sure to delete the <strong>{{myFolder.name}}</strong> user folder and hide its pages?</h4>
         </div>
       </div>
       <div class="modal-footer">
@@ -41,12 +41,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Rename a Folder</h4>
+        <h4 class="modal-title">Rename User Folder</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group">
-            <label for="folderName" class="col-sm-3 control-label">Folder Name</label>
+            <label for="folderName" class="col-sm-3 control-label">User Folder</label>
             <div class="col-sm-6">
               <input type="text" class="form-control" id="folderName" maxlength="20" tabindex="1" ng-model="tarFolder" />
             </div>
@@ -65,12 +65,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Add a Folder</h4>
+        <h4 class="modal-title">Add User Folder</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group">
-            <label for="folderName" class="col-sm-3 control-label">Folder Name</label>
+            <label for="folderName" class="col-sm-3 control-label">User Folder</label>
             <div class="col-sm-6">
               <input type="text" class="form-control" id="folderName" maxlength="20" tabindex="1" ng-model="tarFolder" />
             </div>

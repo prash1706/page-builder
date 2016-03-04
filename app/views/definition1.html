@@ -517,6 +517,7 @@
     </div>
   </div>
 </div>
+<!-- Upload modal -->
 <div class="modal fade" id="assetUploadModal" tabindex="-1" role="dialog" aria-labelledby="assetUploadModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -533,21 +534,14 @@
             <div class="col-sm-8">
               <div class="radio">
                 <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" ng-init="isNewImage=false" value="option1" ng-checked="isNewImage==false" ng-click="isNewImage=false" checked> Use an existing folder for saving a new image
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" ng-init="isNewImage=false" value="option1" ng-checked="isNewImage==false" ng-click="isNewImage=false" checked> Use an existing folder to save this new image
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-click="isNewImage=true" ng-checked="isNewImage==true" value="option2">Create a new folder for saving a new image
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-click="isNewImage=true" ng-checked="isNewImage==true" value="option2">Create a new folder to save this new image
                 </label>
               </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">User Folder</label>
-            <div class="col-sm-6">
-              <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
-              </select>
             </div>
           </div>
           <div class="form-group" ng-hide="!isNewImage">
@@ -586,6 +580,7 @@
     </div>
   </div>
 </div>
+<!-- Retrieve modal -->
 <div class="modal fade" id="assetRetrieveModal" tabindex="-1" role="dialog" aria-labelledby="assetRetrieveModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -596,8 +591,8 @@
       </div>
       <div class="modal-body">
         <h5><span class="glyphicon glyphicon-info-sign"></span><strong> To get a URL please select a project folder then select an image and then hit OK button.</strong></h5>
-        <div class="form-group col-sm-8" style="margin: 20px auto">
-          <label class="col-sm-2 control-label">User Folder</label>
+        <div class="form-group col-sm-10" style="margin: 20px auto">
+          <label class="col-sm-3 control-label">User Folder</label>
           <div class="col-sm-6">
             <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
             </select>
@@ -605,15 +600,15 @@
         </div>
         <div class="col-sm-12" style="padding:5px;">
           <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
-            <div class="list-group" ng-init="imageIndex=0">
-              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id}" ng-class="{active: imageIndex == $index}" ng-click="updateIndex($index)">{{image._id}}</a>
+            <div class="list-group">
+              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id} | orderBy : '_id' : false" ng-class="{active: images[imageIndex]._id == image._id}" ng-click="updateIndex(image._id)">{{image._id}}</a>
             </div>
           </div>
           <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">
-            <table class="table" ng-init="imageUrl=''">
+            <table class="table" ng-init="imageUrl=''" ng-hide="imageIndex == -1">
               <tbody>
                 <tr ng-repeat="image in images[imageIndex].images" ng-class="{selectRow: imageUrl==image.url}" style="cursor:pointer;" ng-click="updateUrl(image.url)">
-                  <td><img ng-src="{{image.url}}" alt="" style="max-width: 30px;
+                  <td><img ng-src="{{image.url}}" alt="" style="max-width: 30px; width: 30px;
     margin: 0 5px;"><span>{{image.name}}</span></td>
                   <td>{{image.length/1024|number:2}}kb</td>
                 </tr>

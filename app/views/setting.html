@@ -6,8 +6,8 @@
     <div class="navbar-left navbar-menu">
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal">Open</button>
-          <button class="btn btn-default form-group" ng-disabled="" ng-click="verifyCurrentPage()">New</button>
+          <button class="btn btn-default form-group" data-toggle="modal" data-target="#loadModal" ng-disabled="currentPage == 10">Open</button>
+          <button class="btn btn-default form-group" ng-click="verifyCurrentPage()" ng-disabled="currentPage == 10">New</button>
           <button class="btn btn-default form-group" ng-disabled="!currentData.name || currentData.name == 'default'" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </form>
@@ -38,9 +38,10 @@
   <p class="errorMsg">{{errorMsg}}</p>
   <button type="button" class="close" aria-label="Close" ng-click="errorMsg = false" style="top: 9px"><span aria-hidden="true">×</span></button>
 </div>
- --><div class="container" ng-hide="!currentData && currentPage != 10">
+ -->
+<div class="container" ng-hide="!currentData && currentPage != 10">
   <div class="row">
-    <ul class="nav nav-pills nav-stacked col-md-2">
+    <ul class="nav nav-pills nav-stacked col-md-2" ng-hide="currentPage == 10">
       <li ng-class="{active:currentPage==0}"><a ng-href="/setting/leadspace" ng-click="currentPage=0" ui-sref="setting.leadspace">Leadspace*</a></li>
       <li ng-class="{active:currentPage==1}"><a ng-href="/setting/definition1" ng-click="currentPage=1" ui-sref="setting.definition1">Definition1*</a></li>
       <li ng-class="{active:currentPage==2}"><a ng-href="/setting/definition2" ng-click="currentPage=2" ui-sref="setting.definition2">Definition2</a></li>
@@ -75,14 +76,14 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">User Folder</label>
             <div class="col-sm-6">
-              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces">
+              <select class="form-control" id="selectTem" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
               </select>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Copy from</label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="fromSpace" ng-options="space.name for space in spaces">
+              <select class="form-control" ng-model="fromSpace" ng-options="space.name for space in spaces| orderBy : 'name' : false">
                 <option value="">None</option>
               </select>
             </div>
@@ -90,7 +91,7 @@
           <div class="form-group" ng-show="fromSpace">
             <label class="col-sm-3 control-label"></label>
             <div class="col-sm-6">
-              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : fromSpace._id }">
+              <select class="form-control" ng-model="tarData" ng-options="option.name for option in settingData | filter: {space : fromSpace._id } | orderBy : 'name' : false">
               </select>
             </div>
           </div>
@@ -155,30 +156,14 @@
     </div>
   </div>
 </div>
-<!-- Load Automatically -->
-<!-- <div class="modal fade" id="loadAutoModal" tabindex="-1" role="dialog" aria-labelledby="loadAutoModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Open a page</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <h4>Are you sure to open the <strong>{{settingData[settingData.length - 1].name}}</strong> page?</h4>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" ng-click="loadAuto()" data-dismiss="modal">OK</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 <!-- Verify currentPage opened -->
 <div class="modal fade" id="verifyPageOpened" tabindex="-1" role="dialog" aria-labelledby="loadAutoModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Save a page</h4>
+      </div>
       <div class="modal-body">
         <div class="container-fluid">
           <h4>Do you want to save the current page?</h4>

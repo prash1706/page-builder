@@ -473,12 +473,8 @@ serviceApp.factory('DataService', function($http) {
       "space": "Public",
       "data": {
         "contact": {},
-        "disc": {
-
-        },
-        "defi2": {
-
-        },
+        "disc": {},
+        "defi2": {},
         "defi1": {},
         "lead": {},
         "setting": {
@@ -509,23 +505,17 @@ serviceApp.factory('DataService', function($http) {
           },
           "lead": 1
         },
-        "prom1": {
-
-        },
-        "prom2": {
-
-        },
-        "prom3": {
-
-        },
+        "prom1": {},
+        "prom2": {},
+        "prom3": {},
         "meta": {
           "keywords": "",
           "description": "",
           "title": "",
           "industry": "",
           "version": "",
-          "country": "United States",
-          "language": "English",
+          "country": "",
+          "language": "",
           "type": "",
           "owner": "",
           "locale": "",
