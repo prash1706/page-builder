@@ -126,3 +126,9 @@ button.deleteFolder {
   text-align: center;
   line-height: 20px;
 }
+
+a.tableHeader {
+  text-decoration: blink;
+  color: inherit;
+  cursor: pointer;
+}

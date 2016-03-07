@@ -12,6 +12,10 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   $scope.fromSpace = "";
   $scope.value = 0;
   $scope.fieldIndex = '';
+  $scope.sortByProjectName = false;
+  $scope.sortByImageType = 'name';
+  $scope.sortByImageNameValue = false;
+  $scope.sortByImageLengthValue = false;
 
   // Get All Of The Data
   DataService.getFolder(function(res) {
@@ -343,7 +347,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   $scope.setImageUrl = function() {
     if ($scope.fieldIndex == 'lead') {
       $rootScope.data.lead.imgUrl = $scope.imageUrl;
-    } else if ($scope.fieldIndex == 'def1.asset') {
+    } else if ($scope.fieldIndex == 'defi1.asset') {
       $rootScope.data.defi1.asset.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'defi1.step.step1') {
       $rootScope.data.defi1.step.step1.imgUrl = $scope.imageUrl;

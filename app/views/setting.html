@@ -23,9 +23,12 @@
     </div>
   </div>
 </nav>
-<div class="alert alert-success alertMsg center-block" role="alert" ng-show="successMsg"><span class="glyphicon glyphicon-ok-sign pull-left"></span>{{successMsg}}<button type="button" class="close" aria-label="Close" style="top:8px" ng-click="successMsg=''"><span aria-hidden="true">&times;</span></button></div>
-<div class="alert alert-danger alertMsg center-block" role="alert" ng-show="errorMsg"><span class="glyphicon glyphicon-exclamation-sign pull-left"></span>{{errorMsg}}<button type="button" class="close" aria-label="Close" style="top:8px" ng-click="errorMsg=''"><span aria-hidden="true">&times;</span></button></div>
-
+<div class="alert alert-success alertMsg center-block" role="alert" ng-show="successMsg"><span class="glyphicon glyphicon-ok-sign pull-left"></span>{{successMsg}}
+  <button type="button" class="close" aria-label="Close" style="top:8px" ng-click="successMsg=''"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="alert alert-danger alertMsg center-block" role="alert" ng-show="errorMsg"><span class="glyphicon glyphicon-exclamation-sign pull-left"></span>{{errorMsg}}
+  <button type="button" class="close" aria-label="Close" style="top:8px" ng-click="errorMsg=''"><span aria-hidden="true">&times;</span></button>
+</div>
 <!-- <div class="errorBox" ng-init="errorMsg == 'test'">
   <p class="errorMsg">{{errorMsg}}</p>
   <button type="button" class="close" aria-label="Close" ng-click="errorMsg = false" style="top: 9px"><span aria-hidden="true">×</span></button>
@@ -258,7 +261,7 @@
           <div class="form-group" ng-hide="!isNewImage">
             <label class="col-sm-3 control-label">Project folder</label>
             <div class="col-sm-6">
-              <input class="form-control" type="text" ng-model="tarProjectName" >
+              <input class="form-control" type="text" ng-model="tarProjectName">
             </div>
           </div>
           <div class="form-group" ng-hide="isNewImage">
@@ -309,18 +312,22 @@
             </select>
           </div>
         </div>
+        <div class="col-sm-12">
+          <a ng-click="sortByProjectName=!sortByProjectName" class="tableHeader">Project Folder<span class="glyphicon glyphicon-triangle-bottom" ng-hide="sortByProjectName"></span><span class="glyphicon glyphicon-triangle-top" ng-hide="!sortByProjectName"></span></a>
+          <a style="margin-left:130px" class="tableHeader"  ng-click="sortByImageType='name';sortByImageNameValue=!sortByImageNameValue">Available Images<span class="glyphicon glyphicon-triangle-bottom" ng-hide="sortByImageNameValue"></span><span class="glyphicon glyphicon-triangle-top" ng-hide="!sortByImageNameValue"></span></a>
+          <a style="margin-left:325px" class="tableHeader"  ng-click="sortByImageType='length';sortByImageLengthValue=!sortByImageLengthValue">Image Size<span class="glyphicon glyphicon-triangle-bottom" ng-hide="sortByImageLengthValue"></span><span class="glyphicon glyphicon-triangle-top" ng-hide="!sortByImageLengthValue"></span></a>
+        </div>
         <div class="col-sm-12" style="padding:5px;">
           <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
             <div class="list-group">
-              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id} | orderBy : '_id' : false" ng-class="{active: images[imageIndex]._id == image._id}" ng-click="updateIndex(image._id)">{{image._id}}</a>
+              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id} | orderBy : '_id' : sortByProjectName" ng-class="{active: images[imageIndex]._id == image._id}" ng-click="updateIndex(image._id)">{{image._id}}</a>
             </div>
           </div>
           <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">
             <table class="table" ng-init="imageUrl=''" ng-hide="imageIndex == -1">
               <tbody>
-                <tr ng-repeat="image in images[imageIndex].images" ng-class="{selectRow: imageUrl==image.url}" style="cursor:pointer;" ng-click="updateUrl(image.url)">
-                  <td><img ng-src="{{image.url}}" alt="" style="max-width: 30px; width: 30px;
-    margin: 0 5px;"><span>{{image.name}}</span></td>
+                <tr ng-repeat="image in images[imageIndex].images | orderBy : sortByImageType: sortByImageType=='name'?sortByImageNameValue : sortByImageLengthValue" ng-class="{selectRow: imageUrl==image.url}" style="cursor:pointer;" ng-click="updateUrl(image.url)">
+                  <td style="width:480px"><img ng-src="{{image.url}}" alt="" style="max-width: 30px; width: 30px;margin: 0 5px;"><span>{{image.name}}</span></td>
                   <td>{{image.length/1024|number:2}}kb</td>
                 </tr>
               </tbody>
