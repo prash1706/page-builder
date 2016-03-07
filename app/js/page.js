@@ -11,7 +11,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   $scope.tarName = "";
   $scope.fromSpace = "";
   $scope.value = 0;
-  $scope.fieldIndex = -1;
+  $scope.fieldIndex = '';
 
   // Get All Of The Data
   DataService.getFolder(function(res) {
@@ -302,7 +302,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
           $scope.currentData._rev = res.rev;
           break;
         };
-        $("#addModal").modal('show');
       };
       $('#saveBtn').button('reset');
       $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
@@ -340,10 +339,98 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   };
 
   $scope.setImageUrl = function() {
-    switch ($scope.fieldIndex) {
-      case 1:
-        $rootScope.data.defi1.asset.imgUrl = $scope.imageUrl;
-        break;
+    if ($scope.fieldIndex == 'lead') {
+      $rootScope.data.lead.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'def1.asset') {
+      $rootScope.data.defi1.asset.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi1.step.step1') {
+      $rootScope.data.defi1.step.step1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi1.step.step2') {
+      $rootScope.data.defi1.step.step2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi1.step.step3') {
+      $rootScope.data.defi1.step.step3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi1.step.step4') {
+      $rootScope.data.defi1.step.step4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi1.step.step4') {
+      $rootScope.data.defi1.step.step4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi2.asset') {
+      $rootScope.data.defi2.asset.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi2.step.step1') {
+      $rootScope.data.defi2.step.step1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi2.step.step2') {
+      $rootScope.data.defi2.step.step2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi2.step.step3') {
+      $rootScope.data.defi2.step.step3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi2.step.step4') {
+      $rootScope.data.defi2.step.step4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'defi2.step.step4') {
+      $rootScope.data.defi2.step.step4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.feat.solu1') {
+      $rootScope.data.prom1.feat.solu1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.feat.solu2') {
+      $rootScope.data.prom1.feat.solu2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.feat.solu3') {
+      $rootScope.data.prom1.feat.solu3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.solu.solu1') {
+      $rootScope.data.prom1.solu.solu1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.solu.solu2') {
+      $rootScope.data.prom1.solu.solu2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.solu.solu3') {
+      $rootScope.data.prom1.solu.solu3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.solu.solu4') {
+      $rootScope.data.prom1.solu.solu4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.solu.solu5') {
+      $rootScope.data.prom1.solu.solu5.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.solu.solu6') {
+      $rootScope.data.prom1.solu.solu6.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.case') {
+      $rootScope.data.prom1.case.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom1.test') {
+      $rootScope.data.prom1.test.photo = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.feat.solu1') {
+      $rootScope.data.prom2.feat.solu1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.feat.solu2') {
+      $rootScope.data.prom2.feat.solu2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.feat.solu3') {
+      $rootScope.data.prom2.feat.solu3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.solu.solu1') {
+      $rootScope.data.prom2.solu.solu1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.solu.solu2') {
+      $rootScope.data.prom2.solu.solu2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.solu.solu3') {
+      $rootScope.data.prom2.solu.solu3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.solu.solu4') {
+      $rootScope.data.prom2.solu.solu4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.solu.solu5') {
+      $rootScope.data.prom2.solu.solu5.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.solu.solu6') {
+      $rootScope.data.prom2.solu.solu6.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.case') {
+      $rootScope.data.prom2.case.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom2.test') {
+      $rootScope.data.prom2.test.photo = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.feat.solu1') {
+      $rootScope.data.prom3.feat.solu1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.feat.solu2') {
+      $rootScope.data.prom3.feat.solu2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.feat.solu3') {
+      $rootScope.data.prom3.feat.solu3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.solu.solu1') {
+      $rootScope.data.prom3.solu.solu1.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.solu.solu2') {
+      $rootScope.data.prom3.solu.solu2.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.solu.solu3') {
+      $rootScope.data.prom3.solu.solu3.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.solu.solu4') {
+      $rootScope.data.prom3.solu.solu4.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.solu.solu5') {
+      $rootScope.data.prom3.solu.solu5.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.solu.solu6') {
+      $rootScope.data.prom3.solu.solu6.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.case') {
+      $rootScope.data.prom3.case.imgUrl = $scope.imageUrl;
+    } else if ($scope.fieldIndex == 'prom3.test') {
+      $rootScope.data.prom3.test.photo = $scope.imageUrl;
     };
   };
 

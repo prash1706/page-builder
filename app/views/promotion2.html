@@ -51,7 +51,7 @@
     <img src="../images/testimonial2.jpg" alt="">
   </a>
 </div>
-<form class="col-md-3" >
+<form class="col-md-3">
   <div class="form-group">
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#prom2Modal" ng-click="getStyle()">Select style</button>
   </div>
@@ -71,8 +71,12 @@
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.imgUrl">
+      <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+        <div class="col-sm-9" style="width:76%">
+          <input type="text" class="form-control" ng-model="data.prom2.feat.solu1.imgUrl">
+        </div>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.feat.solu1')">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.feat.solu1')">Retrieve</button>
       </div>
     </div>
     <div class="form-group">
@@ -116,8 +120,12 @@
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.imgUrl">
+      <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+        <div class="col-sm-9" style="width:76%">
+          <input type="text" class="form-control" ng-model="data.prom2.feat.solu2.imgUrl">
+        </div>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.feat.solu2')">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.feat.solu2')">Retrieve</button>
       </div>
     </div>
     <div class="form-group">
@@ -156,8 +164,12 @@
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Image Url</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.imgUrl">
+        <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+          <div class="col-sm-9" style="width:76%">
+            <input type="text" class="form-control" ng-model="data.prom2.feat.solu3.imgUrl">
+          </div>
+          <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.feat.solu3')">Upload</button>
+          <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.feat.solu3')">Retrieve</button>
         </div>
       </div>
       <div class="form-group">
@@ -238,13 +250,18 @@
       <input type="text" class="form-control" ng-model="data.prom2.solu.ctaUrl">
     </div>
   </div>
+  <!-- Solution1 -->
   <div class="form-group">
     <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution1</small></legend>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
     <label class="col-sm-2 control-label">Image Url</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.imgUrl">
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9" style="width:76%">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.imgUrl">
+      </div>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.solu.solu1')">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.solu.solu1')">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -259,13 +276,18 @@
       <input type="text" class="form-control" ng-model="data.prom2.solu.solu1.feat">
     </div>
   </div>
+  <!-- Solution2 -->
   <div class="form-group">
     <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Solution2</small></legend>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
     <label class="col-sm-2 control-label">Image Url</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.solu.solu2.imgUrl">
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9" style="width:76%">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu2.imgUrl">
+      </div>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.solu.solu2')">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.solu.solu2')">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -285,8 +307,12 @@
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
     <label class="col-sm-2 control-label">Image Url</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.solu.solu3.imgUrl">
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9" style="width:76%">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu3.imgUrl">
+      </div>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.solu.solu3')">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.solu.solu3')">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -306,8 +332,12 @@
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
     <label class="col-sm-2 control-label">Image Url</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.solu.solu4.imgUrl">
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9" style="width:76%">
+        <input type="text" class="form-control" ng-model="data.prom2.solu.solu4.imgUrl">
+      </div>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.solu.solu4')">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.solu.solu4')">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -328,8 +358,12 @@
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
       <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu5.imgUrl">
+      <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+        <div class="col-sm-9" style="width:76%">
+          <input type="text" class="form-control" ng-model="data.prom2.solu.solu5.imgUrl">
+        </div>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.solu.solu5')">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.solu.solu5')">Retrieve</button>
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
@@ -349,8 +383,12 @@
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
       <label class="col-sm-2 control-label">Image Url</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="data.prom2.solu.solu6.imgUrl">
+      <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+        <div class="col-sm-9" style="width:76%">
+          <input type="text" class="form-control" ng-model="data.prom2.solu.solu6.imgUrl">
+        </div>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.solu.solu6')">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.solu.solu6')">Retrieve</button>
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
@@ -420,14 +458,12 @@
   </div>
   <div class="form-group">
     <label class="col-sm-2 control-label">Background Image</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.case.imgUrl">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Background Image</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.case.imgUrl">
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9" style="width:76%">
+        <input type="text" class="form-control" ng-model="data.prom2.case.imgUrl">
+      </div>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.case')">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.case')">Retrieve</button>
     </div>
   </div>
 </form>
@@ -436,8 +472,12 @@
   <legend><small>Testimonial</small></legend>
   <div class="form-group" ng-show="mySetting.substyle==10">
     <label class="col-sm-2 control-label">Photo</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" ng-model="data.prom2.test.photo">
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9" style="width:76%">
+        <input type="text" class="form-control" ng-model="data.prom2.test.photo">
+      </div>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom2.test')">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom2.test')">Retrieve</button>
     </div>
   </div>
   <div class="form-group">
@@ -484,22 +524,22 @@
           <div class="form-group" ng-show="tempSetting.type==0">
             <label>Select a style</label>
             <div class="row">
-              <div class="col-md-10" ng-hide="data.setting.prom1.type==1 || data.setting.prom3.type==1">
+              <div class="col-md-10" ng-hide="data.setting.prom2.type==1 || data.setting.prom3.type==1">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==1}" ng-click="tempSetting.type=1">
                   <img src="../images/style-featured.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10" ng-hide="data.setting.prom1.type==2 || data.setting.prom3.type==2">
+              <div class="col-md-10" ng-hide="data.setting.prom2.type==2 || data.setting.prom3.type==2">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==2}" ng-click="tempSetting.type=2">
                   <img src="../images/style-solution.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10" ng-hide="data.setting.prom1.type==3 || data.setting.prom3.type==3">
+              <div class="col-md-10" ng-hide="data.setting.prom2.type==3 || data.setting.prom3.type==3">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==3}" ng-click="tempSetting.type=3">
                   <img src="../images/style-case-study.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10" ng-hide="data.setting.prom1.type==4 || data.setting.prom3.type==4">
+              <div class="col-md-10" ng-hide="data.setting.prom2.type==4 || data.setting.prom3.type==4">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==4}" ng-click="tempSetting.type=4">
                   <img src="../images/style-testimonial.jpg" alt="">
                 </a>
