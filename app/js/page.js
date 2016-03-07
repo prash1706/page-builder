@@ -252,7 +252,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
       $scope.stopProAsyn(function(){
         $('#addModal').modal('show');
-      });      
+      });
     }, function(res) {
       $scope.showError('Fail to save the \'' + $scope.currentData.name + '\' page, retry please');
       $scope.stopPro();
@@ -353,8 +353,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       $rootScope.data.defi1.step.step3.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'defi1.step.step4') {
       $rootScope.data.defi1.step.step4.imgUrl = $scope.imageUrl;
-    } else if ($scope.fieldIndex == 'defi1.step.step4') {
-      $rootScope.data.defi1.step.step4.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'defi2.asset') {
       $rootScope.data.defi2.asset.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'defi2.step.step1') {
@@ -363,8 +361,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       $rootScope.data.defi2.step.step2.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'defi2.step.step3') {
       $rootScope.data.defi2.step.step3.imgUrl = $scope.imageUrl;
-    } else if ($scope.fieldIndex == 'defi2.step.step4') {
-      $rootScope.data.defi2.step.step4.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'defi2.step.step4') {
       $rootScope.data.defi2.step.step4.imgUrl = $scope.imageUrl;
     } else if ($scope.fieldIndex == 'prom1.feat.solu1') {

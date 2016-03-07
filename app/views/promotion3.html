@@ -51,7 +51,7 @@
     <img src="../images/testimonial2.jpg" alt="">
   </a>
 </div>
-<form class="col-md-3">
+<form class="col-md-3" >
   <div class="form-group">
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#prom3Modal" ng-click="getStyle()">Select style</button>
   </div>
@@ -524,22 +524,22 @@
           <div class="form-group" ng-show="tempSetting.type==0">
             <label>Select a style</label>
             <div class="row">
-              <div class="col-md-10" ng-hide="data.setting.prom3.type==1 || data.setting.prom3.type==1">
+              <div class="col-md-10" ng-hide="data.setting.prom1.type==1 || data.setting.prom2.type==1">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==1}" ng-click="tempSetting.type=1">
                   <img src="../images/style-featured.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10" ng-hide="data.setting.prom3.type==2 || data.setting.prom3.type==2">
+              <div class="col-md-10" ng-hide="data.setting.prom1.type==2 || data.setting.prom2.type==2">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==2}" ng-click="tempSetting.type=2">
                   <img src="../images/style-solution.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10" ng-hide="data.setting.prom3.type==3 || data.setting.prom3.type==3">
+              <div class="col-md-10" ng-hide="data.setting.prom1.type==3 || data.setting.prom2.type==3">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==3}" ng-click="tempSetting.type=3">
                   <img src="../images/style-case-study.jpg" alt="">
                 </a>
               </div>
-              <div class="col-md-10" ng-hide="data.setting.prom3.type==4 || data.setting.prom3.type==4">
+              <div class="col-md-10" ng-hide="data.setting.prom1.type==4 || data.setting.prom2.type==4">
                 <a class="thumbnail" ng-class="{selected: tempSetting.type==4}" ng-click="tempSetting.type=4">
                   <img src="../images/style-testimonial.jpg" alt="">
                 </a>
