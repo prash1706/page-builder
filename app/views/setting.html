@@ -13,17 +13,6 @@
       </form>
     </div>
     <p class="navbar-text navbar-position" ng-show="currentData">User Folder: <strong>{{currentSpace.name}}</strong> / Page Name: <strong>{{currentData.name}}</strong></p>
-    <div>
-      <p class="navbar-text" ng-show="result==1" style="color: #337ab7;">Add {{templateName}} successfully!</p>
-      <p class="navbar-text text-danger" ng-show="result==2" style="color: #a94442;">Add {{templateName}} unsuccessfully!</p>
-      <p class="navbar-text text-success" ng-show="result==3" style="color: #337ab7;">Delete {{templateName}} successfully!</p>
-      <p class="navbar-text text-danger" ng-show="result==4" style="color: #a94442;">Delete {{templateName}} unsuccessfully!</p>
-      <p class="navbar-text text-success" ng-show="result==5" style="color: #337ab7;">Save {{templateName}} successfully!</p>
-      <p class="navbar-text text-danger" ng-show="result==6" style="color: #a94442;">Save {{templateName}} unsuccessfully!</p>
-      <p class="navbar-text text-danger" ng-show="result==7" style="color: #a94442;">Please input enough data of required modules!</p>
-      <p class="navbar-text text-success" ng-show="result==8" style="color: #337ab7;">Swap Promotion Data successfully!</p>
-    </div>
-    <!-- <div class="alert alert-success " role="alert">Delete success!</div> -->
     <div class="nav navbar-nav navbar-right">
       <button class="btn btn-success navbar-btn" id="saveBtn" ng-disabled="!currentData.name" data-loading-text="Saving..." ng-click="save()">Save</button>
       <button class="btn btn-danger navbar-btn" id="createBtn" ng-disabled="!currentData.name" data-loading-text="Generating..." ng-click="createPage()">Generate page</button>
@@ -34,6 +23,9 @@
     </div>
   </div>
 </nav>
+<div class="alert alert-success alertMsg center-block" role="alert" ng-show="successMsg"><span class="glyphicon glyphicon-ok-sign pull-left"></span>{{successMsg}}<button type="button" class="close" aria-label="Close" style="top:8px" ng-click="successMsg=''"><span aria-hidden="true">&times;</span></button></div>
+<div class="alert alert-danger alertMsg center-block" role="alert" ng-show="errorMsg"><span class="glyphicon glyphicon-exclamation-sign pull-left"></span>{{errorMsg}}<button type="button" class="close" aria-label="Close" style="top:8px" ng-click="errorMsg=''"><span aria-hidden="true">&times;</span></button></div>
+
 <!-- <div class="errorBox" ng-init="errorMsg == 'test'">
   <p class="errorMsg">{{errorMsg}}</p>
   <button type="button" class="close" aria-label="Close" ng-click="errorMsg = false" style="top: 9px"><span aria-hidden="true">×</span></button>
@@ -231,6 +223,113 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="swap(2)" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Upload modal -->
+<div class="modal fade" id="UploadModal" tabindex="-1" role="dialog" aria-labelledby="UploadModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pull-right">
+        </div>
+        <h4 class="modal-title">Upload Image</h4>
+      </div>
+      <div class="modal-body">
+        <h5><span class="glyphicon glyphicon-info-sign"></span><strong> <strong>Image will be uploaded into Cloudant and it will be public at the URL</strong></h5>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">I want to</label>
+            <div class="col-sm-8">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" ng-init="isNewImage=false" value="option1" ng-checked="isNewImage==false" ng-click="isNewImage=false" checked> Use an existing folder to save this new image
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-click="isNewImage=true" ng-checked="isNewImage==true" value="option2">Create a new folder to save this new image
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" ng-hide="!isNewImage">
+            <label class="col-sm-3 control-label">Project folder</label>
+            <div class="col-sm-6">
+              <input class="form-control" type="text" ng-model="tarProjectName" >
+            </div>
+          </div>
+          <div class="form-group" ng-hide="isNewImage">
+            <label class="col-sm-3 control-label">Project folder</label>
+            <div class="col-sm-6">
+              <select class="form-control" ng-model="currentImage" ng-options="image._id for image in images | filter: {folderId : tarSpace._id } | orderBy : '_id' : false">
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Uploaded image</label>
+            <div class="col-sm-9">
+              <input class="col-sm-9" style="margin-top:10px;margin-bottom: 10px;padding-left:0" type="file" ngf-select ng-model="myFile" name="myFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+              <button type="button" class="close" style="right:auto;margin-top:10px;margin-bottom: 10px" aria-label="Close" ng-show="myFile" ng-click="myFile=''"><span aria-hidden="true">&times;</span></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Image thumbnail</label>
+            <div class="col-sm-9">
+              <img style="max-width: 30%" ng-show="myFile" ngf-thumbnail="myFile">
+              <span ng-show="myFile">({{myFile.size/1024|number:2}}kb)</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!myFile || (isNewImage && !tarProjectName) || (!isNewImage && !currentImage)" ng-click="upload()">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="myFile=null;isNewImage=false">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Retrieve modal -->
+<div class="modal fade" id="RetrieveModal" tabindex="-1" role="dialog" aria-labelledby="RetrieveModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pull-right">
+        </div>
+        <h4 class="modal-title">Retrieve Image</h4>
+      </div>
+      <div class="modal-body">
+        <h5><span class="glyphicon glyphicon-info-sign"></span><strong> To get a URL please select a project folder then select an image and then hit OK button.</strong></h5>
+        <div class="form-group col-sm-10" style="margin: 20px auto">
+          <label class="col-sm-3 control-label">User Folder</label>
+          <div class="col-sm-6">
+            <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12" style="padding:5px;">
+          <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
+            <div class="list-group">
+              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id} | orderBy : '_id' : false" ng-class="{active: images[imageIndex]._id == image._id}" ng-click="updateIndex(image._id)">{{image._id}}</a>
+            </div>
+          </div>
+          <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">
+            <table class="table" ng-init="imageUrl=''" ng-hide="imageIndex == -1">
+              <tbody>
+                <tr ng-repeat="image in images[imageIndex].images" ng-class="{selectRow: imageUrl==image.url}" style="cursor:pointer;" ng-click="updateUrl(image.url)">
+                  <td><img ng-src="{{image.url}}" alt="" style="max-width: 30px; width: 30px;
+    margin: 0 5px;"><span>{{image.name}}</span></td>
+                  <td>{{image.length/1024|number:2}}kb</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="clear:both">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!imageUrl" ng-click="setImageUrl()">OK</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

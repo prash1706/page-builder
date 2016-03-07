@@ -19,17 +19,45 @@ serviceApp.factory('DataService', function($http) {
     addFolder: function(data, success, error) {
       $http.post('/folder', data).success(success).error(error);
     },
-    deleteFolder: function(data, success, error){
+    deleteFolder: function(data, success, error) {
       $http.delete('/folder/' + data._id + '/' + data._rev).success(success).error(error);
     },
-    renameFolder: function(data, success, error){
+    renameFolder: function(data, success, error) {
       $http.put('/folder/' + data._id, data).success(success).error(error);
     },
     getFolder: function(success, error) {
       $http.get('/folder').success(success).error(error);
     },
-    getImage: function(success, error){
+    getImage: function(success, error) {
       $http.get('/image').success(success).error(error);
+    },
+    getDefaultSetting: {
+      lead: 0,
+      defi1: {
+        type: 0,
+        substyle: 0,
+      },
+      defi2: {
+        type: 0,
+        substyle: 0,
+      },
+      prom1: {
+        type: 0,
+        substyle: 0
+      },
+      prom2: {
+        type: 0,
+        substyle: 0
+      },
+      prom3: {
+        type: 0,
+        substyle: 0
+      },
+      disc: {
+        type: 0,
+        substyle: 0
+      },
+      contact: 0
     },
     getDefaultData: {
       "name": "default",

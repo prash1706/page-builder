@@ -1,124 +1,22 @@
 var myPageApp = angular.module('myPageApp', ['ui.router', 'ngFileUpload', 'serviceApp']);
 
-myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$rootScope', 'DataService', function($scope, $http, $timeout, $state, $rootScope, DataService) {
-  function setState() {
-    if ($state.current.name == "setting.leadspace") {
-      $scope.currentPage = 0;
-    } else if ($state.current.name == "setting.definition1") {
-      $scope.currentPage = 1;
-    } else if ($state.current.name == "setting.definition2") {
-      $scope.currentPage = 2;
-    } else if ($state.current.name == "setting.promotion1") {
-      $scope.currentPage = 3;
-    } else if ($state.current.name == "setting.promotion2") {
-      $scope.currentPage = 4;
-    } else if ($state.current.name == "setting.promotion3") {
-      $scope.currentPage = 5;
-    } else if ($state.current.name == "setting.discovery") {
-      $scope.currentPage = 6;
-    } else if ($state.current.name == "setting.contact") {
-      $scope.currentPage = 7;
-    } else if ($state.current.name == "setting.meta") {
-      $scope.currentPage = 8;
-    } else if ($state.current.name == "setting.manage") {
-      $scope.currentPage = 10;
-      $scope.currentData = null;
-      $scope.currentSpace = null;
-      $rootScope.data = {};
-      $rootScope.data.setting = {
-        lead: 0,
-        defi1: {
-          type: 0,
-          substyle: 0,
-        },
-        defi2: {
-          type: 0,
-          substyle: 0,
-        },
-        prom1: {
-          type: 0,
-          substyle: 0
-        },
-        prom2: {
-          type: 0,
-          substyle: 0
-        },
-        prom3: {
-          type: 0,
-          substyle: 0
-        },
-        disc: {
-          type: 0,
-          substyle: 0
-        },
-        contact: 0
-      };
-    };
-  };
-  $scope.$watch(function() {
-    return $state.current.name
-  }, function() {
-    setState();
-  });
+myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope', 'DataService', 'Upload', function($scope, $timeout, $state, $rootScope, DataService, Upload) {
 
+  // Init Data
   $scope.settingData = [];
   $scope.spaces = [];
   $scope.images = [];
   $scope.currentData = null;
   $scope.tarData = null;
   $scope.tarName = "";
-  $scope.templateName = "";
   $scope.fromSpace = "";
-  $scope.result = 0;
   $scope.value = 0;
-  // $scope.errorMsg = 'test';
+  $scope.fieldIndex = -1;
 
-  $scope.startPro = function() {
-    $scope.showPro = true;
-    $scope.value = 0;
-    $scope.timeout = $timeout(function() {
-      $scope.value = Math.random() * 30 + 30;
-      var maxTemp = Math.random() * 10 + 80;
-      var cell = 0;
-
-      function slowPro() {
-        cell = (maxTemp - $scope.value) / 20;
-        $scope.timeout = $timeout(function() {
-          $scope.value += cell;
-          slowPro();
-        }, 200);
-      };
-      slowPro();
-    }, 100);
-  };
-
-  $scope.stopPro = function() {
-    $timeout.cancel($scope.timeout);
-    $scope.value = 100;
-    $timeout(function() {
-      $scope.showPro = false;
-    }, 500);
-  };
-
-  $scope.stopProAsyn = function(callback) {
-    $timeout.cancel($scope.timeout);
-    $scope.value = 100;
-    $timeout(function() {
-      $scope.showPro = false;
-      callback();
-    }, 500);
-  };
-
-  $scope.$on(
-    "$destroy",
-    function(event) {
-      $timeout.cancel($scope.timeout);
-    }
-  );
-
+  // Get All Of The Data
   DataService.getFolder(function(res) {
     $scope.startPro();
-    console.log("[GetFolder] Folder:", res);
+    console.log("[GetFolder] Folder[" + res.length + "]:", res);
     $scope.spaces = res;
     var space_arr = [];
     $scope.spaces.forEach(function(space) {
@@ -142,11 +40,11 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
         $scope.settingData.push(res[i]);
       };
-      console.log("[GetData] SettingData:", $scope.settingData);
+      console.log("[GetData] SettingData[" + $scope.settingData.length + "]:", $scope.settingData);
       $scope.images = [];
       DataService.getImage(function(res) {
         $scope.images = res;
-        console.log("[GetImage] Images:", $scope.images);
+        console.log("[GetImage] Images[" + $scope.images.length + "]:", $scope.images);
         $scope.stopPro();
       }, function(res) {
         console.error(res);
@@ -161,32 +59,17 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     $scope.stopPro();
   });
 
-  $scope.$watch(function() {
-    return $scope.tarName;
-  }, function() {
-    if ($scope.tarName) {
-      $scope.tarName = $scope.tarName.replace(/\s/, '-');
-      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
-    };
-  });
-
-  function showResult(result, name) {
-    $timeout.cancel($scope.mesTimeout);
-    $scope.result = result;
-    $scope.templateName = name;
-    $scope.mesTimeout = $timeout(function() {
-      $scope.result = 0;
-    }, 2000);
-  };
-
+  // Load Page
   $scope.load = function() {
     $scope.currentData = $scope.tarData;
     $scope.currentSpace = $scope.tarSpace;
     var str = angular.toJson($scope.currentData.data);
     $rootScope.data = angular.fromJson(str);
-    console.log("[Load finished] ", $scope.currentData);
+    setDefault();
+    console.log("[Load] CurrentData:", $scope.currentData);
   };
 
+  // Create Page
   $scope.createPage = function() {
     $('#createBtn').button('loading');
     $scope.startPro();
@@ -197,61 +80,19 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       space: $scope.currentData.space,
       data: $rootScope.data
     };
-    if ($scope.currentData.name != 'default') {
-      DataService.saveData(data, function(res) {
-        for (var i = 0; i < $scope.settingData.length; i++) {
-          if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
-            $scope.settingData.data = data.data;
-            $scope.settingData._id = res.id;
-            $scope.settingData._rev = res.rev;
-            $scope.currentData.data = data.data;
-            $scope.currentData._id = res.id;
-            $scope.currentData._rev = res.rev;
-            break;
-          };
+    DataService.saveData(data, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+          $scope.settingData.data = data.data;
+          $scope.settingData._id = res.id;
+          $scope.settingData._rev = res.rev;
+          $scope.currentData.data = data.data;
+          $scope.currentData._id = res.id;
+          $scope.currentData._rev = res.rev;
+          break;
         };
-        showResult(5, $scope.currentData.name);
-        var data_cre = {
-          data: $rootScope.data
-        };
-        var str = angular.toJson($rootScope.data);
-        data_cre.data = angular.fromJson(str);
-
-        if ($scope.currentData && $scope.currentSpace) {
-          data_cre.name = $scope.currentData.name;
-          data_cre.space = $scope.currentSpace.name;
-        };
-        if (data_cre.data.meta.country && data_cre.data.meta.language) {
-          for (var i = 0; i < DataService.getDefaultCountry.length; i++) {
-            if (DataService.getDefaultCountry[i].country == data_cre.data.meta.country) {
-              data_cre.data.meta.country = DataService.getDefaultCountry[i].code;
-              break;
-            };
-          };
-          for (var i = 0; i < DataService.getDefaultLanguage.length; i++) {
-            if (DataService.getDefaultLanguage[i].language == data_cre.data.meta.language) {
-              data_cre.data.meta.language = DataService.getDefaultLanguage[i].code;
-              break;
-            };
-          };
-        };
-        DataService.createPage(data_cre, function(res) {
-          $timeout(function() {
-            $('#createBtn').button('reset');
-            window.open('./pages/' + data_cre.space + '/' + data_cre.name + '.html', '_blank');
-          }, 500);
-          $scope.stopPro();
-        }, function(res) {
-          showResult(7, "");
-          $('#createBtn').button('reset');
-          $scope.stopPro();
-        });
-      }, function(res) {
-        showResult(6, $scope.currentData.name);
-        $scope.stopPro();
-        $('#saveBtn').button('reset');
-      });
-    } else {
+      };
+      $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
       var data_cre = {
         data: $rootScope.data
       };
@@ -283,62 +124,108 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         }, 500);
         $scope.stopPro();
       }, function(res) {
-        showResult(7, "");
+        $scope.showError('Please input enough data of required modules');
         $('#createBtn').button('reset');
         $scope.stopPro();
+      });
+    }, function(res) {
+      $scope.showError('Fail to save the \'' + $scope.currentData.name + '\' page, retry please');
+      $scope.stopPro();
+      $('#saveBtn').button('reset');
+    });
+  };
+
+  // Add Page
+  $scope.add = function() {
+    var isRight = true;
+    for (var i = 0; i < $scope.settingData.length; i++) {
+      if ($scope.settingData[i].name == $scope.tarName && $scope.settingData[i].space == $scope.tarSpace._id) {
+        isRight = false;
+        $scope.showError('The page \'' + $scope.tarName + '\' already exists');
+        break;
+      };
+    };
+    if (isRight) {
+      $scope.startPro();
+      var data = {};
+      data.name = $scope.tarName;
+      data.space = $scope.tarSpace._id;
+      if ($scope.fromSpace && $scope.tarData) {
+        data.data = $scope.tarData.data;
+      } else {
+        data.data = DataService.getNullData.data;
+      };
+      console.log("[Add Page] data = ", data);
+      DataService.add(data, function(res) {
+        data._id = res.id;
+        data._rev = res.rev;
+        $scope.settingData.push(data);
+        $scope.showSuccess('Succeed to save the ' + $scope.tarName + ' page');
+        $scope.stopProAsyn(function() {
+          $scope.loadAuto();
+        });
+      }, function(res) {
+        $scope.stopPro();
+        $scope.showError('Fail to add the \'' + $scope.tarName + '\' page, retry please');
       });
     };
   };
 
-  $scope.add = function() {
-    if ($scope.tarName == "") {
-      showResult(2, $scope.tarName);
-    } else {
-      var isRight = true;
+  // Delete A Page
+  $scope.delete = function() {
+    $scope.startPro();
+    DataService.delete($scope.currentData, function(res) {
       for (var i = 0; i < $scope.settingData.length; i++) {
-        if ($scope.settingData[i].name == $scope.tarName && $scope.settingData[i].space == $scope.tarSpace._id) {
-          isRight = false;
-          showResult(2, $scope.tarName);
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+          $scope.settingData.splice(i, 1);
           break;
         };
       };
-      if (isRight) {
-        $scope.startPro();
-        var data = {};
-        data.name = $scope.tarName;
-        data.space = $scope.tarSpace._id;
-        if ($scope.fromSpace && $scope.tarData) {
-          data.data = $scope.tarData.data;
-        } else {
-          data.data = DataService.getNullData.data;
+      $scope.showSuccess('Succeed to delete the ' + $scope.currentData.name + ' page');
+      $scope.stopPro();
+      $scope.currentData = null;
+      $scope.currentSpace = null;
+      $rootScope.data = {};
+      $rootScope.data.setting = DataService.getDefaultSetting;
+    }, function(res) {
+      $scope.showError('Fail to delete the \'' + $scope.currentData.name + '\' page, retry please');
+      $scope.stopPro();
+    });
+  };
+
+  // Save Page
+  $scope.save = function() {
+    $('#saveBtn').button('loading');
+    $scope.startPro();
+    var data = {
+      _id: $scope.currentData._id,
+      _rev: $scope.currentData._rev,
+      name: $scope.currentData.name,
+      space: $scope.currentData.space,
+      data: $rootScope.data
+    };
+    DataService.saveData(data, function(res) {
+      for (var i = 0; i < $scope.settingData.length; i++) {
+        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
+          $scope.settingData.data = data.data;
+          $scope.settingData._id = res.id;
+          $scope.settingData._rev = res.rev;
+          $scope.currentData.data = data.data;
+          $scope.currentData._id = res.id;
+          $scope.currentData._rev = res.rev;
+          break;
         };
-        console.log("[Add Page] data = ", data);
-        DataService.add(data, function(res) {
-          showResult(1, $scope.tarName);
-          data._id = res.id;
-          data._rev = res.rev;
-          $scope.settingData.push(data);
-          $scope.stopProAsyn(function() {
-            $scope.loadAuto();
-          });
-        }, function(res) {
-          $scope.stopPro();
-          showResult(2, $scope.tarName);
-        });
       };
-    };
+      $('#saveBtn').button('reset');
+      $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
+      $scope.stopPro();
+    }, function(res) {
+      $scope.showError('Fail to save the \'' + $scope.currentData.name + '\' page, retry please');
+      $scope.stopPro();
+    });
   };
 
-  $scope.verifyPageOpened = function() {
-    $scope.tarData = null;
-    $scope.tarName = '';
-    if (!$scope.currentData) {
-      $('#addModal').modal('show');
-    } else {
-      $('#saveCurrentModal').modal('show');
-    };
-  };
-
+  // Save Page Automatically
   $scope.saveAuto = function() {
     $('#saveBtn').button('loading');
     $scope.startPro();
@@ -362,24 +249,27 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         };
       };
       $('#saveBtn').button('reset');
-      showResult(5, $scope.currentData.name);
+      $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
       $scope.stopPro();
       $('#addModal').modal('show');
     }, function(res) {
-      showResult(6, $scope.currentData.name);
+      $scope.showError('Fail to save the \'' + $scope.currentData.name + '\' page, retry please');
       $scope.stopPro();
       $('#saveBtn').button('reset');
     });
   };
 
+  // Load Page Automatically
   $scope.loadAuto = function() {
     $scope.currentData = $scope.settingData[$scope.settingData.length - 1];
     $scope.currentSpace = $scope.tarSpace;
     var str = angular.toJson($scope.currentData.data);
     $rootScope.data = angular.fromJson(str);
-    console.log("[Load finished] ", $scope.currentData);
+    setDefault();
+    console.log("[Load] CurrentData:", $scope.currentData);
   };
 
+  // Verify if there is a page opened
   $scope.verifyCurrentPage = function() {
     $scope.tarData = null;
     $scope.tarName = '';
@@ -388,9 +278,9 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
     } else {
       $("#verifyPageOpened").modal('show');
     }
-    console.log("[add] currentData = ", $scope.currentData);
   };
 
+  // Save Current Page Before New A Page
   $scope.saveCurrentPage = function() {
     $('#saveBtn').button('loading');
     $scope.startPro();
@@ -415,14 +305,218 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
         $("#addModal").modal('show');
       };
       $('#saveBtn').button('reset');
-      showResult(5, $scope.currentData.name);
+      $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
       $scope.stopPro();
     }, function(res) {
-      showResult(6, $scope.currentData.name);
+      $scope.showError('Fail to save the \'' + $scope.currentData.name + '\' page, retry please');
       $scope.stopPro();
       $('#saveBtn').button('reset');
     });
   };
+
+
+  $scope.$watch(function() {
+    return $scope.tarSpace;
+  }, function() {
+    $scope.imageIndex = -1;
+  });
+
+  $scope.setFieldIndex = function(index) {
+    $scope.fieldIndex = index;
+  };
+
+  $scope.updateIndex = function(id) {
+    $scope.imageIndex = -1;
+    for (var index = 0; index < $scope.images.length; index++) {
+      if ($scope.images[index]._id == id) {
+        $scope.imageIndex = index;
+        break;
+      };
+    };
+  };
+
+  $scope.updateUrl = function(url) {
+    $scope.imageUrl = url;
+  };
+
+  $scope.setImageUrl = function() {
+    switch ($scope.fieldIndex) {
+      case 1:
+        $rootScope.data.defi1.asset.imgUrl = $scope.imageUrl;
+        break;
+    };
+  };
+
+  $scope.upload = function() {
+    $("#uploadBtn").button('loading');
+    $scope.startPro();
+    console.log("$scope.isNewImage", $scope.isNewImage);
+    console.log("$scope.tarProjectName", $scope.tarProjectName);
+    console.log("$scope.currentImage", $scope.currentImage);
+    var data = {};
+    if ($scope.isNewImage) {
+      data = {
+        projectName: $scope.tarProjectName,
+        folderId: $scope.tarSpace._id
+      };
+    } else {
+      data = {
+        _id: $scope.currentImage._id,
+        _rev: $scope.currentImage._rev,
+        projectName: $scope.currentImage._id,
+        folderId: $scope.currentImage.folderId
+      };
+    };
+    Upload.upload({
+      url: '/image/upload',
+      data: data,
+      file: $scope.myFile
+    }).then(function(res) {
+      $scope.stopPro();
+      console.log(res.data);
+      if ($scope.isNewImage) {
+        $scope.images.push(res.data);
+        $scope.imageUrl = res.data.images[0].url;
+        $scope.setImageUrl();
+        console.log($scope.images);
+      } else {
+        $scope.currentImage._rev = res.data._rev;
+        $scope.currentImage._id = res.data._id;
+        $scope.currentImage.folderId = res.data.folderId;
+        $scope.currentImage.images.push(res.data.image);
+        $scope.imageUrl = res.data.image.url;
+        $scope.setImageUrl();
+        console.log($scope.images);
+      };
+      $scope.showSuccess('Succeed to upload the ' + $scope.myFile.name);
+      $scope.tarProjectName = '';
+      $scope.isNewImage = false;
+      $scope.myFile = '';
+      $("#uploadBtn").button('reset');
+    }, function(err) {
+      $scope.showError('Fail to save the \'' + $scope.myFile.name + '\', retry please');
+      $scope.tarProjectName = '';
+      $scope.isNewImage = false;
+      $scope.myFile = '';
+      $scope.stopPro();
+      console.error(err);
+      $("#uploadBtn").button('reset');
+    });
+  }
+
+  // Start A ProgressBar
+  $scope.startPro = function() {
+    $scope.showPro = true;
+    $scope.value = 0;
+    $scope.timeout = $timeout(function() {
+      $scope.value = Math.random() * 30 + 30;
+      var maxTemp = Math.random() * 10 + 80;
+      var cell = 0;
+
+      function slowPro() {
+        cell = (maxTemp - $scope.value) / 20;
+        $scope.timeout = $timeout(function() {
+          $scope.value += cell;
+          slowPro();
+        }, 200);
+      };
+      slowPro();
+    }, 100);
+  };
+
+  // Stop The ProgressBar
+  $scope.stopPro = function() {
+    $timeout.cancel($scope.timeout);
+    $scope.value = 100;
+    $timeout(function() {
+      $scope.showPro = false;
+    }, 500);
+  };
+
+  // Stop The ProgressBar Then Invoke The Callback
+  $scope.stopProAsyn = function(callback) {
+    $timeout.cancel($scope.timeout);
+    $scope.value = 100;
+    $timeout(function() {
+      $scope.showPro = false;
+      callback();
+    }, 500);
+  };
+
+  $scope.$watch(function() {
+    return $state.current.name
+  }, function() {
+    if ($state.current.name == "setting.leadspace") {
+      $scope.currentPage = 0;
+    } else if ($state.current.name == "setting.definition1") {
+      $scope.currentPage = 1;
+    } else if ($state.current.name == "setting.definition2") {
+      $scope.currentPage = 2;
+    } else if ($state.current.name == "setting.promotion1") {
+      $scope.currentPage = 3;
+    } else if ($state.current.name == "setting.promotion2") {
+      $scope.currentPage = 4;
+    } else if ($state.current.name == "setting.promotion3") {
+      $scope.currentPage = 5;
+    } else if ($state.current.name == "setting.discovery") {
+      $scope.currentPage = 6;
+    } else if ($state.current.name == "setting.contact") {
+      $scope.currentPage = 7;
+    } else if ($state.current.name == "setting.meta") {
+      $scope.currentPage = 8;
+    } else if ($state.current.name == "setting.manage") {
+      $scope.currentPage = 10;
+      $scope.currentData = null;
+      $scope.currentSpace = null;
+      $rootScope.data = {};
+      $rootScope.data.setting = DataService.getDefaultSetting;
+    };
+  });
+
+  $scope.$on(
+    "$destroy",
+    function(event) {
+      $timeout.cancel($scope.timeout);
+    }
+  );
+
+  $scope.$watch(function() {
+    return $scope.tarName;
+  }, function() {
+    if ($scope.tarName) {
+      $scope.tarName = $scope.tarName.replace(/\s/, '-');
+      $scope.tarName = $scope.tarName.replace(/[^\d\w\_\-]/, '');
+    };
+  });
+
+  $scope.showError = function(errorMsg) {
+    $timeout.cancel($scope.mesTimeout);
+    $scope.errorMsg = errorMsg;
+    $scope.mesTimeout = $timeout(function() {
+      $scope.errorMsg = '';
+    }, 3000);
+  };
+
+  $scope.showSuccess = function(successMsg) {
+    $timeout.cancel($scope.mesTimeout);
+    $scope.successMsg = successMsg;
+    $scope.mesTimeout = $timeout(function() {
+      $scope.successMsg = '';
+    }, 3000);
+  };
+
+  function setDefault() {
+    if (!$rootScope.data.contact.callUsAt) {
+      $rootScope.data.contact.callUsAt = 'Call us at:';
+    };
+    if (!$rootScope.data.contact.priorityCode) {
+      $rootScope.data.contact.priorityCode = 'Priority code:';
+    };
+    if (!$rootScope.data.contact.socialIcon) {
+      $rootScope.data.contact.socialIcon = 'Visit us on:';
+    };
+  };
+
   $scope.swap = function(type) {
     // type: 1  swap pro1 and prom2
     // type: 2  swap pro2 and prom3
@@ -445,88 +539,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$http', '$timeout', '$state', '$
       $rootScope.data.prom2 = prom3;
       $rootScope.data.setting.prom2 = setting3;
     }
-    showResult(8, $scope.tarName);
+    $scope.showSuccess('Succeed to swap the promotion data');
     console.log($rootScope.data.prom2);
-  };
-
-  $scope.delete = function() {
-    $scope.startPro();
-    DataService.delete($scope.currentData, function(res) {
-      for (var i = 0; i < $scope.settingData.length; i++) {
-        if ($scope.settingData[i].name == $scope.currentData.name) {
-          $scope.settingData.splice(i, 1);
-          showResult(3, $scope.currentData.name);
-          break;
-        };
-      };
-      $scope.stopPro();
-      $scope.currentData = null;
-      $scope.currentSpace = null;
-      $rootScope.data = {};
-      $rootScope.data.setting = {
-        lead: 0,
-        defi1: {
-          type: 0,
-          substyle: 0,
-        },
-        defi2: {
-          type: 0,
-          substyle: 0,
-        },
-        prom1: {
-          type: 0,
-          substyle: 0
-        },
-        prom2: {
-          type: 0,
-          substyle: 0
-        },
-        prom3: {
-          type: 0,
-          substyle: 0
-        },
-        disc: {
-          type: 0,
-          substyle: 0
-        },
-        contact: 0
-      };
-    }, function(res) {
-      showResult(4, $scope.currentData.name);
-      $scope.stopPro();
-    });
-  };
-
-  $scope.save = function() {
-    $('#saveBtn').button('loading');
-    $scope.startPro();
-    var data = {
-      _id: $scope.currentData._id,
-      _rev: $scope.currentData._rev,
-      name: $scope.currentData.name,
-      space: $scope.currentData.space,
-      data: $rootScope.data
-    };
-    DataService.saveData(data, function(res) {
-      for (var i = 0; i < $scope.settingData.length; i++) {
-        if ($scope.settingData[i].name == $scope.currentData.name && $scope.settingData[i].space == $scope.currentData.space) {
-          $scope.settingData.data = data.data;
-          $scope.settingData._id = res.id;
-          $scope.settingData._rev = res.rev;
-          $scope.currentData.data = data.data;
-          $scope.currentData._id = res.id;
-          $scope.currentData._rev = res.rev;
-          break;
-        };
-      };
-      $('#saveBtn').button('reset');
-      showResult(5, $scope.currentData.name);
-      $scope.stopPro();
-    }, function(res) {
-      showResult(6, $scope.currentData.name);
-      $scope.stopPro();
-      $('#saveBtn').button('reset');
-    });
   };
 }]);
 
@@ -534,21 +548,9 @@ myPageApp.controller('SetLeadSpaceCtrl', function($scope, $rootScope) {
   $scope.substyle = ['', 'Substyle: Image background', 'Substyle: Video background', 'Substyle: Image background - small'];
 });
 
-myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, $timeout) {
-  $scope.mySetting = {
-    type: $rootScope.data.setting.defi1.type,
-    substyle: $rootScope.data.setting.defi1.substyle
-  };
-
+myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, $timeout) {
   $scope.style = ['', 'Style:Introduction', 'Style:Asset promo', 'Style:Step-by-step'];
   $scope.substyle = ['', 'Substyle:Text only,one column', 'Substyle:Text only,two columns', 'Substyle:With CTA,one column', 'Substyle:With CTA,two columns', 'Substyle:With image', 'Substyle:With video', 'Substyle:Icons with individual CTAs(3 steps)', 'Substyle:Icons with individual CTAs(4 steps)', 'Substyle:Icons with single CTA(3 steps)', 'Substyle:Icons with single CTA(4 steps)', 'Substyle:Numbers with individual CTAs(3 steps)', 'Substyle:Numbers with individual CTAs(4 steps)', 'Substyle:Numbers with single CTAs(3 steps)', 'Substyle:Numbers with single CTAs(4 steps)'];
-
-  $scope.$watch(function() {
-    return $rootScope.data.setting.defi1;
-  }, function() {
-    $scope.mySetting = $rootScope.data.setting.defi1;
-    console.log("[Defi1 Data Changed] $scope.mySetting = ", $scope.mySetting);
-  });
 
   $scope.showWarning1 = false;
   $scope.showWarning2 = false;
@@ -588,8 +590,6 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
     }
     $rootScope.data.setting.defi1.type = $scope.tempSetting.type;
     $rootScope.data.setting.defi1.substyle = $scope.tempSetting.substyle;
-    $scope.mySetting.type = $scope.tempSetting.type;
-    $scope.mySetting.substyle = $scope.tempSetting.substyle;
     $('#defi1Modal').modal('hide');
   };
 
@@ -599,80 +599,6 @@ myPageApp.controller('SetDefinition1Ctrl', function($scope, $rootScope, Upload, 
       substyle: $rootScope.data.setting.defi1.substyle
     };
   };
-
-  $scope.$watch(function(){
-    return $scope.tarSpace;
-  }, function(){
-    $scope.imageIndex = -1;
-  });
-
-  $scope.updateIndex = function(id) {
-    $scope.imageIndex = -1;
-    for (var index = 0; index < $scope.images.length; index++) {
-      if ($scope.images[index]._id == id){
-        $scope.imageIndex = index;
-        break;
-      };
-    };
-  };
-
-  $scope.updateUrl = function(url) {
-    $scope.imageUrl = url;
-  };
-
-  $scope.setImageUrl = function() {
-    $rootScope.data.defi1.asset.imgUrl = $scope.imageUrl;
-  };
-
-  $scope.upload = function() {
-    $("#uploadBtn").button('loading');
-    $scope.startPro();
-    console.log("$scope.isNewImage", $scope.isNewImage);
-    console.log("$scope.tarProjectName", $scope.tarProjectName);
-    console.log("$scope.currentImage", $scope.currentImage);
-    var data = {};
-    if ($scope.isNewImage) {
-      data = {
-        projectName: $scope.tarProjectName,
-        folderId: $scope.tarSpace._id
-      };
-    } else {
-      data = {
-        _id: $scope.currentImage._id,
-        _rev: $scope.currentImage._rev,
-        projectName: $scope.currentImage._id,
-        folderId: $scope.currentImage.folderId
-      };
-    };
-    Upload.upload({
-      url: '/image/upload',
-      data: data,
-      file: $scope.myFile
-    }).then(function(res) {
-      $scope.stopPro();
-      console.log(res.data);
-      if ($scope.isNewImage) {
-        $scope.images.push(res.data);
-        $rootScope.data.defi1.asset.imgUrl = res.data.images[0].url;
-        console.log($scope.images);
-      } else {
-        $scope.currentImage._rev = res.data._rev;
-        $scope.currentImage._id = res.data._id;
-        $scope.currentImage.folderId = res.data.folderId;
-        $scope.currentImage.images.push(res.data.image);
-        $rootScope.data.defi1.asset.imgUrl = res.data.image.url;
-        console.log($scope.images);
-      };
-      $scope.tarProjectName = '';
-      $scope.isNewImage = false;
-      $scope.myFile = '';
-      $("#uploadBtn").button('reset');
-    }, function(err) {
-      $scope.stopPro();
-      console.error(err);
-      $("#uploadBtn").button('reset');
-    });
-  }
 });
 
 myPageApp.controller('SetDefinition2Ctrl', function($scope, $rootScope, $timeout) {
@@ -1241,7 +1167,9 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
       $scope.spaces.push(folder);
       $scope.tarFolder = '';
       $scope.stopPro();
+      $scope.showSuccess('Succeed to add the \'' + $scope.tarFolder + '\' user folder')
     }, function(res) {
+      $scope.showError('Fail to save the \'' + $scope.tarFolder + '\' user folder, retry please');
       $scope.stopPro();
       console.error(res);
     });
@@ -1263,12 +1191,22 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
       };
       $scope.spaces.splice(index, 1);
       $scope.tarFolder = '';
+      $scope.showSuccess('Succeed to delete the \'' + $scope.myFolder.name + '\' user folder')
       $scope.stopPro();
     }, function(res) {
+      $scope.showError('Fail to delete the \'' + $scope.myFolder.name + '\' user folder, retry please');
       $scope.stopPro();
       console.error(res);
     });
   };
+  $scope.$watch(function() {
+    return $scope.tarFolder;
+  }, function() {
+    if ($scope.tarFolder) {
+      $scope.tarFolder = $scope.tarFolder.replace(/\s/, '-');
+      $scope.tarFolder = $scope.tarFolder.replace(/[^\d\w\_\-]/, '');
+    };
+  });
 
   $scope.renameFolder = function() {
     $scope.startPro();
@@ -1287,9 +1225,11 @@ myPageApp.controller('ManageCtrl', function($scope, $rootScope, DataService) {
         };
       };
       $scope.spaces.splice(index, 1, folder);
+      $scope.showSuccess('Succeed to rename the \'' + $scope.tarFolder + '\' user folder')
       $scope.tarFolder = '';
       $scope.stopPro();
     }, function(res) {
+      $scope.showError('Fail to rename the \'' + $scope.myFolder.name + '\' user folder, retry please');
       $scope.stopPro();
       console.error(res);
     });

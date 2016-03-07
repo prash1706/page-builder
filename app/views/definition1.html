@@ -1,71 +1,71 @@
-<legend class="color2" ng-show="mySetting.substyle">Definition1 / {{style[mySetting.type]}} / {{substyle[mySetting.substyle]}}</legend>
-<legend class="color2" ng-show="!mySetting.substyle">Definition1</legend>
-<div class="col-md-8" ng-show="mySetting.substyle==1">
+<legend class="color2" ng-show="data.setting.defi1.substyle">Definition1 / {{style[data.setting.defi1.type]}} / {{substyle[data.setting.defi1.substyle]}}</legend>
+<legend class="color2" ng-show="!data.setting.defi1.substyle">Definition1</legend>
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==1">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/Introduction1.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==2">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==2">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/Introduction2.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==3">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==3">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/Introduction3.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==4">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==4">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/Introduction4.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==5">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==5">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/Asset_promo1.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==6">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==6">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/Asset_promo2.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==7">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==7">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step1.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==8">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==8">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step2.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==9">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==9">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step3.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==10">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==10">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step4.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==11">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==11">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step5.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==12">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==12">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step6.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==13">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==13">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step7.jpg" alt="">
   </a>
 </div>
-<div class="col-md-8" ng-show="mySetting.substyle==14">
+<div class="col-md-8" ng-show="data.setting.defi1.substyle==14">
   <a class="thumbnail selected" data-toggle="modal" data-target="#defi1Modal" ng-click="getStyle()">
     <img src="../images/step8.jpg" alt="">
   </a>
@@ -76,7 +76,7 @@
   </div>
 </form>
 <!--Introduction -->
-<form class="form-horizontal col-md-12" ng-if="mySetting.type==1 && mySetting.substyle >= 1 && mySetting.substyle <= 4">
+<form class="form-horizontal col-md-12" ng-if="data.setting.defi1.type==1 && data.setting.defi1.substyle >= 1 && data.setting.defi1.substyle <= 4">
   <legend><small>Introduction</small></legend>
   <div class="form-group">
     <label class="col-sm-2 control-label">Subhead</label>
@@ -90,7 +90,7 @@
       <textarea type="text" class="form-control" rows="8" ng-model="data.defi1.intro.column1"></textarea>
     </div>
   </div>
-  <div ng-show="mySetting.substyle==2 || mySetting.substyle==4">
+  <div ng-show="data.setting.defi1.substyle==2 || data.setting.defi1.substyle==4">
     <div class="form-group">
       <label class="col-sm-2 control-label">Column 2</label>
       <div class="col-sm-4">
@@ -132,13 +132,13 @@
       </div>
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==4">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==4">
     <label class="col-sm-2 control-label">CTA Lead-in</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.intro.ctaLeadIn">
     </div>
   </div>
-  <div ng-show="mySetting.substyle==3 || mySetting.substyle==4">
+  <div ng-show="data.setting.defi1.substyle==3 || data.setting.defi1.substyle==4">
     <div class="form-group">
       <label class="col-sm-2 control-label">CTA Button Label</label>
       <div class="col-sm-10">
@@ -154,7 +154,7 @@
   </div>
 </form>
 <!--Asset Promo Video -->
-<form class="form-horizontal col-md-12" ng-if="mySetting.type==2 && mySetting.substyle > 4 && mySetting.substyle < 7">
+<form class="form-horizontal col-md-12" ng-if="data.setting.defi1.type==2 && data.setting.defi1.substyle > 4 && data.setting.defi1.substyle < 7">
   <legend><small>Asset Promo</small></legend>
   <div class="form-group">
     <label class="col-sm-2 control-label">Subhead</label>
@@ -180,23 +180,23 @@
       <input type="text" class="form-control" ng-model="data.defi1.asset.ctaUrl">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==5">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==5">
     <label class="col-sm-2 control-label">Asset Image URL</label>
-    <div class="input-group col-sm-10" style="padding-left:15px;padding-right:15px;padding-top:10px">
-      <input type="text" class="form-control" ng-init="data.defi1.asset.imgUrl=data.defi1.asset.imgUrl==undefined?'':data.defi1.asset.imgUrl" ng-model="data.defi1.asset.imgUrl">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetUploadModal" id="uploadBtn" data-loading-text="Uploading..." >Upload</button>
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#assetRetrieveModal">Retrieve</button>
-      </span>
+    <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
+      <div class="col-sm-9">
+        <input type="text" class="form-control" ng-init="data.defi1.asset.imgUrl=data.defi1.asset.imgUrl==undefined?'':data.defi1.asset.imgUrl" ng-model="data.defi1.asset.imgUrl">
+      </div>
+      <button class="btn btn-default pull-right" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex(1)">Retrieve</button>
+      <button class="btn btn-default pull-right" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" id="uploadBtn" data-loading-text="Uploading..." ng-click="setFieldIndex(1)">Upload</button>
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==5">
-     <label class="col-sm-2 control-label">Asset Image Alternate Text</label>
-     <div class="input-group col-sm-10" style="padding-left:15px;padding-right:15px;padding-top:10px">
-     <input type="text" class="form-control" ng-model="data.defi1.asset.imgAlt">
-     </div>
+  <div class="form-group" ng-show="data.setting.defi1.substyle==5">
+    <label class="col-sm-2 control-label">Asset Image Alternate Text</label>
+    <div class="input-group col-sm-10" style="padding-left:15px;padding-right:15px;padding-top:10px">
+      <input type="text" class="form-control" ng-model="data.defi1.asset.imgAlt">
+    </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==6">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==6">
     <label class="col-sm-2 control-label">Video thumbnail URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.asset.videoUrl">
@@ -204,7 +204,7 @@
   </div>
 </form>
 <!--Step by step  substyle 7~14-->
-<form class="form-horizontal col-md-12" ng-if="mySetting.type==3 &&  mySetting.substyle >=7 && mySetting.substyle <= 14">
+<form class="form-horizontal col-md-12" ng-if="data.setting.defi1.type==3 &&  data.setting.defi1.substyle >=7 && data.setting.defi1.substyle <= 14">
   <legend><small>Step by Step</small></legend>
   <div class="form-group">
     <label class="col-sm-2 control-label">Subhead</label>
@@ -212,19 +212,19 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.subhead">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==9 || data.setting.defi1.substyle==10 || data.setting.defi1.substyle==13 || data.setting.defi1.substyle==14">
     <label class="col-sm-2 control-label">CTA Lead-in</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.ctaLeadIn">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==9 || data.setting.defi1.substyle==10 || data.setting.defi1.substyle==13 || data.setting.defi1.substyle==14">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==9 || mySetting.substyle==10 || mySetting.substyle==13 || mySetting.substyle==14">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==9 || data.setting.defi1.substyle==10 || data.setting.defi1.substyle==13 || data.setting.defi1.substyle==14">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.ctaUrl">
@@ -234,13 +234,13 @@
   <div class="form-group">
     <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step1</small></legend>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+  <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
     <label class="col-sm-2 control-label">Image Url</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.imgUrl">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+  <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
     <label class="col-sm-2 control-label">Image Alternate Text</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.imgAlt">
@@ -258,13 +258,13 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.desc">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step1.ctaUrl">
@@ -274,13 +274,13 @@
   <div class="form-group">
     <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step2</small></legend>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+  <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
     <label class="col-sm-2 control-label">Image Url</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.imgUrl">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+  <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
     <label class="col-sm-2 control-label">Image Alternate Text</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.imgAlt">
@@ -298,13 +298,13 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.desc">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step2.ctaUrl">
@@ -314,13 +314,13 @@
   <div class="form-group">
     <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step3</small></legend>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+  <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
     <label class="col-sm-2 control-label">Image Url</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.imgUrl">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+  <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
     <label class="col-sm-2 control-label">Image Alternate Text</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.imgAlt">
@@ -338,30 +338,30 @@
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.desc">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
     <label class="col-sm-2 control-label">CTA Button Label</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.cta">
     </div>
   </div>
-  <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+  <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
     <label class="col-sm-2 control-label">CTA Button URL</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" ng-model="data.defi1.step.step3.ctaUrl">
     </div>
   </div>
   <!-- Step 4 -->
-  <div ng-show="mySetting.substyle==8 || mySetting.substyle==10 || mySetting.substyle==12 || mySetting.substyle==14">
+  <div ng-show="data.setting.defi1.substyle==8 || data.setting.defi1.substyle==10 || data.setting.defi1.substyle==12 || data.setting.defi1.substyle==14">
     <div class="form-group">
       <legend class="col-sm-2 control-label stepDiv"><small style="font-size:80%">Step4</small></legend>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+    <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
       <label class="col-sm-2 control-label">Image Url</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.imgUrl">
       </div>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
+    <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
       <label class="col-sm-2 control-label">Image Alternate Text</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.imgAlt">
@@ -379,13 +379,13 @@
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.desc">
       </div>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+    <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
       <label class="col-sm-2 control-label">CTA Button Label</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.cta">
       </div>
     </div>
-    <div class="form-group" ng-show="mySetting.substyle==7 || mySetting.substyle==8 || mySetting.substyle==11 || mySetting.substyle==12">
+    <div class="form-group" ng-show="data.setting.defi1.substyle==7 || data.setting.defi1.substyle==8 || data.setting.defi1.substyle==11 || data.setting.defi1.substyle==12">
       <label class="col-sm-2 control-label">CTA Button URL</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" ng-model="data.defi1.step.step4.ctaUrl">
@@ -537,113 +537,6 @@
             </div>
           </div>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Upload modal -->
-<div class="modal fade" id="assetUploadModal" tabindex="-1" role="dialog" aria-labelledby="assetUploadModalLabel">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="pull-right">
-        </div>
-        <h4 class="modal-title">Upload Image</h4>
-      </div>
-      <div class="modal-body">
-        <h5><span class="glyphicon glyphicon-info-sign"></span><strong> <strong>Image will be uploaded into Cloudant and it will be public at the URL</strong></h5>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-3 control-label">I want to</label>
-            <div class="col-sm-8">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" ng-init="isNewImage=false" value="option1" ng-checked="isNewImage==false" ng-click="isNewImage=false" checked> Use an existing folder to save this new image
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-click="isNewImage=true" ng-checked="isNewImage==true" value="option2">Create a new folder to save this new image
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group" ng-hide="!isNewImage">
-            <label class="col-sm-3 control-label">Project folder</label>
-            <div class="col-sm-6">
-              <input class="form-control" type="text" ng-model="tarProjectName" >
-            </div>
-          </div>
-          <div class="form-group" ng-hide="isNewImage">
-            <label class="col-sm-3 control-label">Project folder</label>
-            <div class="col-sm-6">
-              <select class="form-control" ng-model="currentImage" ng-options="image._id for image in images | filter: {folderId : tarSpace._id } | orderBy : '_id' : false">
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Uploaded image</label>
-            <div class="col-sm-9">
-              <input class="col-sm-9" style="margin-top:10px;margin-bottom: 10px;padding-left:0" type="file" ngf-select ng-model="myFile" name="myFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
-              <button type="button" class="close" style="right:auto;margin-top:10px;margin-bottom: 10px" aria-label="Close" ng-show="myFile" ng-click="myFile=''"><span aria-hidden="true">&times;</span></button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Image thumbnail</label>
-            <div class="col-sm-9">
-              <img style="max-width: 30%" ng-show="myFile" ngf-thumbnail="myFile">
-              <span ng-show="myFile">({{myFile.size/1024|number:2}}kb)</span>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!myFile || (isNewImage && !tarProjectName) || (!isNewImage && !currentImage)" ng-click="upload()">OK</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="myFile=null;isNewImage=false">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Retrieve modal -->
-<div class="modal fade" id="assetRetrieveModal" tabindex="-1" role="dialog" aria-labelledby="assetRetrieveModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="pull-right">
-        </div>
-        <h4 class="modal-title">Retrieve Image</h4>
-      </div>
-      <div class="modal-body">
-        <h5><span class="glyphicon glyphicon-info-sign"></span><strong> To get a URL please select a project folder then select an image and then hit OK button.</strong></h5>
-        <div class="form-group col-sm-10" style="margin: 20px auto">
-          <label class="col-sm-3 control-label">User Folder</label>
-          <div class="col-sm-6">
-            <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in spaces | orderBy : 'name' : false">
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-12" style="padding:5px;">
-          <div class="col-sm-3" style="padding: 10px; border: 1px solid #e5e5e5; margin-right:20px; border-radius: 2px">
-            <div class="list-group">
-              <a class="list-group-item" style="cursor: pointer" ng-repeat="image in images | filter: {folderId : tarSpace._id} | orderBy : '_id' : false" ng-class="{active: images[imageIndex]._id == image._id}" ng-click="updateIndex(image._id)">{{image._id}}</a>
-            </div>
-          </div>
-          <div class="col-sm-8" style="padding: 10px; border: 1px solid #e5e5e5;border-radius: 2px">
-            <table class="table" ng-init="imageUrl=''" ng-hide="imageIndex == -1">
-              <tbody>
-                <tr ng-repeat="image in images[imageIndex].images" ng-class="{selectRow: imageUrl==image.url}" style="cursor:pointer;" ng-click="updateUrl(image.url)">
-                  <td><img ng-src="{{image.url}}" alt="" style="max-width: 30px; width: 30px;
-    margin: 0 5px;"><span>{{image.name}}</span></td>
-                  <td>{{image.length/1024|number:2}}kb</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer" style="clear:both">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="!imageUrl" ng-click="setImageUrl()">OK</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
