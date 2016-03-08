@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
-console.log("server :", process.env);
 
 app.use(function(req, res, next) {
   var reqDomain = domain.create();
@@ -368,6 +367,10 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+app.setDB = function(server){
+  console.log(server);
+};
 
 // process.on('uncaughtException', function (err) {
 //     console.log(err);
