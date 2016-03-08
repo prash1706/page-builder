@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
+console.log("server :", process.env);
 
 app.use(function(req, res, next) {
   var reqDomain = domain.create();
