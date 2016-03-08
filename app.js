@@ -11,10 +11,15 @@ var multiparty = require('connect-multiparty');
 multipartyMiddleware = multiparty();
 // var db = require('./models/db');
 var cloudant = require('./models/cloudant');
-var db = cloudant.db.use('northstar_page');
 var Data = require('./models/data');
 var Folder = require('./models/folder');
 var domain = require('domain');
+
+var pageDBName = 'northstar_page';
+var folderDBName = 'northstar_folder';
+var fileDBName = 'files_space_dev';
+var db = cloudant.db.use(pageDBName);
+
 
 var app = express();
 // uncomment after placing your favicon in /public
@@ -93,7 +98,7 @@ app.post('/page', function(req, res) {
 
 // add a template
 app.post('/templates', function(req, res) {
-  db = cloudant.db.use('northstar_page');
+  db = cloudant.db.use(pageDBName);
   db.insert(req.body, function(err, body) {
     if (err) {
       console.error(err);
@@ -107,7 +112,7 @@ app.post('/templates', function(req, res) {
 
 // delete a template
 app.delete('/templates/:id/:rev', function(req, res) {
-  db = cloudant.db.use('northstar_page');
+  db = cloudant.db.use(pageDBName);
   var id = req.params.id;
   var rev = req.params.rev;
   console.log(req.params);
@@ -124,7 +129,7 @@ app.delete('/templates/:id/:rev', function(req, res) {
 
 // save a template
 app.post('/templates/:id', function(req, res) {
-  db = cloudant.db.use('northstar_page');
+  db = cloudant.db.use(pageDBName);
   db.insert(req.body, function(error, data) {
     if (error) {
       console.error(error);
@@ -138,7 +143,7 @@ app.post('/templates/:id', function(req, res) {
 
 // get all templates
 app.get('/templates', function(req, res) {
-  db = cloudant.db.use('northstar_page');
+  db = cloudant.db.use(pageDBName);
   db.fetch({}, function(err, body) {
     if (err) {
       console.error(err);
@@ -157,7 +162,7 @@ app.get('/templates', function(req, res) {
 
 // get all folders
 app.get('/folder', function(req, res) {
-  db = cloudant.db.use('northstar_folder');
+  db = cloudant.db.use(folderDBName);
   db.fetch({}, function(err, body) {
     if (err) {
       console.error(err);
@@ -176,7 +181,7 @@ app.get('/folder', function(req, res) {
 
 // add one folder
 app.post('/folder', function(req, res) {
-  db = cloudant.db.use('northstar_folder');
+  db = cloudant.db.use(folderDBName);
   db.insert(req.body, function(error, data) {
     if (error) {
       console.error(error);
@@ -190,7 +195,7 @@ app.post('/folder', function(req, res) {
 
 // rename one folder
 app.put('/folder/:id', function(req, res) {
-  db = cloudant.db.use('northstar_folder');
+  db = cloudant.db.use(folderDBName);
   console.log(req.body);
   db.insert(req.body, function(error, data) {
     if (error) {
@@ -205,7 +210,7 @@ app.put('/folder/:id', function(req, res) {
 
 // delete one folder
 app.delete('/folder/:id/:rev', function(req, res) {
-  db = cloudant.db.use('northstar_folder');
+  db = cloudant.db.use(folderDBName);
   var id = req.params.id;
   var rev = req.params.rev;
   console.log(req.params);
@@ -240,7 +245,7 @@ doc = {
 
 // get all images
 app.get('/image', function(req, res) {
-  db = cloudant.db.use('files_space_dev');
+  db = cloudant.db.use(fileDBName);
   db.fetch({}, function(err, body) {
     if (err) {
       console.error(err);
@@ -278,7 +283,7 @@ app.post('/image/upload', multipartyMiddleware, function(req, res) {
   var file = req.files.file;
   console.log('file:', file);
   console.log('data:', data);
-  db = cloudant.db.use('files_space_dev');
+  db = cloudant.db.use(fileDBName);
   fs.readFile(file.path, function(err, imageData) {
     if (data._rev) {
       console.log("Update Images");
@@ -368,6 +373,18 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+app.setPort = function(port){
+  console.log('Current Port: ', port);
+  if (port == '3001'){
+    pageDBName = 'northstar_page';
+    folderDBName = 'northstar_folder';
+    fileDBName = 'files_space_dev';
+  } else {
+    pageDBName = 'mpot_prod';
+    folderDBName = 'northstar_page_prod';
+    fileDBName = 'files_space_prod';
+  };
+};
 // process.on('uncaughtException', function (err) {
 //     console.log(err);
 // });

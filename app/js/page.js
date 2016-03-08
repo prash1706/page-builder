@@ -254,7 +254,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       };
       $('#saveBtn').button('reset');
       $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
-      $scope.stopProAsyn(function(){
+      $scope.stopProAsyn(function() {
         $('#addModal').modal('show');
       });
     }, function(res) {
@@ -310,8 +310,9 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       };
       $('#saveBtn').button('reset');
       $scope.showSuccess('Succeed to save the ' + $scope.currentData.name + ' page');
-      $scope.stopPro();
-      $("#addModal").modal('show');
+      $scope.stopProAsyn(function() {
+        $("#addModal").modal('show');
+      });
     }, function(res) {
       $scope.showError('Fail to save the \'' + $scope.currentData.name + '\' page, retry please');
       $scope.stopPro();
