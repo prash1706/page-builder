@@ -368,10 +368,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.setDB = function(server){
-  console.log(server);
-};
-
 // process.on('uncaughtException', function (err) {
 //     console.log(err);
 // });
