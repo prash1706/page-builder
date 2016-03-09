@@ -253,7 +253,6 @@ app.get('/image', function(req, res) {
     } else {
       var data = [];
       body.rows.forEach(function(value) {
-        console.log(value);
         if (typeof(value.doc) == 'object') {
           var doc = {
             _id: value.doc._id,
@@ -262,9 +261,11 @@ app.get('/image', function(req, res) {
             images: []
           };
           for (var key in value.doc._attachments) {
+            var projectFolderUrl = value.doc._id.replace(/\s/g, '%20');
+            var imageUrl = key.replace(/\s/g, '%20');
             var image = {
               name: key,
-              url: "https://ibmddm.cloudant.com/files_space_dev/" + value.doc._id + "/" + key,
+              url: "https://ibmddm.cloudant.com/files_space_dev/" + projectFolderUrl + "/" + imageUrl,
               length: value.doc._attachments[key].length
             };
             doc.images.push(image);

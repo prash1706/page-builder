@@ -27,7 +27,7 @@
   <div class="form-group" ng-if="data.setting.lead==1 || data.setting.lead==3">
     <label>Image URL</label>
       <div>
-        <input type="text" class="form-control" ng-model="data.lead.imgUrl" style="width:78%; display: inline-block;margin-right:10px">
+        <input type="text" class="form-control" ng-model="data.lead.imgUrl" ng-init="data.lead.imgUrl=data.lead.imgUrl===undefined?'':data.lead.imgUrl" style="width:78%; display: inline-block;margin-right:10px">
         <button class="btn btn-primary" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" id="uploadBtn" data-loading-text="Uploading..." ng-click="setFieldIndex('lead')">Upload</button>
         <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('lead')">Retrieve</button>
 

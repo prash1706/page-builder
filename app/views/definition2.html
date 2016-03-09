@@ -185,7 +185,7 @@
     <label class="col-sm-2 control-label">Asset Image URL</label>
     <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
       <div class="col-sm-9" style="width:76%">
-        <input type="text" class="form-control" ng-model="data.defi2.asset.imgUrl">
+        <input type="text" class="form-control" ng-model="data.defi2.asset.imgUrl"  ng-init="data.defi2.asset.imgUrl=data.defi2.asset.imgUrl===undefined?'':data.defi2.asset.imgUrl">
       </div>
       <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.asset')">Upload</button>
       <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.asset')">Retrieve</button>
@@ -239,7 +239,7 @@
     <label class="col-sm-2 control-label">Image Url</label>
     <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
       <div class="col-sm-9" style="width:76%">
-        <input type="text" class="form-control" ng-model="data.defi2.step.step1.imgUrl">
+        <input type="text" class="form-control" ng-model="data.defi2.step.step1.imgUrl"  ng-init="data.defi2.step.step1.imgUrl=data.defi2.step.step1.imgUrl===undefined?'':data.defi2.step.step1.imgUrl">
       </div>
       <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step1')">Upload</button>
       <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step1')">Retrieve</button>
@@ -283,7 +283,7 @@
     <label class="col-sm-2 control-label">Image Url</label>
     <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
       <div class="col-sm-9" style="width:76%">
-        <input type="text" class="form-control" ng-model="data.defi2.step.step2.imgUrl">
+        <input type="text" class="form-control" ng-model="data.defi2.step.step2.imgUrl"  ng-init="data.defi2.step.step2.imgUrl=data.defi2.step.step2.imgUrl===undefined?'':data.defi2.step.step2.imgUrl">
       </div>
       <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step2')">Upload</button>
       <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step2')">Retrieve</button>
@@ -327,7 +327,7 @@
     <label class="col-sm-2 control-label">Image Url</label>
     <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
       <div class="col-sm-9" style="width:76%">
-        <input type="text" class="form-control" ng-model="data.defi2.step.step3.imgUrl">
+        <input type="text" class="form-control" ng-model="data.defi2.step.step3.imgUrl"  ng-init="data.defi2.step.step3.imgUrl=data.defi2.step.step3.imgUrl===undefined?'':data.defi2.step.step3.imgUrl">
       </div>
       <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step3')">Upload</button>
       <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step3')">Retrieve</button>
@@ -372,7 +372,7 @@
       <label class="col-sm-2 control-label">Image Url</label>
       <div class="col-sm-10" style="padding-top:10px;margin-left:-15px">
         <div class="col-sm-9" style="width:76%">
-          <input type="text" class="form-control" ng-model="data.defi2.step.step4.imgUrl">
+          <input type="text" class="form-control" ng-model="data.defi2.step.step4.imgUrl" ng-init="data.defi2.step.step4.imgUrl=data.defi2.step.step4.imgUrl===undefined?'':data.defi2.step.step4.imgUrl">
         </div>
         <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step4')">Upload</button>
         <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step4')">Retrieve</button>
