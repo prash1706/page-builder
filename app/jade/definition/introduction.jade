@@ -1,5 +1,5 @@
 if substyle == 1
-  section.nst-module__introduction-col-1.nst_mlp-m020-m-00-intro-text-only-single-column
+  section.nst-module__introduction-col-1.nst_mlp-m020-m-00-intro-text-only-single-column(class=isGray==true?"ibm-background-neutral-white-30":"")
     .ibm-columns
       .ibm-col-6-4.ibm-center-block.ibm-center
         h2.ibm-h2.ibm-light.ibm-padding-bottom-2= data.intro.subhead
@@ -7,7 +7,7 @@ if substyle == 1
       .ibm-col-6-4.ibm-col-medium-1-1.ibm-center-block.ibm-center
         p.ibm-light= data.intro.column1
 else if substyle == 2
-  section.nst-module__introduction-col-1.ibm-padding-top-r2.removed-ibm-padding-bottom-r3.nst_mlp-m020-m-02-intro-text-only-two-columns
+  section.nst-module__introduction-col-1.ibm-padding-top-r2.removed-ibm-padding-bottom-r3.nst_mlp-m020-m-02-intro-text-only-two-columns(class=isGray==true?"ibm-background-neutral-white-30":"")
     .ibm-columns
       .ibm-col-6-4.ibm-center-block.ibm-center
         h2.ibm-h2.ibm-light.ibm-padding-bottom-2= data.intro.subhead
@@ -19,7 +19,7 @@ else if substyle == 2
           each item in data.intro.column2
             li= item
 else if substyle == 3
-  section.nst-module__introduction-col-1.ibm-padding-top-r2.ibm-padding-bottom-r2.nst_mlp-m020-m-01-intro-single-column-cta
+  section.nst-module__introduction-col-1.ibm-padding-top-r2.ibm-padding-bottom-r2.nst_mlp-m020-m-01-intro-single-column-cta(class=isGray==true?"ibm-background-neutral-white-30":"")
     .ibm-columns
       .ibm-col-6-4.ibm-center-block.ibm-center
         h2.ibm-h2.ibm-light.ibm-padding-bottom-2= data.intro.subhead
@@ -30,7 +30,7 @@ else if substyle == 3
         p.ibm-btn-row.ibm-padding-top-2
           a.ibm-btn.ibm-btn-pri.ibm-btn-orange-50(href="#{data.intro.ctaUrl}")= data.intro.cta
 else
-  section.nst-module__introduction-col-1.ibm-padding-top-r2.removed-ibm-padding-bottom-r3.nst_mlp-m020-m-03-intro-two-columns-cta
+  section.nst-module__introduction-col-1.ibm-padding-top-r2.removed-ibm-padding-bottom-r3.nst_mlp-m020-m-03-intro-two-columns-cta(class=isGray==true?"ibm-background-neutral-white-30":"")
     .ibm-columns
       .ibm-col-6-4.ibm-center-block.ibm-center
       h2.ibm-h2.ibm-light.ibm-padding-bottom-2= data.intro.subhead

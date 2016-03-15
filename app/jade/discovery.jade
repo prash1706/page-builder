@@ -1,6 +1,9 @@
 - var data = disc
 - var type = setting.disc.type
 - var substyle = setting.disc.substyle
+- var isGray = !isPre
+- isPre = type == 0 ? isPre : !isPre
+
 if type == 1
   include ./discovery/action.jade
 else
