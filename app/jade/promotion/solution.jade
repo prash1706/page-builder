@@ -2,7 +2,7 @@ section.nst-module__solution-overview-icons.ibm-padding-top-r2.removed-ibm-paddi
   .ibm-padding-top-2.ibm-padding-bottom-2
     .ibm-columns
       .ibm-col-6-4.ibm-center-block.ibm-center
-        h2.ibm-h2.ibm-light.ibm-padding-bottom-2= data.solusubhead
+        h2.ibm-h2.ibm-light.ibm-padding-bottom-2= data.solu.subhead
     .ibm-columns(class=(substyle==4 || substyle==6)? "ibm-padding-bottom-2": "ibm-padding-bottom-0")
       .ibm-col-6-3
         if substyle==3 || substyle==4
@@ -55,3 +55,10 @@ section.nst-module__solution-overview-icons.ibm-padding-top-r2.removed-ibm-paddi
             ul
               li
                 h3.ibm-h4.ibm-light.ibm-padding-bottom-r1= data.solu.solu6.feat
+    .ibm-columns.ibm-padding-bottom-3
+      .ibm-rule.ibm-alternate.ibm-gray-10
+        hr
+      .ibm-col-5-3.ibm-center-block.ibm-center.ibm-padding-top-1
+        p.ibm-light= data.solu.ctaLeadIn
+        p.ibm-ind-link.ibm-light
+          a.ibm-forward-link(href="#{data.solu.ctaUrl}")= data.solu.cta
