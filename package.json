@@ -1,5 +1,7 @@
 {
   "name": "SmarterPlanet",
+  "version": "1.0.0",
+  "private": true,
   "dependencies": {
     "body-parser": "~1.13.2",
     "bower": "^1.3.1",
@@ -14,8 +16,11 @@
     "multer": "^1.1.0",
     "serve-favicon": "~2.3.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zjjsven/page-builder.git"
+  },
   "scripts": {
-    "postinstall": "bower install",
     "prestart": "npm install",
     "start": "node ./bin/www",
     "pretest": "npm install",
