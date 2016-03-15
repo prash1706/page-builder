@@ -38,3 +38,5 @@ Wed Mar 02 2016 14:39:42 GMT+0800 (China Standard Time) | /templates/88d6619a8b2
 Sun Mar 06 2016 00:47:02 GMT+0800 (China Standard Time) | /templates/b0e4a88063c30ad8bf82f96310125c3b/1-13c1783351d2b069721f8a5491d159f7 | {} | ReferenceError: error is not defined
 Sun Mar 06 2016 00:47:29 GMT+0800 (China Standard Time) | /templates/955dc690c93a97946f0093b5670f5327/1-6a3c6a1636387acbe48905c3bcf0fe28 | {} | ReferenceError: error is not defined
 Sun Mar 06 2016 00:49:56 GMT+0800 (China Standard Time) | /templates/c9409d36684cb36835195b1bc39cc3b8/1-13c1783351d2b069721f8a5491d159f7 | {} | ReferenceError: error is not defined
+Fri Mar 11 2016 17:45:37 GMT+0800 (China Standard Time) | /templates | {} | TypeError: Cannot read property 'forEach' of undefined
+Fri Mar 11 2016 17:49:30 GMT+0800 (China Standard Time) | /templates | {} | TypeError: Cannot read property 'forEach' of undefined

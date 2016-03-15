@@ -1,6 +1,9 @@
 - var data = prom1
 - var type = setting.prom1.type
 - var substyle = setting.prom1.substyle
+- var isGray = !isPre
+- isPre = type == 0 ? isPre : !isPre
+
 if type == 1
   include ./promotion/feature.jade
 else if type == 2
@@ -13,6 +16,9 @@ else if type == 4
 - var data = prom2
 - var type = setting.prom2.type
 - var substyle = setting.prom2.substyle
+- var isGray = !isPre
+- isPre = type == 0 ? isPre : !isPre
+
 if type == 1
   include ./promotion/feature.jade
 else if type == 2
@@ -25,6 +31,9 @@ else if type == 4
 - var data = prom3
 - var type = setting.prom3.type
 - var substyle = setting.prom3.substyle
+- var isGray = !isPre
+- isPre = type == 0 ? isPre : !isPre
+
 if type == 1
   include ./promotion/feature.jade
 else if type == 2

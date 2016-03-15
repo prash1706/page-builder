@@ -1,6 +1,7 @@
 - var data = defi1
 - var type = setting.defi1.type
 - var substyle = setting.defi1.substyle
+- var isGray = false
 if type == 1
   include ./definition/introduction.jade
 else if type == 2
@@ -11,6 +12,10 @@ else
 - var data = defi2
 - var type = setting.defi2.type
 - var substyle = setting.defi2.substyle
+- var isGray = false
+if type != 0 && isPre == false
+  -  isGray = true
+  -  isPre = true
 if type == 1
   include ./definition/introduction.jade
 else if type == 2
