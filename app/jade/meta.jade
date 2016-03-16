@@ -2,6 +2,10 @@ meta(charset="UTF-8")
 meta(name="viewport", content="width=device-width, initial-scale=1")
 
 link(rel="icon", href="//www.ibm.com/favicon.ico")
+if _id
+  meta(name="page_id", content="#{_id}")
+if _rev
+  meta(name="page_retrieve", content="#{_rev}")
 if meta.canonical
   link(rel="canonical", href="#{meta.canonical}")
 if meta.keywords

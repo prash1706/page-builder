@@ -49,6 +49,8 @@ app.post('/page', function(req, res) {
   var space = req.body.space;
   var name = req.body.name;
   var data = req.body.data;
+  data._id = req.body._id;
+  data._rev = req.body._rev;
   var file = './app/pages/' + space + '/' + name + '.html';
   var dir = './app/pages/' + space + '/';
   var fn = jade.compileFile('./app/jade/index.jade', {

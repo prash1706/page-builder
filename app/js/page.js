@@ -5,6 +5,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   // Init Data
   $scope.settingData = [];
   $scope.spaces = [];
+  $scope.tempSpaces = [];
   $scope.images = [];
   $scope.currentData = null;
   $scope.tarData = null;
@@ -104,6 +105,8 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       data_cre.data = angular.fromJson(str);
 
       if ($scope.currentData && $scope.currentSpace) {
+        data_cre._id = $scope.currentData._id;
+        data_cre._rev =  $scope.currentData._rev;
         data_cre.name = $scope.currentData.name;
         data_cre.space = $scope.currentSpace.name;
       };
@@ -326,6 +329,23 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   }, function() {
     $scope.imageIndex = -1;
   });
+
+  $scope.filterUserFolder = function(){
+    $scope.tempSpaces = [];
+    var isNull = true;
+    for (var i in $scope.spaces) {
+      isNull = true;
+      for (var j = 0; j < $scope.images.length; j++){
+        if ($scope.spaces[i]._id === $scope.images[j].folderId) {
+          isNull = false;
+          break;
+        };
+      };
+      if (!isNull){
+        $scope.tempSpaces.push($scope.spaces[i]);
+      };
+    };
+  };
 
   $scope.setFieldIndex = function(index) {
     $scope.fieldIndex = index;
