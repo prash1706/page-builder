@@ -331,6 +331,41 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
     $scope.fieldIndex = index;
   };
 
+  $scope.filterProjectFolder = function(index) {
+    $scope.tempSpace = [];
+    var isNull = true;
+    for (var i in $scope.spaces) {
+      isNull = true;
+      for (var j = 0; j < $scope.images.length; j++) {
+        if ($scope.spaces[i]._id === $scope.images[j].folderId) {
+          isNull = false;
+          break;
+        };
+      };
+      if (!isNull) {
+          $scope.tempSpace.push($scope.spaces[i]);
+        };
+    };
+    if (!$scope.isProjectFolder){
+      $scope.isNewImage = true;
+    };
+  };
+
+  $scope.UploadProjectFolder = function(index) {
+    $scope.isProjectFolder = false;
+    for (var i = 0; i < $scope.images.length; i++) {
+      if($scope.currentSpace._id === $scope.images[i].folderId){
+        $scope.isProjectFolder = true;
+        console.log("$scope.isNewImage", $scope.isNewImage);
+        console.log("$scope.isProjectFolder", $scope.isProjectFolder);
+        break;
+      };
+    };
+    if (!$scope.isProjectFolder){
+      $scope.isNewImage = true;
+    };
+  };
+
   $scope.updateIndex = function(id) {
     $scope.imageIndex = -1;
     for (var index = 0; index < $scope.images.length; index++) {

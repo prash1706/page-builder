@@ -75,8 +75,8 @@
         <div class="col-sm-9" style="width:76%">
           <input type="text" class="form-control" ng-model="data.prom1.feat.solu1.imgUrl" ng-init="data.prom1.feat.solu1.imgUrl=data.prom1.feat.solu1.imgUrl===undefined?'':data.prom1.feat.solu1.imgUrl">
         </div>
-        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.feat.solu1')">Upload</button>
-        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.feat.solu1')">Retrieve</button>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.feat.solu1');UploadProjectFolder()">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.feat.solu1');filterProjectFolder()">Retrieve</button>
       </div>
     </div>
     <div class="form-group">
@@ -124,8 +124,8 @@
         <div class="col-sm-9" style="width:76%">
           <input type="text" class="form-control" ng-model="data.prom1.feat.solu2.imgUrl" ng-init="data.prom1.feat.solu2.imgUrl=data.prom1.feat.solu2.imgUrl===undefined?'':data.prom1.feat.solu2.imgUrl">
         </div>
-        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.feat.solu2')">Upload</button>
-        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.feat.solu2')">Retrieve</button>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.feat.solu2');UploadProjectFolder()">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.feat.solu2');filterProjectFolder()">Retrieve</button>
       </div>
     </div>
     <div class="form-group">
@@ -168,8 +168,8 @@
           <div class="col-sm-9" style="width:76%">
             <input type="text" class="form-control" ng-model="data.prom1.feat.solu3.imgUrl" ng-init="data.prom1.feat.solu3.imgUrl=data.prom1.feat.solu3.imgUrl===undefined?'':data.prom1.feat.solu3.imgUrl">
           </div>
-          <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.feat.solu3')">Upload</button>
-          <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.feat.solu3')">Retrieve</button>
+          <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.feat.solu3');UploadProjectFolder()">Upload</button>
+          <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.feat.solu3');filterProjectFolder()">Retrieve</button>
         </div>
       </div>
       <div class="form-group">
@@ -260,8 +260,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.prom1.solu.solu1.imgUrl" ng-init="data.prom1.solu.solu1.imgUrl=data.prom1.solu.solu1.imgUrl===undefined?'':data.prom1.solu.solu1.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu1')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu1')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu1');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu1');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -286,8 +286,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.prom1.solu.solu2.imgUrl" ng-init="data.prom1.solu.solu2.imgUrl=data.prom1.solu.solu2.imgUrl===undefined?'':data.prom1.solu.solu2.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu2')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu2')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu2');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu2');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -311,8 +311,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.prom1.solu.solu3.imgUrl" ng-init="data.prom1.solu.solu3.imgUrl=data.prom1.solu.solu3.imgUrl===undefined?'':data.prom1.solu.solu3.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu3')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu3')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu3');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu3');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -336,8 +336,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.prom1.solu.solu4.imgUrl" ng-init="data.prom1.solu.solu4.imgUrl=data.prom1.solu.solu4.imgUrl===undefined?'':data.prom1.solu.solu4.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu4')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu4')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu4');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu4');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==3 ||mySetting.substyle==4">
@@ -362,8 +362,8 @@
         <div class="col-sm-9" style="width:76%">
           <input type="text" class="form-control" ng-model="data.prom1.solu.solu5.imgUrl" ng-init="data.prom1.solu.solu5.imgUrl=data.prom1.solu.solu5.imgUrl===undefined?'':data.prom1.solu.solu5.imgUrl">
         </div>
-        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu5')">Upload</button>
-        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu5')">Retrieve</button>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu5');UploadProjectFolder()">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu5');filterProjectFolder()">Retrieve</button>
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
@@ -387,8 +387,8 @@
         <div class="col-sm-9" style="width:76%">
           <input type="text" class="form-control" ng-model="data.prom1.solu.solu6.imgUrl" ng-init="data.prom1.solu.solu6.imgUrl=data.prom1.solu.solu6.imgUrl===undefined?'':data.prom1.solu.solu6.imgUrl">
         </div>
-        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu6')">Upload</button>
-        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu6')">Retrieve</button>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.solu.solu6');UploadProjectFolder()">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.solu.solu6');filterProjectFolder()">Retrieve</button>
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle==4">
@@ -462,8 +462,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.prom1.case.imgUrl" ng-init="data.prom1.case.imgUrl=data.prom1.case.imgUrl===undefined?'':data.prom1.case.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.case')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.case')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.case');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.case');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
 </form>
@@ -476,8 +476,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.prom1.test.photo" ng-init="data.prom1.test.photo=data.prom1.test.photo===undefined?'':data.prom1.test.photo">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.test')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.test')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('prom1.test');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('prom1.test');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group">
