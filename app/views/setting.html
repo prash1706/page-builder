@@ -243,7 +243,13 @@
       <div class="modal-body">
         <h5><span class="glyphicon glyphicon-info-sign"></span><strong> <strong>Image will be uploaded into Cloudant and it will be public at the URL</strong></h5>
         <form class="form-horizontal">
-          <div class="form-group">
+          <div class="form-group" ng-hide="isProjectFolder">
+            <div class="col-sm-8">
+              <p class="navbar-text navbar-position" ng-show="currentData">User Folder: <strong>{{currentSpace.name}}</strong></p>
+              <p class="navbar-text navbar-position">Create a new folder to save this new image</p>
+            </div>
+          </div>
+          <div class="form-group" ng-hide="!isProjectFolder">
             <label class="col-sm-3 control-label">I want to</label>
             <div class="col-sm-8">
               <div class="radio">
@@ -308,7 +314,7 @@
         <div class="form-group col-sm-10" style="margin: 20px auto">
           <label class="col-sm-3 control-label">User Folder</label>
           <div class="col-sm-6">
-            <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in tempSpaces | orderBy : 'name' : false">
+            <select class="form-control" ng-model="tarSpace" ng-options="space.name for space in tempSpace | orderBy : 'name' : false">
             </select>
           </div>
         </div>

@@ -187,8 +187,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi2.asset.imgUrl"  ng-init="data.defi2.asset.imgUrl=data.defi2.asset.imgUrl===undefined?'':data.defi2.asset.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.asset')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.asset')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.asset');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.asset');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle==5">
@@ -241,8 +241,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi2.step.step1.imgUrl"  ng-init="data.defi2.step.step1.imgUrl=data.defi2.step.step1.imgUrl===undefined?'':data.defi2.step.step1.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step1')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step1')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step1');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step1');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
@@ -285,8 +285,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi2.step.step2.imgUrl"  ng-init="data.defi2.step.step2.imgUrl=data.defi2.step.step2.imgUrl===undefined?'':data.defi2.step.step2.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step2')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step2')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step2');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step2');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
@@ -329,8 +329,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi2.step.step3.imgUrl"  ng-init="data.defi2.step.step3.imgUrl=data.defi2.step.step3.imgUrl===undefined?'':data.defi2.step.step3.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step3')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step3')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step3');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step3');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">
@@ -374,8 +374,8 @@
         <div class="col-sm-9" style="width:76%">
           <input type="text" class="form-control" ng-model="data.defi2.step.step4.imgUrl" ng-init="data.defi2.step.step4.imgUrl=data.defi2.step.step4.imgUrl===undefined?'':data.defi2.step.step4.imgUrl">
         </div>
-        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step4')">Upload</button>
-        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step4')">Retrieve</button>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi2.step.step4');UploadProjectFolder()">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi2.step.step4');filterProjectFolder()">Retrieve</button>
       </div>
     </div>
     <div class="form-group" ng-show="mySetting.substyle>=7 && mySetting.substyle<=10">

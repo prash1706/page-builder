@@ -5,7 +5,7 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   // Init Data
   $scope.settingData = [];
   $scope.spaces = [];
-  $scope.tempSpaces = [];
+  $scope.tempSpace = [];
   $scope.images = [];
   $scope.currentData = null;
   $scope.tarData = null;
@@ -330,25 +330,43 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
     $scope.imageIndex = -1;
   });
 
-  $scope.filterUserFolder = function(){
-    $scope.tempSpaces = [];
+  $scope.setFieldIndex = function(index) {
+    $scope.fieldIndex = index;
+  };
+
+  $scope.filterProjectFolder = function(index) {
+    $scope.tempSpace = [];
     var isNull = true;
     for (var i in $scope.spaces) {
       isNull = true;
-      for (var j = 0; j < $scope.images.length; j++){
+      for (var j = 0; j < $scope.images.length; j++) {
         if ($scope.spaces[i]._id === $scope.images[j].folderId) {
           isNull = false;
           break;
         };
       };
-      if (!isNull){
-        $scope.tempSpaces.push($scope.spaces[i]);
-      };
+      if (!isNull) {
+          $scope.tempSpace.push($scope.spaces[i]);
+        };
+    };
+    if (!$scope.isProjectFolder){
+      $scope.isNewImage = true;
     };
   };
 
-  $scope.setFieldIndex = function(index) {
-    $scope.fieldIndex = index;
+  $scope.UploadProjectFolder = function(index) {
+    $scope.isProjectFolder = false;
+    for (var i = 0; i < $scope.images.length; i++) {
+      if($scope.currentSpace._id === $scope.images[i].folderId){
+        $scope.isProjectFolder = true;
+        console.log("$scope.isNewImage", $scope.isNewImage);
+        console.log("$scope.isProjectFolder", $scope.isProjectFolder);
+        break;
+      };
+    };
+    if (!$scope.isProjectFolder){
+      $scope.isNewImage = true;
+    };
   };
 
   $scope.updateIndex = function(id) {
@@ -458,17 +476,23 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
   };
 
   $scope.upload = function() {
-    $("#uploadBtn").button('loading');
     $scope.startPro();
     console.log("$scope.isNewImage", $scope.isNewImage);
     console.log("$scope.tarProjectName", $scope.tarProjectName);
     console.log("$scope.currentImage", $scope.currentImage);
     var data = {};
     if ($scope.isNewImage) {
-      data = {
-        projectName: $scope.tarProjectName,
-        folderId: $scope.tarSpace._id
-      };
+      if ($scope.isProjectFolder){
+        data = {
+          projectName: $scope.tarProjectName,
+          folderId: $scope.tarSpace._id
+        };
+      } else {
+        data = {
+          projectName: $scope.tarProjectName,
+          folderId: $scope.currentSpace._id
+        };
+      }
     } else {
       data = {
         _id: $scope.currentImage._id,
@@ -502,7 +526,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       $scope.tarProjectName = '';
       $scope.isNewImage = false;
       $scope.myFile = '';
-      $("#uploadBtn").button('reset');
     }, function(err) {
       $scope.showError('Fail to save the \'' + $scope.myFile.name + '\', retry please');
       $scope.tarProjectName = '';
@@ -510,7 +533,6 @@ myPageApp.controller('SetMainCtrl', ['$scope', '$timeout', '$state', '$rootScope
       $scope.myFile = '';
       $scope.stopPro();
       console.error(err);
-      $("#uploadBtn").button('reset');
     });
   }
 

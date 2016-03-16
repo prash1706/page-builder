@@ -186,8 +186,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi1.asset.imgUrl" ng-init="data.defi1.asset.imgUrl = data.defi1.asset.imgUrl===undefined?'':data.defi1.asset.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.asset')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.asset')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.asset');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.asset');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="data.setting.defi1.substyle==5">
@@ -240,8 +240,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi1.step.step1.imgUrl" ng-init="data.defi1.step.step1.imgUrl=data.defi1.step.step1.imgUrl===undefined?'':data.defi1.step.step1.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step1')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step1')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step1');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step1');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
@@ -284,8 +284,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi1.step.step2.imgUrl" ng-init="data.defi1.step.step2.imgUrl=data.defi1.step.step2.imgUrl===undefined?'':data.defi1.step.step2.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step2')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step2')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step2');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step2');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
@@ -328,8 +328,8 @@
       <div class="col-sm-9" style="width:76%">
         <input type="text" class="form-control" ng-model="data.defi1.step.step3.imgUrl" ng-init="data.defi1.step.step3.imgUrl=data.defi1.step.step3.imgUrl===undefined?'':data.defi1.step.step3.imgUrl">
       </div>
-      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step3')">Upload</button>
-      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step3')">Retrieve</button>
+      <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step3');UploadProjectFolder()">Upload</button>
+      <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step3');filterProjectFolder()">Retrieve</button>
     </div>
   </div>
   <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
@@ -373,8 +373,8 @@
         <div class="col-sm-9" style="width:76%">
           <input type="text" class="form-control" ng-model="data.defi1.step.step4.imgUrl" ng-init="data.defi1.step.step4.imgUrl=data.defi1.step.step4.imgUrl===undefined?'':data.defi1.step.step4.imgUrl">
         </div>
-        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step4')">Upload</button>
-        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step4')">Retrieve</button>
+        <button class="btn btn-primary pull-left" type="button" style="margin-right: 10px" data-toggle="modal" data-target="#UploadModal" data-loading-text="Uploading..." ng-click="setFieldIndex('defi1.step.step4');UploadProjectFolder()">Upload</button>
+        <button class="btn btn-primary pull-left" type="button" data-toggle="modal" data-target="#RetrieveModal" ng-click="setFieldIndex('defi1.step.step4');filterProjectFolder()">Retrieve</button>
       </div>
     </div>
     <div class="form-group" ng-show="data.setting.defi1.substyle>=7 && data.setting.defi1.substyle<=10">
